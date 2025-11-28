@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0746085C-01C9-46DC-B93E-1FD4EE955F42}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>doAn</RootNamespace>
+    <AssemblyName>doAn</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PlaceholderTextBox, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PlaceholderTextBox.1.3.1\lib\PlaceholderTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Flash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Flash.Designer.cs">
+      <DependentUpon>Flash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="auth\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="auth\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanLyKhachHang\khachHang\Sua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanLyKhachHang\khachHang\Sua.Designer.cs">
+      <DependentUpon>Sua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanLyKhachHang\khachHang\Them.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanLyKhachHang\khachHang\Them.Designer.cs">
+      <DependentUpon>Them.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\danhMuc\Sua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\danhMuc\Sua.Designer.cs">
+      <DependentUpon>Sua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\danhMuc\Them.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\danhMuc\Them.Designer.cs">
+      <DependentUpon>Them.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\sanPham\ChiTietSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\sanPham\ChiTietSanPham.Designer.cs">
+      <DependentUpon>ChiTietSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\sanPham\Them.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\sanPham\Them.Designer.cs">
+      <DependentUpon>Them.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\thuongHieu\Sua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\thuongHieu\Sua.Designer.cs">
+      <DependentUpon>Sua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\thuongHieu\Them.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanlySanPham\thuongHieu\Them.Designer.cs">
+      <DependentUpon>Them.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanLyKhachHang\KhachHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="quanLyKhachHang\KhachHang.Designer.cs">
+      <DependentUpon>KhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanLyKhachHang\mainKH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quanLyKhachHang\mainKH.Designer.cs">
+      <DependentUpon>mainKH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanlyNhanVien\mainNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quanlyNhanVien\mainNV.Designer.cs">
+      <DependentUpon>mainNV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanLySanPham\sanPham\buttonThem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="quanLySanPham\sanPham\buttonThem.Designer.cs">
+      <DependentUpon>buttonThem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanLySanPham\sanPham\SanPham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="quanLySanPham\sanPham\SanPham.Designer.cs">
+      <DependentUpon>SanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanLySanPham\DanhMuc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="quanLySanPham\DanhMuc.Designer.cs">
+      <DependentUpon>DanhMuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanLySanPham\mainSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quanLySanPham\mainSP.Designer.cs">
+      <DependentUpon>mainSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="auth\ChangePass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="auth\ChangePass.Designer.cs">
+      <DependentUpon>ChangePass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanLySanPham\sanPham\DanhSachSP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="quanLySanPham\sanPham\DanhSachSP.Designer.cs">
+      <DependentUpon>DanhSachSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanLySanPham\ThuongHieu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="quanLySanPham\ThuongHieu.Designer.cs">
+      <DependentUpon>ThuongHieu.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="auth\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanLyKhachHang\khachHang\Sua.resx">
+      <DependentUpon>Sua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanLyKhachHang\khachHang\Them.resx">
+      <DependentUpon>Them.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanlySanPham\danhMuc\Sua.resx">
+      <DependentUpon>Sua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanlySanPham\danhMuc\Them.resx">
+      <DependentUpon>Them.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanlySanPham\sanPham\ChiTietSanPham.resx">
+      <DependentUpon>ChiTietSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanlySanPham\sanPham\Them.resx">
+      <DependentUpon>Them.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanlySanPham\thuongHieu\Sua.resx">
+      <DependentUpon>Sua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanlySanPham\thuongHieu\Them.resx">
+      <DependentUpon>Them.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanLyKhachHang\KhachHang.resx">
+      <DependentUpon>KhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanLyKhachHang\mainKH.resx">
+      <DependentUpon>mainKH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanlyNhanVien\mainNV.resx">
+      <DependentUpon>mainNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanLySanPham\DanhMuc.resx">
+      <DependentUpon>DanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanLySanPham\mainSP.resx">
+      <DependentUpon>mainSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="quanLySanPham\sanPham\buttonThem.resx">
+      <DependentUpon>buttonThem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanLySanPham\sanPham\DanhSachSP.resx">
+      <DependentUpon>DanhSachSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanLySanPham\sanPham\SanPham.resx">
+      <DependentUpon>SanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanLySanPham\ThuongHieu.resx">
+      <DependentUpon>ThuongHieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\501black.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\type1lV.jfif" />
+    <Content Include="Resources\login-100.png" />
+    <None Include="Resources\login-1001.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

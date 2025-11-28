@@ -172,7 +172,8 @@ namespace doAn.quanLyKhachHang
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-
+            Sua puSua = new Sua(data);
+            puSua.ShowDialog();
         }
     }
 }

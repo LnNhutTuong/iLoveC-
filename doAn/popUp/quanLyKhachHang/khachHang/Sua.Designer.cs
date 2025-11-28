@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtMoTa = new PlaceholderTextBox.PlaceholderTextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtDiaChi = new PlaceholderTextBox.PlaceholderTextBox();
             this.txtMaKhachHang = new PlaceholderTextBox.PlaceholderTextBox();
             this.txtTenKhachHang = new PlaceholderTextBox.PlaceholderTextBox();
             this.btnDongY = new System.Windows.Forms.Button();
-            this.txtTriGia = new System.Windows.Forms.TextBox();
+            this.txtSoDienThoai = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,26 +48,26 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // textBox1
+            // txtEmail
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Red;
-            this.textBox1.Location = new System.Drawing.Point(207, 367);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(259, 32);
-            this.textBox1.TabIndex = 87;
+            this.txtEmail.BackColor = System.Drawing.Color.White;
+            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.ForeColor = System.Drawing.Color.Black;
+            this.txtEmail.Location = new System.Drawing.Point(207, 367);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(259, 32);
+            this.txtEmail.TabIndex = 87;
             // 
-            // txtMoTa
+            // txtDiaChi
             // 
-            this.txtMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMoTa.Location = new System.Drawing.Point(207, 227);
-            this.txtMoTa.Multiline = true;
-            this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.PlaceholderText = "";
-            this.txtMoTa.Size = new System.Drawing.Size(259, 70);
-            this.txtMoTa.TabIndex = 79;
+            this.txtDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiaChi.Location = new System.Drawing.Point(207, 227);
+            this.txtDiaChi.Multiline = true;
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.PlaceholderText = "";
+            this.txtDiaChi.Size = new System.Drawing.Size(259, 70);
+            this.txtDiaChi.TabIndex = 79;
             // 
             // txtMaKhachHang
             // 
@@ -102,16 +102,16 @@
             this.btnDongY.Text = "Đồng ý ";
             this.btnDongY.UseVisualStyleBackColor = true;
             // 
-            // txtTriGia
+            // txtSoDienThoai
             // 
-            this.txtTriGia.BackColor = System.Drawing.Color.White;
-            this.txtTriGia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTriGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTriGia.ForeColor = System.Drawing.Color.Red;
-            this.txtTriGia.Location = new System.Drawing.Point(207, 315);
-            this.txtTriGia.Name = "txtTriGia";
-            this.txtTriGia.Size = new System.Drawing.Size(259, 32);
-            this.txtTriGia.TabIndex = 80;
+            this.txtSoDienThoai.BackColor = System.Drawing.Color.White;
+            this.txtSoDienThoai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSoDienThoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSoDienThoai.ForeColor = System.Drawing.Color.Black;
+            this.txtSoDienThoai.Location = new System.Drawing.Point(207, 315);
+            this.txtSoDienThoai.Name = "txtSoDienThoai";
+            this.txtSoDienThoai.Size = new System.Drawing.Size(259, 32);
+            this.txtSoDienThoai.TabIndex = 80;
             // 
             // label7
             // 
@@ -191,12 +191,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 521);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.txtMoTa);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.txtMaKhachHang);
             this.Controls.Add(this.txtTenKhachHang);
             this.Controls.Add(this.btnDongY);
-            this.Controls.Add(this.txtTriGia);
+            this.Controls.Add(this.txtSoDienThoai);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -204,7 +204,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnHuy);
             this.Name = "Sua";
-            this.Text = "Sya";
+            this.Text = "Sửa thông tin khách hàng";
+            this.Load += new System.EventHandler(this.Sua_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,12 +214,12 @@
         #endregion
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox textBox1;
-        private PlaceholderTextBox.PlaceholderTextBox txtMoTa;
+        private System.Windows.Forms.TextBox txtEmail;
+        private PlaceholderTextBox.PlaceholderTextBox txtDiaChi;
         private PlaceholderTextBox.PlaceholderTextBox txtMaKhachHang;
         private PlaceholderTextBox.PlaceholderTextBox txtTenKhachHang;
         private System.Windows.Forms.Button btnDongY;
-        private System.Windows.Forms.TextBox txtTriGia;
+        private System.Windows.Forms.TextBox txtSoDienThoai;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

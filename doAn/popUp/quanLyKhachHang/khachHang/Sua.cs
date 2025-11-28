@@ -12,9 +12,25 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
 {
     public partial class Sua : Form
     {
-        public Sua()
+
+        decimal sdt;
+
+        private readonly BindingSource olddata;
+        public Sua(BindingSource _olddata)
         {
             InitializeComponent();
+            olddata = _olddata;
+        }
+
+        private void Sua_Load(object sender, EventArgs e)
+        {
+            DataRowView rowSelect = (DataRowView)olddata.Current;
+
+            txtMaKhachHang.Text = rowSelect["MaKhachHang"].ToString();
+            txtTenKhachHang.Text = rowSelect["TenKhachHang"].ToString();
+            txtDiaChi.Text = rowSelect["DiaChi"].ToString();
+            txtEmail.Text = rowSelect["Email"].ToString();
+            txtSoDienThoai.Text = Convert.ToInt64(rowSelect["Sdt"]).ToString();
         }
     }
 }

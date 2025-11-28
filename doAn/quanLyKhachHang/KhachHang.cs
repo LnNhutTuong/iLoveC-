@@ -72,13 +72,21 @@ namespace doAn.quanLyKhachHang
                 int soDon = cell is DBNull ? 0 : Convert.ToInt32(cell);
 
                 if (soDon <= 5)
+                {
                     e.Value = "Đồng";
+                }
                 else if (soDon <= 10)
+                {
                     e.Value = "Bạc";
+                }
                 else if (soDon <= 40)
+                {
                     e.Value = "Vàng";
+                }
                 else
+                {
                     e.Value = "Kim cương";
+                }
 
                 e.FormattingApplied = true;
             }
@@ -90,12 +98,6 @@ namespace doAn.quanLyKhachHang
         {
             LayDuLieu();
         }
-
-    
-
-
-
-
 
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -137,8 +139,9 @@ namespace doAn.quanLyKhachHang
                     //updata tu bang len database
                     adapter.Update(dataTable);
                 }
-
+                KhachHang_Load(sender, e);
                 MessageBox.Show("Lưu dữ liệu thành công!");
+
             }
             catch (Exception ex)
             {

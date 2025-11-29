@@ -119,46 +119,46 @@
     <Compile Include="popUp\quanlySanPham\thuongHieu\Them.Designer.cs">
       <DependentUpon>Them.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanLyKhachHang\KhachHang.cs">
+    <Compile Include="main\quanLyKhachHang\KhachHang.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="quanLyKhachHang\KhachHang.Designer.cs">
+    <Compile Include="main\quanLyKhachHang\KhachHang.Designer.cs">
       <DependentUpon>KhachHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanLyKhachHang\mainKH.cs">
+    <Compile Include="main\quanLyKhachHang\mainKH.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="quanLyKhachHang\mainKH.Designer.cs">
+    <Compile Include="main\quanLyKhachHang\mainKH.Designer.cs">
       <DependentUpon>mainKH.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanlyNhanVien\mainNV.cs">
+    <Compile Include="main\quanlyNhanVien\mainNV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="quanlyNhanVien\mainNV.Designer.cs">
+    <Compile Include="main\quanlyNhanVien\mainNV.Designer.cs">
       <DependentUpon>mainNV.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanLySanPham\sanPham\buttonThem.cs">
+    <Compile Include="main\quanLySanPham\sanPham\buttonThem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="quanLySanPham\sanPham\buttonThem.Designer.cs">
+    <Compile Include="main\quanLySanPham\sanPham\buttonThem.Designer.cs">
       <DependentUpon>buttonThem.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanLySanPham\sanPham\SanPham.cs">
+    <Compile Include="main\quanLySanPham\sanPham\SanPham.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="quanLySanPham\sanPham\SanPham.Designer.cs">
+    <Compile Include="main\quanLySanPham\sanPham\SanPham.Designer.cs">
       <DependentUpon>SanPham.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanLySanPham\DanhMuc.cs">
+    <Compile Include="main\quanLySanPham\DanhMuc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="quanLySanPham\DanhMuc.Designer.cs">
+    <Compile Include="main\quanLySanPham\DanhMuc.Designer.cs">
       <DependentUpon>DanhMuc.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanLySanPham\mainSP.cs">
+    <Compile Include="main\quanLySanPham\mainSP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="quanLySanPham\mainSP.Designer.cs">
+    <Compile Include="main\quanLySanPham\mainSP.Designer.cs">
       <DependentUpon>mainSP.cs</DependentUpon>
     </Compile>
     <Compile Include="MyDataTable.cs">
@@ -172,16 +172,16 @@
     <Compile Include="auth\ChangePass.Designer.cs">
       <DependentUpon>ChangePass.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanLySanPham\sanPham\DanhSachSP.cs">
+    <Compile Include="main\quanLySanPham\sanPham\DanhSachSP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="quanLySanPham\sanPham\DanhSachSP.Designer.cs">
+    <Compile Include="main\quanLySanPham\sanPham\DanhSachSP.Designer.cs">
       <DependentUpon>DanhSachSP.cs</DependentUpon>
     </Compile>
-    <Compile Include="quanLySanPham\ThuongHieu.cs">
+    <Compile Include="main\quanLySanPham\ThuongHieu.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="quanLySanPham\ThuongHieu.Designer.cs">
+    <Compile Include="main\quanLySanPham\ThuongHieu.Designer.cs">
       <DependentUpon>ThuongHieu.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="auth\Login.resx">
@@ -211,19 +211,19 @@
     <EmbeddedResource Include="popUp\quanlySanPham\thuongHieu\Them.resx">
       <DependentUpon>Them.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="quanLyKhachHang\KhachHang.resx">
+    <EmbeddedResource Include="main\quanLyKhachHang\KhachHang.resx">
       <DependentUpon>KhachHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="quanLyKhachHang\mainKH.resx">
+    <EmbeddedResource Include="main\quanLyKhachHang\mainKH.resx">
       <DependentUpon>mainKH.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="quanlyNhanVien\mainNV.resx">
+    <EmbeddedResource Include="main\quanlyNhanVien\mainNV.resx">
       <DependentUpon>mainNV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="quanLySanPham\DanhMuc.resx">
+    <EmbeddedResource Include="main\quanLySanPham\DanhMuc.resx">
       <DependentUpon>DanhMuc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="quanLySanPham\mainSP.resx">
+    <EmbeddedResource Include="main\quanLySanPham\mainSP.resx">
       <DependentUpon>mainSP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -236,16 +236,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="quanLySanPham\sanPham\buttonThem.resx">
+    <EmbeddedResource Include="main\quanLySanPham\sanPham\buttonThem.resx">
       <DependentUpon>buttonThem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="quanLySanPham\sanPham\DanhSachSP.resx">
+    <EmbeddedResource Include="main\quanLySanPham\sanPham\DanhSachSP.resx">
       <DependentUpon>DanhSachSP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="quanLySanPham\sanPham\SanPham.resx">
+    <EmbeddedResource Include="main\quanLySanPham\sanPham\SanPham.resx">
       <DependentUpon>SanPham.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="quanLySanPham\ThuongHieu.resx">
+    <EmbeddedResource Include="main\quanLySanPham\ThuongHieu.resx">
       <DependentUpon>ThuongHieu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

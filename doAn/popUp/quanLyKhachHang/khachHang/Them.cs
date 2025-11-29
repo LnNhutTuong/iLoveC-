@@ -72,7 +72,7 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
             }
             else if (txtSoDienThoai.Text.Trim() == null)
             {
-                MessageBox.Show("Không được bỏ trống tên!");
+                MessageBox.Show("Không được bỏ trống Số điện thoại!");
                 return;
             }
             else if (txtSoDienThoai.Text.Length > 10 || txtSoDienThoai.Text.Length < 10)
@@ -108,10 +108,15 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
                 return;
             }
 
-            dt.Rows.Add(txtMaKhachHang.Text, txtTenKhachHang.Text, txtDiaChi.Text,  txtSoDienThoai.Text, txtEmail.Text, 0);
+            dt.Rows.Add(txtMaKhachHang.Text, txtTenKhachHang.Text, txtDiaChi.Text,  sdt, txtEmail.Text, 0);
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            this.Close()
         }
     }
 }

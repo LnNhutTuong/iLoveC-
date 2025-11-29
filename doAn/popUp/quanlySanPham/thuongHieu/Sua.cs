@@ -49,7 +49,7 @@ namespace doAn.popUp.thuongHieu
             rowSelect.BeginEdit();
 
             rowSelect["MaThuongHieu"] = txtMaThuongHieu.Text;
-            rowSelect["TenThuongHieu"] = txtMaThuongHieu.Text;
+            rowSelect["TenThuongHieu"] = txtTenThuongHieu.Text;
 
             rowSelect.EndEdit();
 

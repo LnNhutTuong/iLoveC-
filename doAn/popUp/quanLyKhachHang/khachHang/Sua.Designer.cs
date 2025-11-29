@@ -30,7 +30,6 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtDiaChi = new PlaceholderTextBox.PlaceholderTextBox();
             this.txtMaKhachHang = new PlaceholderTextBox.PlaceholderTextBox();
             this.txtTenKhachHang = new PlaceholderTextBox.PlaceholderTextBox();
             this.btnDongY = new System.Windows.Forms.Button();
@@ -42,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -58,16 +58,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(259, 32);
             this.txtEmail.TabIndex = 87;
-            // 
-            // txtDiaChi
-            // 
-            this.txtDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiaChi.Location = new System.Drawing.Point(207, 227);
-            this.txtDiaChi.Multiline = true;
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.PlaceholderText = "";
-            this.txtDiaChi.Size = new System.Drawing.Size(259, 70);
-            this.txtDiaChi.TabIndex = 79;
             // 
             // txtMaKhachHang
             // 
@@ -101,6 +91,7 @@
             this.btnDongY.TabIndex = 81;
             this.btnDongY.Text = "Đồng ý ";
             this.btnDongY.UseVisualStyleBackColor = true;
+            this.btnDongY.Click += new System.EventHandler(this.btnDongY_Click);
             // 
             // txtSoDienThoai
             // 
@@ -174,6 +165,7 @@
             this.btnHuy.TabIndex = 82;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // label1
             // 
@@ -185,14 +177,21 @@
             this.label1.TabIndex = 88;
             this.label1.Text = "Sửa thông tin";
             // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.Location = new System.Drawing.Point(207, 227);
+            this.txtDiaChi.Multiline = true;
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(259, 70);
+            this.txtDiaChi.TabIndex = 89;
+            // 
             // Sua
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(492, 521);
+            this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.txtMaKhachHang);
             this.Controls.Add(this.txtTenKhachHang);
             this.Controls.Add(this.btnDongY);
@@ -203,7 +202,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnHuy);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Sua";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sửa thông tin khách hàng";
             this.Load += new System.EventHandler(this.Sua_Load);
             this.ResumeLayout(false);
@@ -215,7 +218,6 @@
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox txtEmail;
-        private PlaceholderTextBox.PlaceholderTextBox txtDiaChi;
         private PlaceholderTextBox.PlaceholderTextBox txtMaKhachHang;
         private PlaceholderTextBox.PlaceholderTextBox txtTenKhachHang;
         private System.Windows.Forms.Button btnDongY;
@@ -227,5 +229,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtDiaChi;
     }
 }

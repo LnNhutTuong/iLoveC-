@@ -4,10 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace doAn.popUp.quanlySanPham.sanPham
 {
@@ -57,6 +60,27 @@ namespace doAn.popUp.quanlySanPham.sanPham
         }
 
         decimal triGia;
+
+
+        //Khai bao toan cuc de lay path de va nhanh co the
+        string path = "";
+        private void btnThemAnh_Click_1(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Title = "Chọn file ảnh";
+            dialog.Filter = "Image Files|*.png;*.jpg;*.jpeg";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                path = dialog.FileName;
+
+                string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
+
+                btnThemAnh.Text = name;
+
+                pictureBox.Image = Image.FromFile(dialog.FileName);
+            }
+        }
 
         private void btnDongY_Click(object sender, EventArgs e)
         {
@@ -109,17 +133,19 @@ namespace doAn.popUp.quanlySanPham.sanPham
             //Row = dong khi them vao dataGrid bat buoc phai co nut luu de xu li
             //logic va toi uu nhat
             //That reason why 
-           string sql = @"INSERT INTO SanPham
-                (MaSanPham, TenSanPham, MaDanhMuc, MaThuongHieu, TriGia, MoTa)
-                VALUES (@MaSanPham, @TenSanPham, @MaDanhMuc, @MaThuongHieu, @TriGia, @MoTa)";
+            string sql = @"INSERT INTO SanPham
+                            (MaSanPham, TenSanPham, MaDanhMuc, MaThuongHieu, TriGia, AnhDaiDien, MoTa)
+                            VALUES
+                            (@MaSanPham, @TenSanPham, @MaDanhMuc, @MaThuongHieu, @TriGia, @AnhDaiDien, @MoTa)"; 
 
             SqlCommand cmd = new SqlCommand(sql);
 
-            cmd.Parameters.Add("@MaSanPham", SqlDbType.NVarChar, 5).Value = txtMaSanPham.Text;
+            cmd.Parameters.Add("@MaSanPham", SqlDbType.NVarChar, 5).Value = txtMaSanPham.Text.ToUpper();
             cmd.Parameters.Add("@TenSanPham", SqlDbType.NVarChar, 50).Value = txtTenSanPham.Text;
             cmd.Parameters.Add("@MaDanhMuc", SqlDbType.NVarChar, 5).Value = cboDanhMuc.SelectedValue;
             cmd.Parameters.Add("@MaThuongHieu", SqlDbType.NVarChar, 50).Value = cboThuongHieu.SelectedValue;
             cmd.Parameters.Add("@TriGia", SqlDbType.Decimal).Value = triGia;
+            cmd.Parameters.Add("@AnhDaiDien", SqlDbType.NVarChar, 255).Value = path;
             cmd.Parameters.Add("@MoTa", SqlDbType.NVarChar, 255).Value = txtMoTa.Text;
 
             dataTable.Update(cmd);
@@ -134,5 +160,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
         {
             this.Close();
         }
+
+       
     }
 }

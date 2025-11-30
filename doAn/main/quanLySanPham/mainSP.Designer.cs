@@ -38,8 +38,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.txtNhanVien = new System.Windows.Forms.ToolStripStatusLabel();
             this.none = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnThoat = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnDoiMatKhau = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnThoat = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -142,6 +142,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.AutoSize = false;
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -152,8 +153,10 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1101, 37);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // txtNhanVien
             // 
@@ -169,15 +172,6 @@
             this.none.Size = new System.Drawing.Size(788, 31);
             this.none.Spring = true;
             // 
-            // btnThoat
-            // 
-            this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.btnThoat.ForeColor = System.Drawing.Color.Red;
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(50, 31);
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
-            // 
             // btnDoiMatKhau
             // 
             this.btnDoiMatKhau.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
@@ -186,6 +180,15 @@
             this.btnDoiMatKhau.Size = new System.Drawing.Size(103, 31);
             this.btnDoiMatKhau.Text = "Đổi mật khẩu";
             this.btnDoiMatKhau.Click += new System.EventHandler(this.btnDoiMatKhau_Click);
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.btnThoat.ForeColor = System.Drawing.Color.Red;
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(50, 31);
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // mainSP
             // 
@@ -206,7 +209,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
@@ -221,7 +223,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label lblTieuDe;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabDanhMuc;
         private System.Windows.Forms.TabPage tabThuongHieu;
@@ -230,5 +231,6 @@
         private System.Windows.Forms.ToolStripStatusLabel none;
         private System.Windows.Forms.ToolStripStatusLabel btnThoat;
         private System.Windows.Forms.ToolStripStatusLabel btnDoiMatKhau;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

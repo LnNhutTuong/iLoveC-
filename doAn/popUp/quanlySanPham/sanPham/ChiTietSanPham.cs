@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -64,16 +65,26 @@ namespace doAn.popUp.quanlySanPham.sanPham
             cboThuongHieu.DisplayMember = "TenThuongHieu";
             //Value
             cboThuongHieu.ValueMember = "MaThuongHieu";
-                     
 
+
+            string path = myData.Rows[0]["AnhDaiDien"].ToString();
+
+            //Console.WriteLine(name);
+
+            // QONG TRUANG
+            // muon object => string  thi can .Value
+            string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
 
             txtMaSanPham.Text = myData.Rows[0]["MaSanPham"].ToString();
             txtTenSanPham.Text = myData.Rows[0]["TenSanPham"].ToString();
             //lay gian tiep
             cboDanhMuc.SelectedValue = maDanhMuc;
             cboThuongHieu.SelectedValue = maThuongHieu;
+            btnThayAnh.Text = name;
             txtMoTa.Text = myData.Rows[0]["MoTa"].ToString();
             txtTriGia.Text = myData.Rows[0]["TriGia"].ToString();
+
+            pictureBox.Image = Image.FromFile(path);
 
             OnOff(false);
         }
@@ -84,6 +95,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
             txtTenSanPham.Enabled = value;
             cboDanhMuc.Enabled = value;
             cboThuongHieu.Enabled = value;
+            btnThayAnh.Enabled = value;
             txtMoTa.Enabled = value;
             txtTriGia.Enabled = value;
            
@@ -100,7 +112,26 @@ namespace doAn.popUp.quanlySanPham.sanPham
         {
             LayDuLieu();
             OnOff(false);
-        }     
+        }
+
+        string path = "";
+        private void btnThayAnh_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Title = "Chọn file ảnh";
+            dialog.Filter = "Image Files|*.png;*.jpg;*.jpeg";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                 path = dialog.FileName;
+
+                string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
+
+                btnThayAnh.Text = name;
+
+                pictureBox.Image = Image.FromFile(dialog.FileName);
+            }
+        }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -140,16 +171,18 @@ namespace doAn.popUp.quanlySanPham.sanPham
                               SET  TenSanPham = @TenSanPham,
                                    MaDanhMuc = @MaDanhMuc,
                                    MaThuongHieu = @MaThuongHieu,
+                                   AnhDaiDien = @path,
                                    MoTa = @MoTa,
                                    TriGia = @TriGia                                             
                                WHERE MaSanPham = @MaSanPham";
 
                 SqlCommand cmd = new SqlCommand(sql);
 
-                cmd.Parameters.AddWithValue("@MaSanPham", txtMaSanPham.Text);
+                cmd.Parameters.AddWithValue("@MaSanPham", txtMaSanPham.Text.ToUpper());
                 cmd.Parameters.AddWithValue("@TenSanPham", txtTenSanPham.Text);
                 cmd.Parameters.AddWithValue("@MaDanhMuc", cboDanhMuc.SelectedValue.ToString());
                 cmd.Parameters.AddWithValue("@MaThuongHieu", cboThuongHieu.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@AnhDaiDien", path);
                 cmd.Parameters.AddWithValue("@MoTa", txtMoTa.Text);
                 cmd.Parameters.AddWithValue("@TriGia", txtTriGia.Text);
 
@@ -170,5 +203,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
         {
             ChiTietSanPham_Load(sender, e);
         }
+
+       
     }
 }

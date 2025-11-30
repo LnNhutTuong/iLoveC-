@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnThayAnh = new System.Windows.Forms.Button();
             this.txtMoTa = new PlaceholderTextBox.PlaceholderTextBox();
             this.txtMaSanPham = new PlaceholderTextBox.PlaceholderTextBox();
             this.txtTenSanPham = new PlaceholderTextBox.PlaceholderTextBox();
@@ -44,15 +47,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnAnh = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -63,12 +63,12 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Panel2.Controls.Add(this.btnAnh);
+            this.splitContainer1.Panel2.Controls.Add(this.btnThayAnh);
             this.splitContainer1.Panel2.Controls.Add(this.txtMoTa);
             this.splitContainer1.Panel2.Controls.Add(this.txtMaSanPham);
             this.splitContainer1.Panel2.Controls.Add(this.txtTenSanPham);
@@ -87,6 +87,36 @@
             this.splitContainer1.Size = new System.Drawing.Size(801, 493);
             this.splitContainer1.SplitterDistance = 324;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(324, 493);
+            this.pictureBox.TabIndex = 1;
+            this.pictureBox.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(17, 375);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 26);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "Hình ảnh";
+            // 
+            // btnThayAnh
+            // 
+            this.btnThayAnh.Location = new System.Drawing.Point(197, 375);
+            this.btnThayAnh.Name = "btnThayAnh";
+            this.btnThayAnh.Size = new System.Drawing.Size(147, 26);
+            this.btnThayAnh.TabIndex = 48;
+            this.btnThayAnh.Text = "Đổi ảnh";
+            this.btnThayAnh.UseVisualStyleBackColor = true;
+            this.btnThayAnh.Click += new System.EventHandler(this.btnThayAnh_Click);
             // 
             // txtMoTa
             // 
@@ -249,38 +279,9 @@
             this.label2.TabIndex = 33;
             this.label2.Text = "Danh mục:";
             // 
-            // btnAnh
-            // 
-            this.btnAnh.Location = new System.Drawing.Point(197, 375);
-            this.btnAnh.Name = "btnAnh";
-            this.btnAnh.Size = new System.Drawing.Size(147, 26);
-            this.btnAnh.TabIndex = 48;
-            this.btnAnh.Text = "Thay ảnh";
-            this.btnAnh.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 375);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 26);
-            this.label1.TabIndex = 49;
-            this.label1.Text = "Hình ảnh";
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(324, 493);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // ChiTietSanPham
             // 
@@ -300,7 +301,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -323,9 +324,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnAnh;
+        private System.Windows.Forms.Button btnThayAnh;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }

@@ -116,7 +116,7 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            this.Close()
+            this.Close();
         }
     }
 }

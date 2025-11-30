@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.btnThemAnh = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtMoTa = new PlaceholderTextBox.PlaceholderTextBox();
+            this.txtMaSanPham = new PlaceholderTextBox.PlaceholderTextBox();
+            this.txtTenSanPham = new PlaceholderTextBox.PlaceholderTextBox();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnDongY = new System.Windows.Forms.Button();
             this.cboThuongHieu = new System.Windows.Forms.ComboBox();
@@ -39,13 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtTenSanPham = new PlaceholderTextBox.PlaceholderTextBox();
-            this.txtMaSanPham = new PlaceholderTextBox.PlaceholderTextBox();
-            this.txtMoTa = new PlaceholderTextBox.PlaceholderTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnThemAnh = new System.Windows.Forms.Button();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -83,6 +83,69 @@
             this.splitContainer1.Size = new System.Drawing.Size(793, 518);
             this.splitContainer1.SplitterDistance = 329;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(329, 518);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 1;
+            this.pictureBox.TabStop = false;
+            // 
+            // btnThemAnh
+            // 
+            this.btnThemAnh.Location = new System.Drawing.Point(189, 395);
+            this.btnThemAnh.Name = "btnThemAnh";
+            this.btnThemAnh.Size = new System.Drawing.Size(147, 26);
+            this.btnThemAnh.TabIndex = 6;
+            this.btnThemAnh.Text = "Thêm ảnh";
+            this.btnThemAnh.UseVisualStyleBackColor = true;
+            this.btnThemAnh.Click += new System.EventHandler(this.btnThemAnh_Click_1);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 395);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 26);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Hình ảnh:";
+            // 
+            // txtMoTa
+            // 
+            this.txtMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMoTa.Location = new System.Drawing.Point(189, 245);
+            this.txtMoTa.Multiline = true;
+            this.txtMoTa.Name = "txtMoTa";
+            this.txtMoTa.PlaceholderText = "Eo: xCm | Dài: xCm | Ống: xCm";
+            this.txtMoTa.Size = new System.Drawing.Size(259, 70);
+            this.txtMoTa.TabIndex = 4;
+            // 
+            // txtMaSanPham
+            // 
+            this.txtMaSanPham.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMaSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaSanPham.Location = new System.Drawing.Point(140, 27);
+            this.txtMaSanPham.Name = "txtMaSanPham";
+            this.txtMaSanPham.PlaceholderText = "Mã sản phẩm";
+            this.txtMaSanPham.Size = new System.Drawing.Size(180, 25);
+            this.txtMaSanPham.TabIndex = 0;
+            this.txtMaSanPham.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtTenSanPham
+            // 
+            this.txtTenSanPham.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTenSanPham.Location = new System.Drawing.Point(132, 91);
+            this.txtTenSanPham.Name = "txtTenSanPham";
+            this.txtTenSanPham.PlaceholderText = "Tên sản phẩm";
+            this.txtTenSanPham.Size = new System.Drawing.Size(197, 25);
+            this.txtTenSanPham.TabIndex = 1;
+            this.txtTenSanPham.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnHuy
             // 
@@ -189,75 +252,13 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Danh mục:";
             // 
-            // txtTenSanPham
-            // 
-            this.txtTenSanPham.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenSanPham.Location = new System.Drawing.Point(132, 91);
-            this.txtTenSanPham.Name = "txtTenSanPham";
-            this.txtTenSanPham.PlaceholderText = "Tên sản phẩm";
-            this.txtTenSanPham.Size = new System.Drawing.Size(197, 25);
-            this.txtTenSanPham.TabIndex = 1;
-            this.txtTenSanPham.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtMaSanPham
-            // 
-            this.txtMaSanPham.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMaSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaSanPham.Location = new System.Drawing.Point(140, 27);
-            this.txtMaSanPham.Name = "txtMaSanPham";
-            this.txtMaSanPham.PlaceholderText = "Mã sản phẩm";
-            this.txtMaSanPham.Size = new System.Drawing.Size(180, 25);
-            this.txtMaSanPham.TabIndex = 0;
-            this.txtMaSanPham.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtMoTa
-            // 
-            this.txtMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMoTa.Location = new System.Drawing.Point(189, 245);
-            this.txtMoTa.Multiline = true;
-            this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.PlaceholderText = "Eo: xCm | Dài: xCm | Ống: xCm";
-            this.txtMoTa.Size = new System.Drawing.Size(259, 70);
-            this.txtMoTa.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 395);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 26);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Hình ảnh:";
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnThemAnh
-            // 
-            this.btnThemAnh.Location = new System.Drawing.Point(189, 395);
-            this.btnThemAnh.Name = "btnThemAnh";
-            this.btnThemAnh.Size = new System.Drawing.Size(147, 26);
-            this.btnThemAnh.TabIndex = 6;
-            this.btnThemAnh.Text = "Thêm ảnh";
-            this.btnThemAnh.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(329, 518);
-            this.pictureBox.TabIndex = 1;
-            this.pictureBox.TabStop = false;
-            // 
             // Them
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(793, 518);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

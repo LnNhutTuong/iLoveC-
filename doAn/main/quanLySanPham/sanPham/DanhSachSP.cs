@@ -1,5 +1,6 @@
 ﻿using doAn.quanLySanPham;
 using doAn.quanLySanPham.sanPham;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -37,14 +38,16 @@ namespace doAn.quanLySanPham
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM SanPham");
                 dt.Fill(cmd);
-
+                
                 foreach (DataRow row in dt.Rows)
                 {
+
+
                     SanPham sp = new SanPham();
 
                     sp.MaSanPham = row["MaSanPham"].ToString();
 
-                    sp.setData(row["TenSanPham"].ToString());
+                    sp.setData(row["TenSanPham"].ToString(), row["AnhDaiDien"].ToString());
 
                     flowLayoutPanel.Controls.Add(sp);
                 }

@@ -32,8 +32,8 @@ namespace doAn.main.quanLyKhachHang
             dataTable.OpenConnection();
 
             //Dat lon ten r
-            string donHangSql = @"SELECT *
-                                  FROM DonHang";
+            string donHangSql = @"SELECT d.* , k.TenKhachHang
+                                  FROM DonHang d, KhachHang k WHERE d.MaKhachHang = k.MaKhachHang ";
             SqlCommand donHangCmd = new SqlCommand(donHangSql);
             dataTable.Fill(donHangCmd);
 
@@ -123,11 +123,6 @@ namespace doAn.main.quanLyKhachHang
                     ctdh.ShowDialog();
                 }
             }
-        }
-
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnTaiLai_Click(object sender, EventArgs e)

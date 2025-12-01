@@ -77,17 +77,11 @@
     <Compile Include="main\quanLyKhachHang\DonHang.Designer.cs">
       <DependentUpon>DonHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang.cs">
+    <Compile Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang\ChiTietDonHang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang.Designer.cs">
+    <Compile Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang\ChiTietDonHang.Designer.cs">
       <DependentUpon>ChiTietDonHang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="popUp\quanLyKhachHang\DonHang\Them.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="popUp\quanLyKhachHang\DonHang\Them.Designer.cs">
-      <DependentUpon>Them.cs</DependentUpon>
     </Compile>
     <Compile Include="popUp\quanLyKhachHang\khachHang\Sua.cs">
       <SubType>Form</SubType>
@@ -208,11 +202,8 @@
     <EmbeddedResource Include="main\quanLyKhachHang\DonHang.resx">
       <DependentUpon>DonHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang.resx">
+    <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang\ChiTietDonHang.resx">
       <DependentUpon>ChiTietDonHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\Them.resx">
-      <DependentUpon>Them.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="popUp\quanLyKhachHang\khachHang\Sua.resx">
       <DependentUpon>Sua.cs</DependentUpon>

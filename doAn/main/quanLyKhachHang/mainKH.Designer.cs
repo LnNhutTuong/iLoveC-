@@ -126,7 +126,7 @@
             this.tabDonHang.Location = new System.Drawing.Point(4, 25);
             this.tabDonHang.Name = "tabDonHang";
             this.tabDonHang.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDonHang.Size = new System.Drawing.Size(1174, 441);
+            this.tabDonHang.Size = new System.Drawing.Size(1181, 441);
             this.tabDonHang.TabIndex = 1;
             this.tabDonHang.Text = "Đơn hàng";
             this.tabDonHang.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
             // 
             this.tabPhanHoi.Location = new System.Drawing.Point(4, 25);
             this.tabPhanHoi.Name = "tabPhanHoi";
-            this.tabPhanHoi.Size = new System.Drawing.Size(1174, 441);
+            this.tabPhanHoi.Size = new System.Drawing.Size(1181, 441);
             this.tabPhanHoi.TabIndex = 2;
             this.tabPhanHoi.Text = "Phản hồi";
             this.tabPhanHoi.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@
             // none
             // 
             this.none.Name = "none";
-            this.none.Size = new System.Drawing.Size(869, 31);
+            this.none.Size = new System.Drawing.Size(915, 31);
             this.none.Spring = true;
             // 
             // btnDoiMatKhau
@@ -194,6 +194,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1189, 596);
             this.Controls.Add(this.splitContainer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mainKH";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mainKh";

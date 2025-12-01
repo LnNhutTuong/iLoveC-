@@ -1,4 +1,6 @@
-﻿using doAn.quanLyKhachHang;
+﻿using doAn.main.quanLyKhachHang;
+using doAn.quanLyKhachHang;
+using doAn.quanLySanPham;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,6 +79,30 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             if (string.IsNullOrWhiteSpace(txtGhiChu.Text))
             {
                 txtGhiChu.Text = "Không có ghi chú :)!";
+            }
+
+            // ----- PHAN CHIA THIEN HA -----
+
+            flowLayoutPanel.Controls.Clear();
+            MyDataTable sanPham = new MyDataTable();
+            if (sanPham.OpenConnection())
+            {
+                SqlCommand cmd = new SqlCommand(@"SELECT sp.MaSanPham, sp.TenSanPham, sp.AnhDaiDien
+                                                  FROM ChiTietDonHang ctdh
+                                                  JOIN SanPham sp ON ctdh.MaSanPham = sp.MaSanPham
+                                                  WHERE ctdh.MaDonHang = @MaDonHang");
+                cmd.Parameters.AddWithValue("@MaDonHang", maDH); 
+                sanPham.Fill(cmd);
+                foreach (DataRow row in sanPham.Rows)
+                {
+                    SanPham sp = new SanPham();
+
+                    sp.MaSanPham = row["MaSanPham"].ToString();
+
+                    sp.setData(row["TenSanPham"].ToString(), row["AnhDaiDien"].ToString());
+
+                    flowLayoutPanel.Controls.Add(sp);
+                }
             }
         }
 

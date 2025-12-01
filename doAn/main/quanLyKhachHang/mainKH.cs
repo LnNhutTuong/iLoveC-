@@ -13,6 +13,8 @@ namespace doAn.quanLyKhachHang
 {
     public partial class mainKH : Form
     {
+        public string TenNhanVien { get; set; }
+
         public mainKH()
         {
             InitializeComponent();
@@ -20,22 +22,23 @@ namespace doAn.quanLyKhachHang
 
         void LayDuLieu()
         {
+
             KhachHang kh = new KhachHang();
             DonHang dh = new DonHang();
 
             tabKhachHang.Controls.Add(kh);
             tabDonHang.Controls.Add(dh);
-
         }
 
         private void mainKH_Load(object sender, EventArgs e)
         {
+            txtNhanVien.Text = "Nhân viên: " + TenNhanVien;
             LayDuLieu();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
     }
 }

@@ -77,11 +77,17 @@
     <Compile Include="main\quanLyKhachHang\DonHang.Designer.cs">
       <DependentUpon>DonHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang\ChiTietDonHang.cs">
+    <Compile Include="popUp\quanLyKhachHang\DonHang\CTDH\ChiTietDH.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang\ChiTietDonHang.Designer.cs">
-      <DependentUpon>ChiTietDonHang.cs</DependentUpon>
+    <Compile Include="popUp\quanLyKhachHang\DonHang\CTDH\ChiTietDH.Designer.cs">
+      <DependentUpon>ChiTietDH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="popUp\quanLyKhachHang\DonHang\CTDH\ThemDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popUp\quanLyKhachHang\DonHang\CTDH\ThemDon.Designer.cs">
+      <DependentUpon>ThemDon.cs</DependentUpon>
     </Compile>
     <Compile Include="popUp\quanLyKhachHang\khachHang\Sua.cs">
       <SubType>Form</SubType>
@@ -202,8 +208,11 @@
     <EmbeddedResource Include="main\quanLyKhachHang\DonHang.resx">
       <DependentUpon>DonHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\ChiTietDonHang\ChiTietDonHang.resx">
-      <DependentUpon>ChiTietDonHang.cs</DependentUpon>
+    <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\CTDH\ChiTietDH.resx">
+      <DependentUpon>ChiTietDH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\CTDH\ThemDon.resx">
+      <DependentUpon>ThemDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="popUp\quanLyKhachHang\khachHang\Sua.resx">
       <DependentUpon>Sua.cs</DependentUpon>
@@ -300,10 +309,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Images\501black.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\type1lV.jfif" />
     <Content Include="Resources\login-100.png" />
     <None Include="Resources\login-1001.png" />
   </ItemGroup>

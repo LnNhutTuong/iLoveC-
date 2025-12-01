@@ -16,12 +16,12 @@ using System.Xml.Linq;
 
 namespace doAn.popUp.quanLyKhachHang.DonHang
 {
-    public partial class ChiTietDonHang : Form
+    public partial class ChiTietDH : Form
     {
         MyDataTable myData = new MyDataTable();
         string maDH;
 
-        public ChiTietDonHang(string _maDH)
+        public ChiTietDH(string _maDH)
         {
             InitializeComponent();
             maDH = _maDH;
@@ -29,7 +29,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
         }
 
         public void LayDuLieu()
-        {           
+        {
             //Rất lú vì cái bảng trung gian (dùng cho việc có nhiều hàng trong 1 đơn) nên bắt buộc phải join
             MyDataTable chiTietDonHang = new MyDataTable();
             chiTietDonHang.OpenConnection();
@@ -49,11 +49,11 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             chiTietDonHangSql.Parameters.AddWithValue("@MaDonHang", maDH);
             chiTietDonHang.Fill(chiTietDonHangSql);
 
-           
-            txtMaDonHang.Text = chiTietDonHang.Rows[0]["MaDonHang"].ToString();
+
+            lblMaDonHang.Text = chiTietDonHang.Rows[0]["MaDonHang"].ToString();
             txtMaKhachHang.Text = chiTietDonHang.Rows[0]["MaKhachHang"].ToString();
             txtTenKhachHang.Text = chiTietDonHang.Rows[0]["TenKhachHang"].ToString();
-            txtDiaChi.Text = chiTietDonHang.Rows[0]["DiaChi"].ToString();          
+            txtDiaChi.Text = chiTietDonHang.Rows[0]["DiaChi"].ToString();
             txtSoDienThoai.Text = chiTietDonHang.Rows[0]["Sdt"].ToString();
 
 
@@ -83,25 +83,32 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
             // ----- PHAN CHIA THIEN HA -----
 
-            flowLayoutPanel.Controls.Clear();
+            flowSP.Controls.Clear();
             MyDataTable sanPham = new MyDataTable();
             if (sanPham.OpenConnection())
             {
-                SqlCommand cmd = new SqlCommand(@"SELECT sp.MaSanPham, sp.TenSanPham, sp.AnhDaiDien
-                                                  FROM ChiTietDonHang ctdh
-                                                  JOIN SanPham sp ON ctdh.MaSanPham = sp.MaSanPham
-                                                  WHERE ctdh.MaDonHang = @MaDonHang");
-                cmd.Parameters.AddWithValue("@MaDonHang", maDH); 
+                SqlCommand cmd = new SqlCommand(@"
+                                                SELECT sp.MaSanPham, sp.TenSanPham, sp.AnhDaiDien
+                                                FROM ChiTietDonHang ctdh
+                                                JOIN SanPham sp ON ctdh.MaSanPham = sp.MaSanPham
+                                                WHERE ctdh.MaDonHang = @MaDonHang");
+
+                cmd.Parameters.AddWithValue("@MaDonHang", maDH);
+
                 sanPham.Fill(cmd);
+
                 foreach (DataRow row in sanPham.Rows)
                 {
                     SanPham sp = new SanPham();
 
-                    sp.MaSanPham = row["MaSanPham"].ToString();
+                    sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
+                    sp.AnhDaiDien = row["AnhDaiDien"].ToString();
 
-                    sp.setData(row["TenSanPham"].ToString(), row["AnhDaiDien"].ToString());
-
-                    flowLayoutPanel.Controls.Add(sp);
+                    sp.setData(
+                        row["TenSanPham"].ToString().ToUpper(),
+                        row["AnhDaiDien"].ToString()
+                    );
+                    flowSP.Controls.Add(sp);
                 }
             }
         }
@@ -121,6 +128,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
         private void ChiTietDonHang_Load(object sender, EventArgs e)
         {
+            this.Text = "Đơn hàng: " + lblMaDonHang.Text;
             LayDuLieu();
             OnOff(false);
         }
@@ -133,7 +141,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
         private void btnXoa_Click(object sender, EventArgs e)
         {
             DialogResult kq;
-            kq = MessageBox.Show("Bạn có muốn xóa đơn hàng " + txtMaDonHang.Text + " không?", "Xóa",
+            kq = MessageBox.Show("Bạn có muốn xóa đơn hàng " + lblMaDonHang.Text + " không?", "Xóa",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (kq == DialogResult.Yes)
@@ -142,7 +150,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
                 SqlCommand cmd = new SqlCommand(sql);
 
-                cmd.Parameters.Add("@txtMaDonHang", SqlDbType.NVarChar, 5).Value = txtMaDonHang.Text;
+                cmd.Parameters.Add("@txtMaDonHang", SqlDbType.NVarChar, 5).Value = lblMaDonHang.Text;
 
                 myData.Update(cmd);
 
@@ -166,7 +174,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
             SqlCommand cmd = new SqlCommand(sql);
 
-            cmd.Parameters.AddWithValue("@MaDonHang", txtMaDonHang.Text);
+            cmd.Parameters.AddWithValue("@MaDonHang", lblMaDonHang.Text);
             cmd.Parameters.AddWithValue("@TrangThai", cboTrangThai.SelectedValue);
             cmd.Parameters.AddWithValue("@GhiChu", txtGhiChu.Text);
 

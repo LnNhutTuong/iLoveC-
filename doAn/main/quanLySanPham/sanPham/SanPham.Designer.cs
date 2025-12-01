@@ -30,7 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.btnChiTiet = new System.Windows.Forms.Button();
+            this.btnHanhDong = new System.Windows.Forms.Button();
             this.lblTenSanPham = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -52,7 +52,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnChiTiet);
+            this.splitContainer1.Panel2.Controls.Add(this.btnHanhDong);
             this.splitContainer1.Panel2.Controls.Add(this.lblTenSanPham);
             this.splitContainer1.Size = new System.Drawing.Size(200, 248);
             this.splitContainer1.SplitterDistance = 166;
@@ -69,16 +69,16 @@
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
-            // btnChiTiet
+            // btnHanhDong
             // 
-            this.btnChiTiet.Location = new System.Drawing.Point(54, 39);
-            this.btnChiTiet.Name = "btnChiTiet";
-            this.btnChiTiet.Size = new System.Drawing.Size(97, 23);
-            this.btnChiTiet.TabIndex = 2;
-            this.btnChiTiet.Text = "Xem chi tiết";
-            this.btnChiTiet.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnChiTiet.UseVisualStyleBackColor = true;
-            this.btnChiTiet.Click += new System.EventHandler(this.btnChiTiet_Click);
+            this.btnHanhDong.Location = new System.Drawing.Point(54, 39);
+            this.btnHanhDong.Name = "btnHanhDong";
+            this.btnHanhDong.Size = new System.Drawing.Size(97, 25);
+            this.btnHanhDong.TabIndex = 2;
+            this.btnHanhDong.Text = "Hành động";
+            this.btnHanhDong.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnHanhDong.UseVisualStyleBackColor = true;
+            this.btnHanhDong.Click += new System.EventHandler(this.btnChiTiet_Click);
             // 
             // lblTenSanPham
             // 
@@ -115,7 +115,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button btnChiTiet;
+        private System.Windows.Forms.Button btnHanhDong;
         private System.Windows.Forms.Label lblTenSanPham;
         private System.Windows.Forms.PictureBox pictureBox;
     }

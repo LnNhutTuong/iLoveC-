@@ -156,7 +156,6 @@
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // txtNhanVien
             // 
@@ -169,7 +168,7 @@
             // none
             // 
             this.none.Name = "none";
-            this.none.Size = new System.Drawing.Size(788, 31);
+            this.none.Size = new System.Drawing.Size(827, 31);
             this.none.Spring = true;
             // 
             // btnDoiMatKhau
@@ -202,6 +201,7 @@
             this.Name = "mainSP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý sản phẩm";
+            this.Load += new System.EventHandler(this.mainSP_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

@@ -102,14 +102,6 @@ namespace doAn.popUp.quanlySanPham.sanPham
                 MessageBox.Show("Không được bỏ trống Tên!");
                 return;
             }
-            //else if (string.IsNullOrWhiteSpace(cboDanhMuc.Text))
-            //{
-            //    MessageBox.Show("Không được bỏ trống Danh Mục!");
-            //}
-            //else if (string.IsNullOrWhiteSpace(cboThuongHieu.Text))
-            //{
-            //    MessageBox.Show("Không được bỏ trống Thương Hiệu!");
-            //}
             else if (string.IsNullOrWhiteSpace(txtTriGia.Text))
             {
                 MessageBox.Show("Không được bỏ trống Mô Tả!");

@@ -82,7 +82,7 @@ namespace doAn.quanLySanPham
             }
             else
             {
-                var puSua = new Them(data);
+                Sua puSua = new Sua(data);
                 puSua.ShowDialog();
             }
               

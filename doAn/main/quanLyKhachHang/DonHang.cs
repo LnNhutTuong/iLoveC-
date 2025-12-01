@@ -1,4 +1,6 @@
 ﻿using doAn.popUp.quanLyKhachHang.DonHang;
+using doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang;
+using doAn.quanLySanPham;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,11 +39,10 @@ namespace doAn.main.quanLyKhachHang
             SqlCommand donHangCmd = new SqlCommand(donHangSql);
             dataTable.Fill(donHangCmd);
 
+            
 
-
-
-            //gan du lieu vao nguon
-            data.DataSource = dataTable;
+                //gan du lieu vao nguon
+                data.DataSource = dataTable;
 
             //gan nguon du lieu vao bang
             dataGridView.DataSource = data;
@@ -119,7 +120,7 @@ namespace doAn.main.quanLyKhachHang
                 {
                     string maDH = dataGridView.Rows[e.RowIndex].Cells["MaDonHang"].Value.ToString();
 
-                    ChiTietDonHang ctdh = new ChiTietDonHang(maDH);
+                    ChiTietDH ctdh = new ChiTietDH(maDH);
                     ctdh.ShowDialog();
                 }
             }
@@ -128,6 +129,12 @@ namespace doAn.main.quanLyKhachHang
         private void btnTaiLai_Click(object sender, EventArgs e)
         {
             DonHang_Load(sender, e);
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            ThemDon puThem = new ThemDon(data);
+            puThem.ShowDialog();
         }
     }
 }

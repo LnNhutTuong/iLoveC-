@@ -39,6 +39,7 @@ namespace doAn.quanLySanPham
             lblTenSanPham.Text = TenSanPham;
         }
 
+        //Thêm hành động nút tùy vô hành động
         private void btnChiTiet_Click(object sender, EventArgs e)
         {
             var ct = new ChiTietSanPham(MaSanPham);

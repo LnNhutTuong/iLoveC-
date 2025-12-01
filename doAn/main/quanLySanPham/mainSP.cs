@@ -22,11 +22,12 @@ namespace doAn
         public mainSP()
         {
             InitializeComponent();
-            load();
+            
         }
 
-       private void load()
+       private void LayDuLieu()
         {
+
             uscDanhMuc danhMuc = new uscDanhMuc();
             uscThuongHieu thuongHieu = new uscThuongHieu();
             danhSachSP = new DanhSachSP(); //MOST difficult 
@@ -36,9 +37,12 @@ namespace doAn
             tabDanhMuc.Controls.Add(danhMuc);
             tabThuongHieu.Controls.Add(thuongHieu);
             tabSanPham.Controls.Add(danhSachSP);
+        }
 
+        private void mainSP_Load(object sender, EventArgs e)
+        {
             txtNhanVien.Text = "Nhân viên: " + TenNhanVien;
-
+            LayDuLieu();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,9 +74,6 @@ namespace doAn
 
         }
 
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+      
     }
 }

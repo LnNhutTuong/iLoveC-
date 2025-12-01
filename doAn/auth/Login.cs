@@ -1,4 +1,5 @@
-﻿using doAn.quanLyNguoIDung;
+﻿using doAn.quanLyKhachHang;
+using doAn.quanLyNguoIDung;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,7 +38,7 @@ namespace doAn
                 MyDataTable dataTable = new MyDataTable();
                 dataTable.OpenConnection();
 
-                SqlCommand cmd = new SqlCommand("SELECT MaNhanVien, MatKhau FROM NhanVien WHERE MaNhanVien = @MaNhanVien AND MatKhau = @MatKhau");
+                SqlCommand cmd = new SqlCommand("SELECT MaNhanVien, MatKhau, TenNhanVien FROM NhanVien WHERE MaNhanVien = @MaNhanVien AND MatKhau = @MatKhau");
                 cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text;
                 cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = txtMatKhau.Text;
                 dataTable.Fill(cmd);
@@ -53,19 +54,19 @@ namespace doAn
                 {
                     mainSP sp = new mainSP();
                     sp.TenNhanVien = dataTable.Rows[0]["TenNhanVien"].ToString();
-
+                    //sp.showTenNhanVien();
                     if (txtMatKhau.Text == "123456")
                     {
                         MessageBox.Show("Đang để mật khẩu mặc định \n Đổi liền đi fuck you","Thông báo!", MessageBoxButtons.OK);
                     }
                     this.Hide();
                     sp.ShowDialog();                
-                }
+                }   
 
                 else if (txtMaNhanVien.Text.ToUpper().Substring(0, 2) == "NS")
                 {
                     mainNV nv = new mainNV();
-                    //nv.TenNhanVien = dataTable.Rows[0]["TenNhanVien"].ToString();
+                    nv.NameNhanVien = dataTable.Rows[0]["TenNhanVien"].ToString();
 
                     if (txtMatKhau.Text == "123456")
                     {
@@ -73,7 +74,20 @@ namespace doAn
                     }
                     this.Hide();
                     nv.ShowDialog();          
-                }            
+                }
+
+                else if (txtMaNhanVien.Text.ToUpper().Substring(0, 2) == "KH")
+                {
+                    mainKH kh = new mainKH();
+                    kh.TenNhanVien = dataTable.Rows[0]["TenNhanVien"].ToString();
+
+                    if (txtMatKhau.Text == "123456")
+                    {
+                        MessageBox.Show("Đang để mật khẩu mặc định \n Đổi liền đi fuck you", "Thông báo!", MessageBoxButtons.OK);
+                    }
+                    this.Hide();
+                    kh.ShowDialog();
+                }
             }
 
         }

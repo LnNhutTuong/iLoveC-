@@ -14,7 +14,7 @@ namespace doAn.quanLyNguoIDung
 {
     public partial class mainNV : Form
     {
-
+        public string NameNhanVien {  get; set; }
 
         private BindingSource data = new BindingSource();
         MyDataTable dataTable = new MyDataTable();
@@ -31,7 +31,7 @@ namespace doAn.quanLyNguoIDung
         public void LayDuLieu()
         {
             dataTable.Clear();
-          
+            
             MyDataTable chucVu = new MyDataTable();
             chucVu.OpenConnection();
 
@@ -70,12 +70,14 @@ namespace doAn.quanLyNguoIDung
 
             txtMaNhanVien.DataBindings.Clear();
             txtTenNhanVien.DataBindings.Clear();
+            txtMatKhau.DataBindings.Clear();
             txtSoDienThoai.DataBindings.Clear();
             txtEmail.DataBindings.Clear();
             cboChucVu.DataBindings.Clear();
 
             txtMaNhanVien.DataBindings.Add("Text", data, "MaNhanVien");
             txtTenNhanVien.DataBindings.Add("Text", data, "TenNhanVien");
+            txtMatKhau.DataBindings.Add("Text", data, "MatKhau");
             txtSoDienThoai.DataBindings.Add("Text", data, "Sdt");
             txtEmail.DataBindings.Add("Text", data, "Email");
             cboChucVu.DataBindings.Add("SelectedValue", data, "MaChucVu");
@@ -91,6 +93,7 @@ namespace doAn.quanLyNguoIDung
         {
             txtMaNhanVien.Enabled = value;
             txtTenNhanVien.Enabled = value;
+            txtMatKhau.Enabled = value;
             txtSoDienThoai.Enabled = value;
             txtEmail.Enabled = value;
             cboChucVu.Enabled = value;
@@ -99,9 +102,9 @@ namespace doAn.quanLyNguoIDung
             btnThem.Enabled = !value;
             btnSua.Enabled = !value;
             btnXoa.Enabled = !value;
+            btnLuu.Enabled = !value;
 
             btnTaiLai.Enabled = value;
-            btnLuu.Enabled = value;
 
         }
 
@@ -123,7 +126,10 @@ namespace doAn.quanLyNguoIDung
 
         private void Main_Load(object sender, EventArgs e)
         {
+            txtNhanVien.Text = "Nhân viên: " + NameNhanVien;
             LayDuLieu();
+            txtMatKhau.PasswordChar = '•';
+            showPass = false;
             OnOff(false);
         }
 
@@ -134,6 +140,7 @@ namespace doAn.quanLyNguoIDung
 
             txtMaNhanVien.Clear();
             txtTenNhanVien.Clear();
+            txtMatKhau.Clear();
             txtSoDienThoai.Clear();
             txtEmail.Clear();
             cboChucVu.Text = "";
@@ -146,12 +153,13 @@ namespace doAn.quanLyNguoIDung
         private void btnSua_Click(object sender, EventArgs e)
         {
             maNhanVien = txtMaNhanVien.Text;
-
+            txtMatKhau.PasswordChar = '\0';
             OnOff(true);
         }
 
         private void btnTaiLai_Click(object sender, EventArgs e)
         {
+            txtMatKhau.PasswordChar = '•';
             Main_Load(sender, e);
         }
 
@@ -177,6 +185,7 @@ namespace doAn.quanLyNguoIDung
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            txtMatKhau.PasswordChar = '•';
             if (txtMaNhanVien.Text.Trim() == "")
             {
                 MessageBox.Show("Mã nhân viên không được bỏ trống!", "LỖI",
@@ -187,7 +196,11 @@ namespace doAn.quanLyNguoIDung
                 MessageBox.Show("Tên nhân viên không được bỏ trống!", "LỖI",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            else if (txtMatKhau.Text.Trim() == "")
+            {
+                MessageBox.Show("Mật khẩu không được bỏ trống!", "LỖI",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //------------So Dien Thoai
             else if (txtSoDienThoai.Text.Trim() == "")
             {
@@ -245,6 +258,7 @@ namespace doAn.quanLyNguoIDung
                         string sql = @"UPDATE NhanVien
                                        SET MaNhanVien = @MaNhanVienMoi,
                                             TenNhanVien = @TenNhanVien,
+                                            MatKhau = @MatKhau,
                                             MaChucVu = @MaChucVu,
                                             Sdt = @Sdt,
                                             Email = @Email 
@@ -256,6 +270,7 @@ namespace doAn.quanLyNguoIDung
                         cmd.Parameters.Add("@MaNhanVienCu", SqlDbType.NVarChar, 5).Value = maNhanVien;
                         cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
                         cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
+                        cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = txtMatKhau.Text;
                         cmd.Parameters.Add("@Sdt", SqlDbType.NVarChar, 11).Value = txtSoDienThoai.Text;
                         cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
 
@@ -275,12 +290,18 @@ namespace doAn.quanLyNguoIDung
             this.Close();
         }
 
+        //An
+        bool showPass = false;
+
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dataGridView.Columns[e.ColumnIndex].Name == "MatKhau")
+            if (!showPass)
             {
-                e.Value = "••••••••••";
-            }
+                if (dataGridView.Columns[e.ColumnIndex].Name == "MatKhau")
+                {
+                    e.Value = "••••••••••";
+                }
+            }    
         }
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)

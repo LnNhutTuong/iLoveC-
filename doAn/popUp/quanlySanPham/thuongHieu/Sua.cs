@@ -25,7 +25,7 @@ namespace doAn.popUp.thuongHieu
             DataRowView rowSelect = (DataRowView)olddata.Current;
 
             txtMaThuongHieu.Text = rowSelect["MaThuongHieu"].ToString();
-            txtMaThuongHieu.Text = rowSelect["TenThuongHieu"].ToString();
+            txtTenThuongHieu.Text = rowSelect["TenThuongHieu"].ToString();
         }
 
         private void btnDongY_Click(object sender, EventArgs e)

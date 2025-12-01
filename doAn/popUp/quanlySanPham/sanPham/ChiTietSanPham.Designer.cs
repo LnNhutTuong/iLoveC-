@@ -30,11 +30,11 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.txtMoTa = new System.Windows.Forms.TextBox();
+            this.txtTenSanPham = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtMaSanPham = new System.Windows.Forms.TextBox();
             this.btnThayAnh = new System.Windows.Forms.Button();
-            this.txtMoTa = new PlaceholderTextBox.PlaceholderTextBox();
-            this.txtMaSanPham = new PlaceholderTextBox.PlaceholderTextBox();
-            this.txtTenSanPham = new PlaceholderTextBox.PlaceholderTextBox();
             this.btnTaiLai = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -67,15 +67,11 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Panel2.Controls.Add(this.btnThayAnh);
             this.splitContainer1.Panel2.Controls.Add(this.txtMoTa);
-            this.splitContainer1.Panel2.Controls.Add(this.txtMaSanPham);
             this.splitContainer1.Panel2.Controls.Add(this.txtTenSanPham);
-            this.splitContainer1.Panel2.Controls.Add(this.btnTaiLai);
-            this.splitContainer1.Panel2.Controls.Add(this.btnLuu);
-            this.splitContainer1.Panel2.Controls.Add(this.btnXoa);
-            this.splitContainer1.Panel2.Controls.Add(this.btnSua);
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.txtMaSanPham);
+            this.splitContainer1.Panel2.Controls.Add(this.btnThayAnh);
             this.splitContainer1.Panel2.Controls.Add(this.cboThuongHieu);
             this.splitContainer1.Panel2.Controls.Add(this.cboDanhMuc);
             this.splitContainer1.Panel2.Controls.Add(this.txtTriGia);
@@ -84,6 +80,10 @@
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
+            this.splitContainer1.Panel2.Controls.Add(this.btnTaiLai);
+            this.splitContainer1.Panel2.Controls.Add(this.btnLuu);
+            this.splitContainer1.Panel2.Controls.Add(this.btnXoa);
+            this.splitContainer1.Panel2.Controls.Add(this.btnSua);
             this.splitContainer1.Size = new System.Drawing.Size(801, 493);
             this.splitContainer1.SplitterDistance = 324;
             this.splitContainer1.TabIndex = 0;
@@ -95,8 +95,26 @@
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(324, 493);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
+            // 
+            // txtMoTa
+            // 
+            this.txtMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMoTa.Location = new System.Drawing.Point(197, 240);
+            this.txtMoTa.Multiline = true;
+            this.txtMoTa.Name = "txtMoTa";
+            this.txtMoTa.Size = new System.Drawing.Size(197, 68);
+            this.txtMoTa.TabIndex = 4;
+            // 
+            // txtTenSanPham
+            // 
+            this.txtTenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTenSanPham.Location = new System.Drawing.Point(133, 85);
+            this.txtTenSanPham.Name = "txtTenSanPham";
+            this.txtTenSanPham.Size = new System.Drawing.Size(206, 32);
+            this.txtTenSanPham.TabIndex = 1;
             // 
             // label1
             // 
@@ -108,92 +126,68 @@
             this.label1.TabIndex = 49;
             this.label1.Text = "Hình ảnh";
             // 
+            // txtMaSanPham
+            // 
+            this.txtMaSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaSanPham.Location = new System.Drawing.Point(155, 21);
+            this.txtMaSanPham.Name = "txtMaSanPham";
+            this.txtMaSanPham.Size = new System.Drawing.Size(163, 32);
+            this.txtMaSanPham.TabIndex = 0;
+            // 
             // btnThayAnh
             // 
             this.btnThayAnh.Location = new System.Drawing.Point(197, 375);
             this.btnThayAnh.Name = "btnThayAnh";
             this.btnThayAnh.Size = new System.Drawing.Size(147, 26);
-            this.btnThayAnh.TabIndex = 48;
+            this.btnThayAnh.TabIndex = 6;
             this.btnThayAnh.Text = "Đổi ảnh";
             this.btnThayAnh.UseVisualStyleBackColor = true;
             this.btnThayAnh.Click += new System.EventHandler(this.btnThayAnh_Click);
             // 
-            // txtMoTa
-            // 
-            this.txtMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMoTa.Location = new System.Drawing.Point(197, 237);
-            this.txtMoTa.Multiline = true;
-            this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.PlaceholderText = "Eo: xCm | Dài: xCm | Ống: xCm";
-            this.txtMoTa.Size = new System.Drawing.Size(259, 70);
-            this.txtMoTa.TabIndex = 47;
-            // 
-            // txtMaSanPham
-            // 
-            this.txtMaSanPham.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMaSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaSanPham.Location = new System.Drawing.Point(148, 85);
-            this.txtMaSanPham.Name = "txtMaSanPham";
-            this.txtMaSanPham.PlaceholderText = "Mã sản phẩm";
-            this.txtMaSanPham.Size = new System.Drawing.Size(180, 25);
-            this.txtMaSanPham.TabIndex = 46;
-            this.txtMaSanPham.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtTenSanPham
-            // 
-            this.txtTenSanPham.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenSanPham.Location = new System.Drawing.Point(140, 28);
-            this.txtTenSanPham.Name = "txtTenSanPham";
-            this.txtTenSanPham.PlaceholderText = "Tên sản phẩm";
-            this.txtTenSanPham.Size = new System.Drawing.Size(197, 25);
-            this.txtTenSanPham.TabIndex = 45;
-            this.txtTenSanPham.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // btnTaiLai
             // 
-            this.btnTaiLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaiLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTaiLai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnTaiLai.Location = new System.Drawing.Point(251, 433);
             this.btnTaiLai.Name = "btnTaiLai";
             this.btnTaiLai.Size = new System.Drawing.Size(103, 32);
-            this.btnTaiLai.TabIndex = 44;
+            this.btnTaiLai.TabIndex = 9;
             this.btnTaiLai.Text = "Tải lại";
             this.btnTaiLai.UseVisualStyleBackColor = true;
             this.btnTaiLai.Click += new System.EventHandler(this.btnTaiLai_Click);
             // 
             // btnLuu
             // 
-            this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.ForeColor = System.Drawing.Color.Blue;
             this.btnLuu.Location = new System.Drawing.Point(144, 433);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(101, 32);
-            this.btnLuu.TabIndex = 43;
+            this.btnLuu.TabIndex = 8;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnXoa
             // 
-            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.ForeColor = System.Drawing.Color.Red;
             this.btnXoa.Location = new System.Drawing.Point(360, 433);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(103, 32);
-            this.btnXoa.TabIndex = 42;
+            this.btnXoa.TabIndex = 10;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
-            this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnSua.Location = new System.Drawing.Point(10, 433);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(128, 32);
-            this.btnSua.TabIndex = 41;
+            this.btnSua.TabIndex = 7;
             this.btnSua.Text = "Chỉnh sửa";
             this.btnSua.UseVisualStyleBackColor = true;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
@@ -205,7 +199,7 @@
             this.cboThuongHieu.Location = new System.Drawing.Point(197, 186);
             this.cboThuongHieu.Name = "cboThuongHieu";
             this.cboThuongHieu.Size = new System.Drawing.Size(164, 34);
-            this.cboThuongHieu.TabIndex = 40;
+            this.cboThuongHieu.TabIndex = 3;
             // 
             // cboDanhMuc
             // 
@@ -214,7 +208,7 @@
             this.cboDanhMuc.Location = new System.Drawing.Point(197, 141);
             this.cboDanhMuc.Name = "cboDanhMuc";
             this.cboDanhMuc.Size = new System.Drawing.Size(148, 34);
-            this.cboDanhMuc.TabIndex = 39;
+            this.cboDanhMuc.TabIndex = 2;
             // 
             // txtTriGia
             // 
@@ -225,7 +219,7 @@
             this.txtTriGia.Location = new System.Drawing.Point(197, 326);
             this.txtTriGia.Name = "txtTriGia";
             this.txtTriGia.Size = new System.Drawing.Size(164, 32);
-            this.txtTriGia.TabIndex = 38;
+            this.txtTriGia.TabIndex = 5;
             // 
             // label7
             // 
@@ -309,9 +303,6 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private PlaceholderTextBox.PlaceholderTextBox txtMoTa;
-        private PlaceholderTextBox.PlaceholderTextBox txtMaSanPham;
-        private PlaceholderTextBox.PlaceholderTextBox txtTenSanPham;
         private System.Windows.Forms.Button btnTaiLai;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnXoa;
@@ -328,5 +319,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.TextBox txtMaSanPham;
+        private System.Windows.Forms.TextBox txtMoTa;
+        private System.Windows.Forms.TextBox txtTenSanPham;
     }
 }

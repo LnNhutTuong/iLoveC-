@@ -28,11 +28,13 @@ namespace doAn.quanLySanPham
             //Khong the di thang tu string sang, phai EP KIEU @@
             //xai package de no hieu la cai string luu trong database => path
             //co Package ho tro chuyen do luon
+            //CAI O TREN DAY LA KO CO TAC DUNG GI HET A'
 
-            string path = Path.Combine(AnhDaiDien);
-            Console.WriteLine("nigga: "+path);
+            string path = AnhDaiDien;
 
-            //pictureBox.Image = Image.FromStream(path);
+            //Console.WriteLine("nigga: "+path);
+
+            pictureBox.Image = Image.FromFile(path);
 
             lblTenSanPham.Text = TenSanPham;
         }

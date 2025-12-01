@@ -41,8 +41,6 @@ namespace doAn.quanLySanPham
                 
                 foreach (DataRow row in dt.Rows)
                 {
-
-
                     SanPham sp = new SanPham();
 
                     sp.MaSanPham = row["MaSanPham"].ToString();

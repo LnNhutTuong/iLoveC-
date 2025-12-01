@@ -30,18 +30,18 @@ namespace doAn.quanLyKhachHang
             //dataGridView
             dataTable.OpenConnection();
 
-            string danhMucSql = @" SELECT k.*,                                        
-                                          ISNULL(COUNT(h.MaHoaDon), 0) AS SoLuong
+            string khachHangSql = @" SELECT k.*,                                        
+                                          ISNULL(COUNT(h.MaDonHang), 0) AS SoLuong
                                     FROM KhachHang k
-                                    LEFT JOIN HoaDon h ON k.MaKhachHang = h.MaKhachHang
+                                    LEFT JOIN DonHang h ON k.MaKhachHang = h.MaKhachHang
                                     GROUP BY k.MaKhachHang,
                                              k.TenKhachHang,
                                              k.DiaChi,
                                              k.Sdt,
                                              k.Email,
                                              k.PhanCap;   ";
-            SqlCommand danhMucSqlCmd = new SqlCommand(danhMucSql);
-            dataTable.Fill(danhMucSqlCmd);
+            SqlCommand khachHangCmd = new SqlCommand(khachHangSql);
+            dataTable.Fill(khachHangCmd);
 
 
 
@@ -63,7 +63,7 @@ namespace doAn.quanLyKhachHang
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
 
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            //if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
             if (dataGridView.Columns[e.ColumnIndex].Name == "PhanCap" && e.Value != null)
             {

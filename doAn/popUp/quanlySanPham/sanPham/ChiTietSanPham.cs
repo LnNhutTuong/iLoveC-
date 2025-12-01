@@ -52,9 +52,6 @@ namespace doAn.popUp.quanlySanPham.sanPham
             //Value
             cboDanhMuc.ValueMember = "MaDanhMuc";
 
-
-
-
             MyDataTable thuongHieu = new MyDataTable();
             thuongHieu.OpenConnection();
             SqlCommand thuonghieuSql = new SqlCommand("SELECT * FROM ThuongHieu");
@@ -73,6 +70,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
 
             // QONG TRUANG
             // muon object => string  thi can .Value
+            // bỏ 
             string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
 
             txtMaSanPham.Text = myData.Rows[0]["MaSanPham"].ToString();
@@ -136,7 +134,6 @@ namespace doAn.popUp.quanlySanPham.sanPham
         private void btnSua_Click(object sender, EventArgs e)
         {
             OnOff(true);
-
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -167,22 +164,59 @@ namespace doAn.popUp.quanlySanPham.sanPham
         {
             try
             {
+                string oldPath = myData.Rows[0]["AnhDaiDien"].ToString();
+
+                string newPath = string.IsNullOrEmpty(path) ? oldPath : path;
+
+
                 string sql = @"UPDATE SanPham                           
-                              SET  TenSanPham = @TenSanPham,
+                              SET  MaSanPham = @MaSanPhamMoi,
+                                   TenSanPham = @TenSanPham,
                                    MaDanhMuc = @MaDanhMuc,
                                    MaThuongHieu = @MaThuongHieu,
                                    AnhDaiDien = @path,
                                    MoTa = @MoTa,
                                    TriGia = @TriGia                                             
-                               WHERE MaSanPham = @MaSanPham";
+                               WHERE MaSanPham = @MaSanPhamCu";
 
                 SqlCommand cmd = new SqlCommand(sql);
 
-                cmd.Parameters.AddWithValue("@MaSanPham", txtMaSanPham.Text.ToUpper());
+                //                      RẤT LÚ VÌ LÍ DO LÀM UI
+                // cái này có nghĩa là nó sẽ add vào cái textbox trên cái popup đó
+                // mà đó giờ lần đầu làm cái này nên ko hiểu tưởng đâu nó lưu vào cái db luôn nhưng đéo               
+                //Ma moi = maMoi
+                cmd.Parameters.AddWithValue("@MaSanPhamMoi", txtMaSanPham.Text.ToUpper());
+                //Ma cu = maCu
+                cmd.Parameters.AddWithValue("@MaSanPhamCu", maSP);
+
+                // ĐÂY MỚI CHÍNH LÀ CODE DÙNG CHO VIỆC LƯU VÀO TRONG DB 
+                // CÒN TRÊN KIA CHỈ LƯU VÀO TXT CỦA POPUP THÔI FUCK YOU
+                // THẰNG NÀY NÓ CÒN ĐẶC BIỆT CÁI NỮA LÀ DO KHÚC LẤY DỮ LIỆU MÌNH PHẢI XÀI 
+                // CÁI ROWS[0] NÊN MỚI BỊ NHƯ THẾ NÀY
+                // VÌ NÊU KO CẬP NHẬT KIỂU NÀY VÀO DB THÌ HÀM LOAD NÓ SẼ VẪN HIỂU LÀ CÁI MÃ CŨ
+                // NHƯNG CÁI VẤN ĐỀ LÀ KHI XỬ DỤNG BTN NÀY THÌ MÌNH SẼ THAY ĐỔI ĐƯỢC CÁI DANH MỤC VÀ THƯƠNG HIỆU
+                // ==>>>>>> THẰNG maSP cũ sẽ đánh lộn like "tại sao t bị đổi cái này rồi,
+                // cái row[0] danh mục và thương hiệu
+                // của t biến mất r, trả lại cho t!!" =>> bật messagebox lên báo lỗi
+                // Từ cái này rút ra được khuyết điểm mới của messagebox: Nó báo lỗi thật nhưng ko chỉ điểm.
+                // đó là điểm yếu của Messagebox
+                //Ma moi = maSP trong daubuoi
+                maSP = txtMaSanPham.Text.ToUpper();
+
+
+
                 cmd.Parameters.AddWithValue("@TenSanPham", txtTenSanPham.Text);
                 cmd.Parameters.AddWithValue("@MaDanhMuc", cboDanhMuc.SelectedValue.ToString());
                 cmd.Parameters.AddWithValue("@MaThuongHieu", cboThuongHieu.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@AnhDaiDien", path);
+
+
+
+
+                //RAT KHO
+                cmd.Parameters.AddWithValue("@path", newPath);
+
+
+
                 cmd.Parameters.AddWithValue("@MoTa", txtMoTa.Text);
                 cmd.Parameters.AddWithValue("@TriGia", txtTriGia.Text);
 
@@ -190,7 +224,14 @@ namespace doAn.popUp.quanlySanPham.sanPham
                 myData.Update(cmd);
 
                 MessageBox.Show("Lưu dữ liệu thành công!");
+
+                //LOAD 2 lan
+                // 1 cho popup
                 ChiTietSanPham_Load(sender, e);
+                // 1 cho list
+                // YASH
+
+                ((mainSP)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();   
             }
 
             catch (Exception ex)

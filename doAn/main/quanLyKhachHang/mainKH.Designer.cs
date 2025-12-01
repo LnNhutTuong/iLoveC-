@@ -66,7 +66,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1182, 596);
+            this.splitContainer1.Size = new System.Drawing.Size(1189, 596);
             this.splitContainer1.SplitterDistance = 81;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -94,7 +94,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.statusStrip1);
-            this.splitContainer2.Size = new System.Drawing.Size(1182, 511);
+            this.splitContainer2.Size = new System.Drawing.Size(1189, 511);
             this.splitContainer2.SplitterDistance = 470;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -107,7 +107,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1182, 470);
+            this.tabControl.Size = new System.Drawing.Size(1189, 470);
             this.tabControl.TabIndex = 1;
             // 
             // tabKhachHang
@@ -115,7 +115,7 @@
             this.tabKhachHang.Location = new System.Drawing.Point(4, 25);
             this.tabKhachHang.Name = "tabKhachHang";
             this.tabKhachHang.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhachHang.Size = new System.Drawing.Size(1174, 441);
+            this.tabKhachHang.Size = new System.Drawing.Size(1181, 441);
             this.tabKhachHang.TabIndex = 3;
             this.tabKhachHang.Text = "Khách hàng";
             this.tabKhachHang.UseVisualStyleBackColor = true;
@@ -126,7 +126,7 @@
             this.tabDonHang.Location = new System.Drawing.Point(4, 25);
             this.tabDonHang.Name = "tabDonHang";
             this.tabDonHang.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDonHang.Size = new System.Drawing.Size(1093, 441);
+            this.tabDonHang.Size = new System.Drawing.Size(1174, 441);
             this.tabDonHang.TabIndex = 1;
             this.tabDonHang.Text = "Đơn hàng";
             this.tabDonHang.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
             // 
             this.tabPhanHoi.Location = new System.Drawing.Point(4, 25);
             this.tabPhanHoi.Name = "tabPhanHoi";
-            this.tabPhanHoi.Size = new System.Drawing.Size(1093, 441);
+            this.tabPhanHoi.Size = new System.Drawing.Size(1174, 441);
             this.tabPhanHoi.TabIndex = 2;
             this.tabPhanHoi.Text = "Phản hồi";
             this.tabPhanHoi.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             this.btnThoat});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1182, 37);
+            this.statusStrip1.Size = new System.Drawing.Size(1189, 37);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -168,7 +168,7 @@
             // none
             // 
             this.none.Name = "none";
-            this.none.Size = new System.Drawing.Size(855, 31);
+            this.none.Size = new System.Drawing.Size(869, 31);
             this.none.Spring = true;
             // 
             // btnDoiMatKhau
@@ -186,12 +186,13 @@
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(50, 31);
             this.btnThoat.Text = "Thoát";
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // mainKH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 596);
+            this.ClientSize = new System.Drawing.Size(1189, 596);
             this.Controls.Add(this.splitContainer1);
             this.Name = "mainKH";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

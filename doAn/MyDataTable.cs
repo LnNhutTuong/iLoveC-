@@ -88,10 +88,11 @@ namespace doAn
             }
             catch (Exception ex)
             {
-                if(transaction == null)
+                if (transaction == null)
                 {
-                    MessageBox.Show("Lỗi:" + ex.Message, "Lỗi truy vấn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    transaction.Rollback();
                 }
+                MessageBox.Show("Lỗi:" + ex.Message, "Lỗi truy vấn", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return result;
         }

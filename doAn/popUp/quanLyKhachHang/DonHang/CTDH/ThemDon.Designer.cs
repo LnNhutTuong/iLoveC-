@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblTongTien = new System.Windows.Forms.Label();
             this.lblSoLuong = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowSP = new System.Windows.Forms.FlowLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label3 = new System.Windows.Forms.Label();
             this.txtMaDonHang = new System.Windows.Forms.TextBox();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -57,17 +58,6 @@
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(128, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Danh sách sản phẩm";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -77,6 +67,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.lblTongTien);
             this.splitContainer2.Panel1.Controls.Add(this.lblSoLuong);
             this.splitContainer2.Panel1.Controls.Add(this.label1);
             // 
@@ -86,6 +77,49 @@
             this.splitContainer2.Size = new System.Drawing.Size(474, 493);
             this.splitContainer2.SplitterDistance = 78;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // lblTongTien
+            // 
+            this.lblTongTien.AutoSize = true;
+            this.lblTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongTien.Location = new System.Drawing.Point(295, 39);
+            this.lblTongTien.Name = "lblTongTien";
+            this.lblTongTien.Size = new System.Drawing.Size(101, 26);
+            this.lblTongTien.TabIndex = 6;
+            this.lblTongTien.Text = "Tổng tiền";
+            this.lblTongTien.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSoLuong
+            // 
+            this.lblSoLuong.AutoSize = true;
+            this.lblSoLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoLuong.Location = new System.Drawing.Point(65, 39);
+            this.lblSoLuong.Name = "lblSoLuong";
+            this.lblSoLuong.Size = new System.Drawing.Size(98, 26);
+            this.lblSoLuong.TabIndex = 5;
+            this.lblSoLuong.Text = "Số lượng";
+            this.lblSoLuong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(124, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 26);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Danh sách sản phẩm";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // flowSP
+            // 
+            this.flowSP.AutoScroll = true;
+            this.flowSP.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.flowSP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowSP.Location = new System.Drawing.Point(0, 0);
+            this.flowSP.Name = "flowSP";
+            this.flowSP.Size = new System.Drawing.Size(474, 411);
+            this.flowSP.TabIndex = 1;
             // 
             // splitContainer1
             // 
@@ -113,31 +147,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
-            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(927, 493);
             this.splitContainer1.SplitterDistance = 474;
             this.splitContainer1.TabIndex = 1;
-            // 
-            // lblSoLuong
-            // 
-            this.lblSoLuong.AutoSize = true;
-            this.lblSoLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoLuong.Location = new System.Drawing.Point(159, 46);
-            this.lblSoLuong.Name = "lblSoLuong";
-            this.lblSoLuong.Size = new System.Drawing.Size(98, 26);
-            this.lblSoLuong.TabIndex = 1;
-            this.lblSoLuong.Text = "Số lượng";
-            this.lblSoLuong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // flowSP
-            // 
-            this.flowSP.AutoScroll = true;
-            this.flowSP.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowSP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowSP.Location = new System.Drawing.Point(0, 0);
-            this.flowSP.Name = "flowSP";
-            this.flowSP.Size = new System.Drawing.Size(474, 411);
-            this.flowSP.TabIndex = 1;
             // 
             // label3
             // 
@@ -167,6 +179,7 @@
             this.btnHuy.TabIndex = 172;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click_1);
             // 
             // btnDongY
             // 
@@ -178,6 +191,7 @@
             this.btnDongY.TabIndex = 171;
             this.btnDongY.Text = "Đồng ý ";
             this.btnDongY.UseVisualStyleBackColor = true;
+            this.btnDongY.Click += new System.EventHandler(this.btnDongY_Click);
             // 
             // cboMaKhachHang
             // 
@@ -187,6 +201,7 @@
             this.cboMaKhachHang.Name = "cboMaKhachHang";
             this.cboMaKhachHang.Size = new System.Drawing.Size(211, 34);
             this.cboMaKhachHang.TabIndex = 170;
+            this.cboMaKhachHang.SelectedIndexChanged += new System.EventHandler(this.cboMaKhachHang_SelectedIndexChanged);
             // 
             // txtGhiChu
             // 
@@ -288,6 +303,7 @@
             // ThemDon
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(927, 493);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -311,10 +327,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label lblSoLuong;
         private System.Windows.Forms.FlowLayoutPanel flowSP;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtMaDonHang;
@@ -330,5 +344,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTongTien;
+        private System.Windows.Forms.Label lblSoLuong;
+        private System.Windows.Forms.Label label1;
     }
 }

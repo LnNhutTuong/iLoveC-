@@ -20,12 +20,23 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
     {
         MyDataTable myData = new MyDataTable();
         string maDH;
-
+        //  ----- RẤT LẰN TÀ LÀ QUẰN -----
+        List<SanPham> spDaChon = new List<SanPham>();
+        //int tongSoLuong = spDaChon.Count;
         public ChiTietDH(string _maDH)
         {
             InitializeComponent();
             maDH = _maDH;
             myData.OpenConnection();
+
+        }
+
+        void tienVaTinh()
+        {
+            int total = spDaChon.Sum(x => x.triGia);
+
+            lblSoLuong.Text = "Số lượng: " + spDaChon.Count;
+            lblTongTien.Text = "Tổng tiền: " + total;
         }
 
         public void LayDuLieu()
@@ -40,15 +51,16 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
                                                                     kh.DiaChi,
                                                                     dh.TrangThai,
                                                                     dh.GhiChu,
-                                                                    sp.TenSanPham
+                                                                    sp.TenSanPham,
+                                                                    ctdh.SoLuong,
+                                                                    ctdh.ThanhTien
                                                             FROM DonHang dh
                                                             JOIN KhachHang kh ON dh.MaKhachHang = kh.MaKhachHang
-                                                            LEFT JOIN ChiTietDonHang ctdh ON dh.MaDonHang = ctdh.MaDonHang
-                                                            LEFT JOIN SanPham sp ON ctdh.MaSanPham = sp.MaSanPham
+                                                            LEFT JOIN ChiTietDonHang ctdh ON dh.MaDonHang = ctdh.MaDonHang   
+                                                            LEFT JOIN SanPham sp ON ctdh.MaSanPham = sp.MaSanPham                                                            
                                                             WHERE dh.MaDonHang = @MaDonHang");
             chiTietDonHangSql.Parameters.AddWithValue("@MaDonHang", maDH);
             chiTietDonHang.Fill(chiTietDonHangSql);
-
 
             lblMaDonHang.Text = chiTietDonHang.Rows[0]["MaDonHang"].ToString();
             txtMaKhachHang.Text = chiTietDonHang.Rows[0]["MaKhachHang"].ToString();
@@ -76,10 +88,9 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             cboTrangThai.SelectedValue = Convert.ToInt32(chiTietDonHang.Rows[0]["TrangThai"]);
 
             txtGhiChu.Text = chiTietDonHang.Rows[0]["GhiChu"].ToString();
-            if (string.IsNullOrWhiteSpace(txtGhiChu.Text))
-            {
-                txtGhiChu.Text = "Không có ghi chú :)!";
-            }
+
+            lblSoLuong.Text ="Số lượng: "+ chiTietDonHang.Rows[0]["SoLuong"].ToString();
+            lblTongTien.Text = "Tổng tiền: " + chiTietDonHang.Rows[0]["ThanhTien"].ToString();
 
             // ----- PHAN CHIA THIEN HA -----
 
@@ -88,7 +99,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             if (sanPham.OpenConnection())
             {
                 SqlCommand cmd = new SqlCommand(@"
-                                                SELECT sp.MaSanPham, sp.TenSanPham, sp.AnhDaiDien
+                                                SELECT sp.MaSanPham, sp.TenSanPham, sp.AnhDaiDien, sp.TriGia
                                                 FROM ChiTietDonHang ctdh
                                                 JOIN SanPham sp ON ctdh.MaSanPham = sp.MaSanPham
                                                 WHERE ctdh.MaDonHang = @MaDonHang");
@@ -103,8 +114,29 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
                     sp.AnhDaiDien = row["AnhDaiDien"].ToString();
-                    sp._mode = "delete";
+                    sp._mode = "unselect";
                     sp.setData(row["TenSanPham"].ToString().ToUpper(),row["AnhDaiDien"].ToString());
+                    sp.triGia = Convert.ToInt32(row["TriGia"]);
+                    sp.HuyChon += (sD, eD) =>
+                    {
+                        SanPham item = (SanPham)sD;
+                        item.MaSanPham = row["MaSanPham"].ToString().ToUpper();
+                        item.AnhDaiDien = row["AnhDaiDien"].ToString();
+                        item._mode = "select";
+                        item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                        spDaChon.Remove(item);
+                        tienVaTinh();
+                        item.HuyChon += (sS, eS) =>
+                        {
+                            SanPham item1 = new SanPham();
+                            item1.MaSanPham = row["MaSanPham"].ToString().ToUpper();
+                            item1.AnhDaiDien = row["AnhDaiDien"].ToString();
+                            item1._mode = "unselect";
+                            item1.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                            spDaChon.Add(item);
+                            tienVaTinh();
+                        };
+                    };
                     flowSP.Controls.Add(sp);
                 }
             }
@@ -128,6 +160,8 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             this.Text = "Đơn hàng: " + lblMaDonHang.Text;
             LayDuLieu();
             OnOff(false);
+
+            Console.WriteLine(lblMaDonHang.Text);
         }      
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -147,7 +181,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
                 SqlCommand cmd = new SqlCommand(sql);
 
-                cmd.Parameters.Add("@txtMaDonHang", SqlDbType.NVarChar, 5).Value = lblMaDonHang.Text;
+                cmd.Parameters.Add("@MaDonHang", SqlDbType.NVarChar, 5).Value = lblMaDonHang.Text;
 
                 myData.Update(cmd);
 

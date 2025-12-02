@@ -50,11 +50,18 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
             }
         }
 
+        void tienVaTinh()
+        {
+            int total = spDaChon.Sum(x => x.triGia);
+
+            lblSoLuong.Text = "Số lượng: " + spDaChon.Count;
+            lblTongTien.Text = "Tổng tiền: " + total;
+        }
+
 
         void LayDuLieu()
         {
             //SAN PHAM
-            
 
             flowSP.Controls.Clear();
             MyDataTable sanPham = new MyDataTable();
@@ -66,33 +73,35 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                 sanPham.Fill(sanPhamCmd);
 
                 foreach (DataRow row in sanPham.Rows)
-                {
-                    SanPham sp = new SanPham();
-
+                {                
+                    SanPham sp = new SanPham();                  
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
                     sp.AnhDaiDien = row["AnhDaiDien"].ToString();
                     sp._mode = "select";
                     sp.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
-
+                    sp.triGia = Convert.ToInt32(row["TriGia"]);                
                     sp.ChonSanPham += (sS, eS) =>
                     {
                         SanPham item = (SanPham)sS;
                         item._mode = "unselect";
                         item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                        sp.triGia = Convert.ToInt32(row["TriGia"]);
                         spDaChon.Add(item);
-                        lblSoLuong.Text = "Số lượng: " + spDaChon.Count;
+                        tienVaTinh();
                         item.HuyChon += (sU, eU) =>
                         {
                             SanPham item1 = (SanPham)sU;
                             item._mode = "select";
                             item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                            sp.triGia = Convert.ToInt32(row["TriGia"]);
                             spDaChon.Remove(item);
-                            lblSoLuong.Text = "Số lượng: " + spDaChon.Count;
+                            tienVaTinh();
                         };
                     };                    
-                    flowSP.Controls.Add(sp);                    
+                    flowSP.Controls.Add(sp);
+                    tienVaTinh();
                 }
-                lblSoLuong.Text = "Số lượng: " + spDaChon.Count;
+
                 //KHACH HANG
                 MyDataTable khachHang = new MyDataTable();
                 khachHang.OpenConnection();
@@ -115,6 +124,12 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
 
        
 
+      
+
+
+    
+
+
         private void btnDongY_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)newdata.DataSource;
@@ -124,7 +139,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                 MessageBox.Show("Không được bỏ trống Mã đơn hàng!");
                 return;
             }
-            else if (txtMaDonHang.Text.Length !=5)
+            else if (txtMaDonHang.Text.Length != 5)
             {
                 MessageBox.Show("Mã phải đủ 5 ");
                 return;
@@ -138,49 +153,56 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
             {
                 // thằng này là lưu cái đơn hàng của từng món hàng có nghĩa nó chỉ vừa
                 // lưu cái hàng nào được mua
-                string sql = @"INSERT INTO DonHang
+                try
+                {
+                    string sql = @"INSERT INTO DonHang
                   VALUES (@MaDonHang, @MaKhachHang, @NgayLap, @TrangThai, @GhiChu)";
 
-                SqlCommand cmd = new SqlCommand(sql);
-                cmd.Parameters.Add("@MaDonHang", txtMaDonHang.Text.ToUpper());
-                cmd.Parameters.Add("@MaKhachHang", cboMaKhachHang.SelectedValue.ToString());
-                cmd.Parameters.Add("@NgayLap", DateTime.Now);
-                cmd.Parameters.Add("@TrangThai", "0");
-                cmd.Parameters.Add("@GhiChu", txtGhiChu.Text);
+                    SqlCommand cmd = new SqlCommand(sql);
+                    cmd.Parameters.Add("@MaDonHang", txtMaDonHang.Text.ToUpper());
+                    cmd.Parameters.Add("@MaKhachHang", cboMaKhachHang.SelectedValue.ToString());
+                    cmd.Parameters.Add("@NgayLap", DateTime.Now);
+                    cmd.Parameters.Add("@TrangThai", "0");
 
-                dataTable.Update(cmd);
+                    cmd.Parameters.Add("@GhiChu", txtGhiChu.Text);
+                    if (string.IsNullOrWhiteSpace(txtGhiChu.Text))
+                    {
+                        txtGhiChu.Text = "Không có ghi chú :)!";
+                    }
 
-
-                int tongSoLuong = spDaChon.Count;
-                int total = 0;
-
-                // cái này là lưu vào cái bill
-                foreach (SanPham sp in spDaChon)
-                {
-                    total += sp.triGia;
+                    dataTable.Update(cmd);
 
 
-                    string sqlC = @"INSERT INTO ChiTietDonHang 
-                                     VALUES (@MaDonHang,@MaKhachHang, @MaSanPham, @SoLuong, @TongTien)";
+                    int tongSoLuong = spDaChon.Count;
+                    // cái này là lưu vào cái bill
+                    foreach (SanPham sp in spDaChon)
+                    {
+                        int total = spDaChon.Sum(x => sp.triGia);
 
-                    SqlCommand cmdC = new SqlCommand(sqlC);
+                        string sqlC = @"INSERT INTO ChiTietDonHang 
+                                     VALUES (@MaDonHang, @MaSanPham, @SoLuong, @ThanhTien)";
 
-                    cmdC.Parameters.Add("@MaDonHang", txtMaDonHang.Text.ToUpper());
-                    cmdC.Parameters.Add("@MaKhachHang", cboMaKhachHang.SelectedValue.ToString());
-                    cmdC.Parameters.Add("@MaSanPham", sp.MaSanPham);
-                    cmdC.Parameters.Add("@SoLuong", tongSoLuong);
-                    cmdC.Parameters.Add("@TongTien", total);
+                        SqlCommand cmdC = new SqlCommand(sqlC);
 
-                    dataTable.Update(cmdC);
+                        cmdC.Parameters.Add("@MaDonHang", txtMaDonHang.Text.ToUpper());
+                        cmdC.Parameters.Add("@MaSanPham", sp.MaSanPham);
+                        cmdC.Parameters.Add("@SoLuong", tongSoLuong);
+                        cmdC.Parameters.Add("@ThanhTien", total);
+                        dataTable.Update(cmdC);
+                    }
 
+                    MessageBox.Show("Thêm đơn hàng thành công!YASH");
+                    this.Close();
                 }
-
-                MessageBox.Show("Thêm đơn hàng thành công!YASH");
-                this.Close();
+                catch
+                {
+                    MessageBox.Show("Đơn hàng đã tồn tại");
+                }
             }
+               
         }
 
-        private void btnHuy_Click(object sender, EventArgs e)
+        private void btnHuy_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -188,11 +210,6 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
         private void cboMaKhachHang_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadcBo();
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

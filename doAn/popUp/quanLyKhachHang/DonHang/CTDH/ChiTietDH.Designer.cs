@@ -140,6 +140,7 @@
             // 
             // flowSP
             // 
+            this.flowSP.AutoScroll = true;
             this.flowSP.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.flowSP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowSP.Location = new System.Drawing.Point(0, 0);

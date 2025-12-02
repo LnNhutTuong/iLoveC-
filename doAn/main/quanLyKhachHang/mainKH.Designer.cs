@@ -34,7 +34,6 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabKhachHang = new System.Windows.Forms.TabPage();
             this.tabDonHang = new System.Windows.Forms.TabPage();
-            this.tabPhanHoi = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.txtNhanVien = new System.Windows.Forms.ToolStripStatusLabel();
             this.none = new System.Windows.Forms.ToolStripStatusLabel();
@@ -102,7 +101,6 @@
             // 
             this.tabControl.Controls.Add(this.tabKhachHang);
             this.tabControl.Controls.Add(this.tabDonHang);
-            this.tabControl.Controls.Add(this.tabPhanHoi);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
@@ -130,15 +128,6 @@
             this.tabDonHang.TabIndex = 1;
             this.tabDonHang.Text = "Đơn hàng";
             this.tabDonHang.UseVisualStyleBackColor = true;
-            // 
-            // tabPhanHoi
-            // 
-            this.tabPhanHoi.Location = new System.Drawing.Point(4, 25);
-            this.tabPhanHoi.Name = "tabPhanHoi";
-            this.tabPhanHoi.Size = new System.Drawing.Size(1181, 441);
-            this.tabPhanHoi.TabIndex = 2;
-            this.tabPhanHoi.Text = "Phản hồi";
-            this.tabPhanHoi.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
@@ -225,7 +214,6 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabKhachHang;
         private System.Windows.Forms.TabPage tabDonHang;
-        private System.Windows.Forms.TabPage tabPhanHoi;
         private System.Windows.Forms.ToolStripStatusLabel txtNhanVien;
         private System.Windows.Forms.ToolStripStatusLabel none;
         private System.Windows.Forms.ToolStripStatusLabel btnDoiMatKhau;

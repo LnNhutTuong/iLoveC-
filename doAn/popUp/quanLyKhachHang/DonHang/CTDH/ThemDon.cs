@@ -122,14 +122,6 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
             }
         }
 
-       
-
-      
-
-
-    
-
-
         private void btnDongY_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)newdata.DataSource;
@@ -155,8 +147,10 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                 // lưu cái hàng nào được mua
                 try
                 {
+                    int tongSoLuong = spDaChon.Count;
+
                     string sql = @"INSERT INTO DonHang
-                  VALUES (@MaDonHang, @MaKhachHang, @NgayLap, @TrangThai, @GhiChu)";
+                  VALUES (@MaDonHang, @MaKhachHang, @NgayLap, @TrangThai, @GhiChu, @TongSoLuong)";
 
                     SqlCommand cmd = new SqlCommand(sql);
                     cmd.Parameters.Add("@MaDonHang", txtMaDonHang.Text.ToUpper());
@@ -164,16 +158,17 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                     cmd.Parameters.Add("@NgayLap", DateTime.Now);
                     cmd.Parameters.Add("@TrangThai", "0");
 
-                    cmd.Parameters.Add("@GhiChu", txtGhiChu.Text);
                     if (string.IsNullOrWhiteSpace(txtGhiChu.Text))
                     {
                         txtGhiChu.Text = "Không có ghi chú :)!";
                     }
+                    cmd.Parameters.Add("@GhiChu", txtGhiChu.Text);
+
+                    cmd.Parameters.Add("@TongSoLuong",tongSoLuong);
 
                     dataTable.Update(cmd);
 
 
-                    int tongSoLuong = spDaChon.Count;
                     // cái này là lưu vào cái bill
                     foreach (SanPham sp in spDaChon)
                     {
@@ -186,8 +181,6 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
 
                         cmdC.Parameters.Add("@MaDonHang", txtMaDonHang.Text.ToUpper());
                         cmdC.Parameters.Add("@MaSanPham", sp.MaSanPham);
-                        cmdC.Parameters.Add("@SoLuong", tongSoLuong);
-                        cmdC.Parameters.Add("@ThanhTien", total);
                         dataTable.Update(cmdC);
                     }
 

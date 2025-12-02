@@ -89,54 +89,75 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
             txtGhiChu.Text = chiTietDonHang.Rows[0]["GhiChu"].ToString();
 
-            lblSoLuong.Text ="Số lượng: "+ chiTietDonHang.Rows[0]["SoLuong"].ToString();
-            lblTongTien.Text = "Tổng tiền: " + chiTietDonHang.Rows[0]["ThanhTien"].ToString();
-
             // ----- PHAN CHIA THIEN HA -----
 
             flowSP.Controls.Clear();
             MyDataTable sanPham = new MyDataTable();
             if (sanPham.OpenConnection())
             {
-                SqlCommand cmd = new SqlCommand(@"
-                                                SELECT sp.MaSanPham, sp.TenSanPham, sp.AnhDaiDien, sp.TriGia
-                                                FROM ChiTietDonHang ctdh
-                                                JOIN SanPham sp ON ctdh.MaSanPham = sp.MaSanPham
-                                                WHERE ctdh.MaDonHang = @MaDonHang");
+                string sanPhamSql = "SELECT * FROM SanPham";
+                SqlCommand sanPhamCmd = new SqlCommand(sanPhamSql);
+                sanPham.Fill(sanPhamCmd);
 
-                cmd.Parameters.AddWithValue("@MaDonHang", maDH);
+                MyDataTable spChon = new MyDataTable();
+                spChon.OpenConnection();
+                string spChonSql = @"SELECT MaSanPham FROM ChiTietDonHang WHERE MaDonHang = @MaDonHang";
+                SqlCommand spChonCmd = new SqlCommand(spChonSql);
+                spChonCmd.Parameters.Add("@MaDonHang", maDH);
+                spChon.Fill(spChonCmd);
 
-                sanPham.Fill(cmd);
+                var dsSpChon = spChon.Rows.Cast<DataRow>().Select(r => r["MaSanPham"].ToString().ToUpper()).ToList();
+
 
                 foreach (DataRow row in sanPham.Rows)
                 {
                     SanPham sp = new SanPham();
 
+
+
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
+
+                    if (dsSpChon.Contains(sp.MaSanPham))
+                    {
+                        sp._mode = "unselect";      
+                        sp.BorderStyle = BorderStyle.FixedSingle;
+                        spDaChon.Add(sp);
+
+                    }
+                    else
+                    {
+                        sp._mode = "select";
+                        sp.BorderStyle = BorderStyle.None;
+                    }
+
+
                     sp.AnhDaiDien = row["AnhDaiDien"].ToString();
-                    sp._mode = "unselect";
                     sp.setData(row["TenSanPham"].ToString().ToUpper(),row["AnhDaiDien"].ToString());
                     sp.triGia = Convert.ToInt32(row["TriGia"]);
-                    sp.HuyChon += (sD, eD) =>
+                    sp.HuyChon += (s, e) =>
                     {
-                        SanPham item = (SanPham)sD;
-                        item.MaSanPham = row["MaSanPham"].ToString().ToUpper();
-                        item.AnhDaiDien = row["AnhDaiDien"].ToString();
+                        var item = (SanPham)s;
+                        spDaChon.RemoveAll(x => x.MaSanPham == item.MaSanPham);
+
                         item._mode = "select";
-                        item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
-                        spDaChon.Remove(item);
+                        sp.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+
                         tienVaTinh();
-                        item.HuyChon += (sS, eS) =>
-                        {
-                            SanPham item1 = new SanPham();
-                            item1.MaSanPham = row["MaSanPham"].ToString().ToUpper();
-                            item1.AnhDaiDien = row["AnhDaiDien"].ToString();
-                            item1._mode = "unselect";
-                            item1.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
-                            spDaChon.Add(item);
-                            tienVaTinh();
-                        };
                     };
+
+                    sp.ChonSanPham += (s, e) =>
+                    {
+                        var item = (SanPham)s;
+                        if (!spDaChon.Any(x => x.MaSanPham == item.MaSanPham))
+                        {
+                            spDaChon.Add(item);
+                        }
+                        item._mode = "unselect";
+                        sp.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                        tienVaTinh();
+                    };
+                    tienVaTinh();
+
                     flowSP.Controls.Add(sp);
                 }
             }
@@ -183,6 +204,13 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
                 cmd.Parameters.Add("@MaDonHang", SqlDbType.NVarChar, 5).Value = lblMaDonHang.Text;
 
+                string sqlD = @"DELETE FROM ChiTietDonHang WHERE MaDonHang = @MaDonHang";
+
+                SqlCommand cmdD = new SqlCommand(sql);
+
+                cmd.Parameters.Add("@MaDonHang", SqlDbType.NVarChar, 5).Value = lblMaDonHang.Text;
+
+
                 myData.Update(cmd);
 
                 MessageBox.Show("Đã xóa thành công!");
@@ -193,9 +221,12 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            int tongSoLuong = spDaChon.Count;
+
             string sql = @"UPDATE DonHang                          
                               SET TrangThai = @TrangThai,
-                                  GhiChu = @GhiChu
+                                  GhiChu = @GhiChu,
+                                  TongSoLuong = @TongSoLuong
                                WHERE MaDonHang = @MaDonHang";
 
             SqlCommand cmd = new SqlCommand(sql);
@@ -203,8 +234,27 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             cmd.Parameters.AddWithValue("@MaDonHang", lblMaDonHang.Text);
             cmd.Parameters.AddWithValue("@TrangThai", cboTrangThai.SelectedValue);
             cmd.Parameters.AddWithValue("@GhiChu", txtGhiChu.Text);
-
+            cmd.Parameters.AddWithValue("@TongSoLuong", tongSoLuong);
             myData.Update(cmd);
+
+            string sqlD = @"DELETE FROM ChiTietDonHang WHERE MaDonHang = @MaDonHang";
+            SqlCommand cmdD= new SqlCommand(sqlD);
+            cmdD.Parameters.AddWithValue("@MaDonHang", lblMaDonHang.Text);
+            myData.Update(cmdD);
+
+            foreach (SanPham sp in spDaChon)
+            {
+                string sqlI = @"INSERT INTO ChiTietDonHang (MaDonHang, MaSanPham)
+                    VALUES (@MaDonHang, @MaSanPham)";
+
+                SqlCommand cmdI = new SqlCommand(sqlI);
+                cmdI.Parameters.AddWithValue("@MaDonHang", lblMaDonHang.Text);
+                cmdI.Parameters.AddWithValue("@MaSanPham", sp.MaSanPham);
+
+                myData.Update(cmdI);
+            }
+
+
             MessageBox.Show("Chỉnh sửa thành công!");
             ChiTietDonHang_Load(sender, e);
         }

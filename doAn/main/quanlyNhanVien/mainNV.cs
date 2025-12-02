@@ -207,7 +207,7 @@ namespace doAn.quanLyNguoIDung
                 MessageBox.Show("Số điện thoại không được bỏ trống!", "LỖI",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (txtSoDienThoai.Text.Length > 10 || txtSoDienThoai.Text.Length < 10)
+            else if (txtSoDienThoai.Text.Length != 10)
             {
                 MessageBox.Show("Số điện thoại phải là 11 số \n" + "Bạn đã nhập: " + txtSoDienThoai.Text.Length + " số!", "LỖI",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

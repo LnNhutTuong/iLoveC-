@@ -103,11 +103,8 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
                     sp.AnhDaiDien = row["AnhDaiDien"].ToString();
-
-                    sp.setData(
-                        row["TenSanPham"].ToString().ToUpper(),
-                        row["AnhDaiDien"].ToString()
-                    );
+                    sp._mode = "delete";
+                    sp.setData(row["TenSanPham"].ToString().ToUpper(),row["AnhDaiDien"].ToString());
                     flowSP.Controls.Add(sp);
                 }
             }
@@ -131,7 +128,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             this.Text = "Đơn hàng: " + lblMaDonHang.Text;
             LayDuLieu();
             OnOff(false);
-        }
+        }      
 
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -160,11 +157,6 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             }
         }
 
-        private void btnTaiLai_Click(object sender, EventArgs e)
-        {
-            ChiTietDonHang_Load(sender, e);
-        }
-
         private void btnLuu_Click(object sender, EventArgs e)
         {
             string sql = @"UPDATE DonHang                          
@@ -181,7 +173,11 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             myData.Update(cmd);
             MessageBox.Show("Chỉnh sửa thành công!");
             ChiTietDonHang_Load(sender, e);
+        }
 
+        private void btnTaiLai_Click(object sender, EventArgs e)
+        {
+            ChiTietDonHang_Load(sender, e);
         }
     }
 }

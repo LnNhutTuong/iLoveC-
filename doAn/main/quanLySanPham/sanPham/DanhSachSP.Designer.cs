@@ -38,7 +38,7 @@
             this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(1091, 439);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(1151, 441);
             this.flowLayoutPanel.TabIndex = 1;
             // 
             // DanhSachSP
@@ -48,7 +48,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.flowLayoutPanel);
             this.Name = "DanhSachSP";
-            this.Size = new System.Drawing.Size(1091, 439);
+            this.Size = new System.Drawing.Size(1151, 441);
             this.Load += new System.EventHandler(this.DanhSachSP_Load);
             this.ResumeLayout(false);
 

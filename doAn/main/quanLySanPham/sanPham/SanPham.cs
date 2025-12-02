@@ -16,6 +16,7 @@ namespace doAn.quanLySanPham
 
         public string MaSanPham { get; set; }
         public string AnhDaiDien { get; set; }
+        public int triGia { get; set; }
 
 
         public SanPham()
@@ -81,6 +82,8 @@ namespace doAn.quanLySanPham
         {
             if(mode == "view")
             {
+                //invoke:
+                // thấy thì trả lời ko thì im mồm
                 XemChiTiet?.Invoke(this, EventArgs.Empty);
             }
             else if(mode == "select")
@@ -98,12 +101,7 @@ namespace doAn.quanLySanPham
         }
 
 
-        //private void btnChiTiet_Click(object sender, EventArgs e)
-        //{
-        //    var ct = new ChiTietSanPham(MaSanPham);
-        //    ct.ShowDialog();
-        //}
-
+      
 
 
 

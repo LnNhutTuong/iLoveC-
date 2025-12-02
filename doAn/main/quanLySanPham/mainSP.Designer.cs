@@ -66,7 +66,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1101, 596);
+            this.splitContainer1.Size = new System.Drawing.Size(1159, 596);
             this.splitContainer1.SplitterDistance = 81;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -94,7 +94,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.statusStrip1);
-            this.splitContainer2.Size = new System.Drawing.Size(1101, 511);
+            this.splitContainer2.Size = new System.Drawing.Size(1159, 511);
             this.splitContainer2.SplitterDistance = 470;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -107,7 +107,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1101, 470);
+            this.tabControl.Size = new System.Drawing.Size(1159, 470);
             this.tabControl.TabIndex = 1;
             // 
             // tabDanhMuc
@@ -115,7 +115,7 @@
             this.tabDanhMuc.Location = new System.Drawing.Point(4, 25);
             this.tabDanhMuc.Name = "tabDanhMuc";
             this.tabDanhMuc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDanhMuc.Size = new System.Drawing.Size(1093, 441);
+            this.tabDanhMuc.Size = new System.Drawing.Size(1128, 441);
             this.tabDanhMuc.TabIndex = 3;
             this.tabDanhMuc.Text = "Danh mục";
             this.tabDanhMuc.UseVisualStyleBackColor = true;
@@ -126,7 +126,7 @@
             this.tabThuongHieu.Location = new System.Drawing.Point(4, 25);
             this.tabThuongHieu.Name = "tabThuongHieu";
             this.tabThuongHieu.Padding = new System.Windows.Forms.Padding(3);
-            this.tabThuongHieu.Size = new System.Drawing.Size(1093, 441);
+            this.tabThuongHieu.Size = new System.Drawing.Size(1128, 441);
             this.tabThuongHieu.TabIndex = 1;
             this.tabThuongHieu.Text = "Thương hiệu";
             this.tabThuongHieu.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
             // 
             this.tabSanPham.Location = new System.Drawing.Point(4, 25);
             this.tabSanPham.Name = "tabSanPham";
-            this.tabSanPham.Size = new System.Drawing.Size(1093, 441);
+            this.tabSanPham.Size = new System.Drawing.Size(1151, 441);
             this.tabSanPham.TabIndex = 2;
             this.tabSanPham.Text = "Sản phẩm";
             this.tabSanPham.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             this.btnThoat});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1101, 37);
+            this.statusStrip1.Size = new System.Drawing.Size(1159, 37);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -168,7 +168,7 @@
             // none
             // 
             this.none.Name = "none";
-            this.none.Size = new System.Drawing.Size(827, 31);
+            this.none.Size = new System.Drawing.Size(862, 31);
             this.none.Spring = true;
             // 
             // btnDoiMatKhau
@@ -193,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1101, 596);
+            this.ClientSize = new System.Drawing.Size(1159, 596);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

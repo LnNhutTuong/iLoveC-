@@ -188,7 +188,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.flowSP);
-            this.splitContainer2.Size = new System.Drawing.Size(373, 493);
+            this.splitContainer2.Size = new System.Drawing.Size(424, 493);
             this.splitContainer2.SplitterDistance = 110;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -198,7 +198,7 @@
             this.flowSP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowSP.Location = new System.Drawing.Point(0, 0);
             this.flowSP.Name = "flowSP";
-            this.flowSP.Size = new System.Drawing.Size(373, 379);
+            this.flowSP.Size = new System.Drawing.Size(424, 379);
             this.flowSP.TabIndex = 0;
             // 
             // splitContainer1
@@ -227,8 +227,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
-            this.splitContainer1.Size = new System.Drawing.Size(801, 493);
-            this.splitContainer1.SplitterDistance = 373;
+            this.splitContainer1.Size = new System.Drawing.Size(857, 493);
+            this.splitContainer1.SplitterDistance = 424;
             this.splitContainer1.TabIndex = 1;
             // 
             // txtMaDonHang
@@ -277,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 493);
+            this.ClientSize = new System.Drawing.Size(857, 493);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

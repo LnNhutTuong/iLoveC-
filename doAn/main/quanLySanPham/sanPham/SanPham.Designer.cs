@@ -78,7 +78,7 @@
             this.btnHanhDong.Text = "Hành động";
             this.btnHanhDong.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnHanhDong.UseVisualStyleBackColor = true;
-            this.btnHanhDong.Click += new System.EventHandler(this.btnChiTiet_Click);
+            this.btnHanhDong.Click += new System.EventHandler(this.btnHanhDong_Click);
             // 
             // lblTenSanPham
             // 
@@ -95,8 +95,7 @@
             // 
             // SanPham
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.splitContainer1);

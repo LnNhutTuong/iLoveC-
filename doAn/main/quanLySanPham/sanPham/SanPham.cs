@@ -39,13 +39,73 @@ namespace doAn.quanLySanPham
             lblTenSanPham.Text = TenSanPham;
         }
 
-        //Thêm hành động nút tùy vô hành động
-        private void btnChiTiet_Click(object sender, EventArgs e)
+        // ----- PEAK -----
+        //Thêm hành động của nút tùy vô hành động
+
+        //event tu tao luon *vip*
+        public event EventHandler XemChiTiet;
+        public event EventHandler ChonSanPham;
+        public event EventHandler HuyChon;
+        public event EventHandler XoaSanPham;
+
+
+        private string mode;
+        public string _mode
         {
-            var ct = new ChiTietSanPham(MaSanPham);
-            ct.ShowDialog();
+            //lay cai text cua nut ra
+            get => mode;
+            set
+            {
+                //xam`
+                mode = value;
+
+                switch (value)
+                {
+                    case "view":
+                        btnHanhDong.Text = "Xem chi tiết";
+                        break;
+                    case "select":
+                        btnHanhDong.Text = "Chọn";
+                        break;
+                    case "unselect":
+                        btnHanhDong.Text = "Hủy chọn";
+                        break;
+                    case "delete":
+                        btnHanhDong.Text = "Xóa";
+                        break;
+                }
+            }
         }
 
-        
+        private void btnHanhDong_Click(object sender, EventArgs e)
+        {
+            if(mode == "view")
+            {
+                XemChiTiet?.Invoke(this, EventArgs.Empty);
+            }
+            else if(mode == "select")
+            {
+                ChonSanPham?.Invoke(this, EventArgs.Empty);
+            }
+            else if (mode == "unselect")
+            {
+                HuyChon?.Invoke(this, EventArgs.Empty);
+            }
+            else if(mode == "delete")
+            {
+                XoaSanPham?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+
+        //private void btnChiTiet_Click(object sender, EventArgs e)
+        //{
+        //    var ct = new ChiTietSanPham(MaSanPham);
+        //    ct.ShowDialog();
+        //}
+
+
+
+
     }
 }

@@ -68,14 +68,27 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
 
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
                     sp.AnhDaiDien = row["AnhDaiDien"].ToString();
+                    sp._mode = "select";
+                    sp.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
 
-                    sp.setData(
-                        row["TenSanPham"].ToString().ToUpper(),
-                        row["AnhDaiDien"].ToString()
-                    );
-                    flowSP.Controls.Add(sp);
+                    sp.ChonSanPham += (sS, eS) =>
+                    {
+                        SanPham sp1 =  (SanPham)sS;
 
-                    
+                        sp1.MaSanPham = row["MaSanPham"].ToString().ToUpper();
+                        sp1.AnhDaiDien = row["AnhDaiDien"].ToString();
+                        sp1._mode = "unselect";
+                        sp1.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                        sp1.HuyChon += (sU, eU) =>
+                        {
+                            SanPham sp2 = (SanPham)sU;
+                            sp2.MaSanPham = row["MaSanPham"].ToString().ToUpper();
+                            sp2.AnhDaiDien = row["AnhDaiDien"].ToString();
+                            sp2._mode = "select";
+                            sp2.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());                                                     
+                        };
+                    };
+                    flowSP.Controls.Add(sp);                    
                 }
 
                 //KHACH HANG
@@ -102,46 +115,39 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
 
         private void btnDongY_Click(object sender, EventArgs e)
         {
-            //DataTable dt = (DataTable)newdata.DataSource;
+            DataTable dt = (DataTable)newdata.DataSource;
 
-            //if (string.IsNullOrWhiteSpace(txtMaDonHang.Text))
-            //{
-            //    MessageBox.Show("Không được bỏ trống Mã đơn hàng!");
-            //    return;
-            //}
-            //else if (txtMaDonHang.TextLength > 5 || txtMaDonHang.MaxLength < 5)
-            //{
-            //    MessageBox.Show("Mã phải đủ 5 \n");
-            //    return;
+            if (string.IsNullOrWhiteSpace(txtMaDonHang.Text))
+            {
+                MessageBox.Show("Không được bỏ trống Mã đơn hàng!");
+                return;
+            }
+            else if (txtMaDonHang.TextLength > 5 || txtMaDonHang.MaxLength < 5)
+            {
+                MessageBox.Show("Mã phải đủ 5 \n");
+                return;
 
-            //}
-            ////thang nay them thang vao DATABASE luon
-            ////WHY? tai vi no phai them vao database luon de cho cai thang listSP
-            ////cap nhat sau do reload lai thi no moi hien ra san pham
-            ////con may thang khac vi sao lai chon Row thi la do co cai dataGrid
-            ////Row = dong khi them vao dataGrid bat buoc phai co nut luu de xu li
-            ////logic va toi uu nhat
-            ////That reason why 
-            //string sql = @"INSERT INTO SanPham
-            //                (MaSanPham, TenSanPham, MaDanhMuc, MaThuongHieu, TriGia, AnhDaiDien, MoTa)
-            //                VALUES
-            //                (@MaSanPham, @TenSanPham, @MaDanhMuc, @MaThuongHieu, @TriGia, @AnhDaiDien, @MoTa)";
+            }
+            
+            string sql = @"INSERT INTO DonHang
+                            VALUES
+                            (@MaSanPham, @TenSanPham, @MaDanhMuc, @MaThuongHieu, @TriGia, @AnhDaiDien, @MoTa)";
 
-            //SqlCommand cmd = new SqlCommand(sql);
+            SqlCommand cmd = new SqlCommand(sql);
 
-            //cmd.Parameters.Add("@MaSanPham", SqlDbType.NVarChar, 5).Value = txtMaSanPham.Text.ToUpper();
-            //cmd.Parameters.Add("@TenSanPham", SqlDbType.NVarChar, 50).Value = txtTenSanPham.Text;
-            //cmd.Parameters.Add("@MaDanhMuc", SqlDbType.NVarChar, 5).Value = cboDanhMuc.SelectedValue;
-            //cmd.Parameters.Add("@MaThuongHieu", SqlDbType.NVarChar, 50).Value = cboThuongHieu.SelectedValue;
-            //cmd.Parameters.Add("@TriGia", SqlDbType.Decimal).Value = triGia;
-            //cmd.Parameters.Add("@AnhDaiDien", SqlDbType.NVarChar, 255).Value = path;
-            //cmd.Parameters.Add("@MoTa", SqlDbType.NVarChar, 255).Value = txtMoTa.Text;
+            cmd.Parameters.Add("@MaSanPham", SqlDbType.NVarChar, 5).Value = txtMaSanPham.Text.ToUpper();
+            cmd.Parameters.Add("@TenSanPham", SqlDbType.NVarChar, 50).Value = txtTenSanPham.Text;
+            cmd.Parameters.Add("@MaDanhMuc", SqlDbType.NVarChar, 5).Value = cboDanhMuc.SelectedValue;
+            cmd.Parameters.Add("@MaThuongHieu", SqlDbType.NVarChar, 50).Value = cboThuongHieu.SelectedValue;
+            cmd.Parameters.Add("@TriGia", SqlDbType.Decimal).Value = triGia;
+            cmd.Parameters.Add("@AnhDaiDien", SqlDbType.NVarChar, 255).Value = path;
+            cmd.Parameters.Add("@MoTa", SqlDbType.NVarChar, 255).Value = txtMoTa.Text;
 
-            //dataTable.Update(cmd);
-            //MessageBox.Show("Thêm thành công!");
-            //this.Close();
-            ////Kieu nao cung phai load form danh sach :D
-            //((mainSP)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();
+            dataTable.Update(cmd);
+            MessageBox.Show("Thêm thành công!");
+            this.Close();
+            //Kieu nao cung phai load form danh sach :D
+            ((mainSP)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -152,7 +158,6 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
         private void cboMaKhachHang_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadcBo();
-        }
-    
+        }      
     }
 }

@@ -1,4 +1,5 @@
-﻿using doAn.quanLySanPham;
+﻿using doAn.popUp.quanlySanPham.sanPham;
+using doAn.quanLySanPham;
 using doAn.quanLySanPham.sanPham;
 using System;
 using System.Data;
@@ -42,14 +43,30 @@ namespace doAn.quanLySanPham
                 foreach (DataRow row in dt.Rows)
                 {
                     SanPham sp = new SanPham();
-
+                    
                     sp.MaSanPham = row["MaSanPham"].ToString();
-
+                    sp._mode = "view";
                     sp.setData(row["TenSanPham"].ToString(), row["AnhDaiDien"].ToString());
+
+                    // += them su kien (1) 
+                    // (s,e) => giong giong function arrow js (2)
+                    // 1 + 2 = tu tao cai su kien ben UC roi nen qua day goi ra
+                    // (1) se hoat dong khi su kien duoc goi thanh cong
+                    // va chay (2)
+                    sp.XemChiTiet += (s, e) =>
+                    {
+                        ChiTietSanPham ct = new ChiTietSanPham(sp.MaSanPham);
+                        ct.ShowDialog();
+                    };  
 
                     flowLayoutPanel.Controls.Add(sp);
                 }
             }
+        }
+
+        private void Sp_XemChiTiet(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void DanhSachSP_Load(object sender, System.EventArgs e)

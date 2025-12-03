@@ -41,6 +41,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
         public void LayDuLieu()
         {
+            spDaChon.Clear(); 
             //Rất lú vì cái bảng trung gian (dùng cho việc có nhiều hàng trong 1 đơn) nên bắt buộc phải join
             MyDataTable chiTietDonHang = new MyDataTable();
             chiTietDonHang.OpenConnection();
@@ -108,26 +109,22 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
                 var dsSpChon = spChon.Rows.Cast<DataRow>().Select(r => r["MaSanPham"].ToString().ToUpper()).ToList();
 
-
                 foreach (DataRow row in sanPham.Rows)
                 {
                     SanPham sp = new SanPham();
-
-
 
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
 
                     if (dsSpChon.Contains(sp.MaSanPham))
                     {
                         sp._mode = "unselect";      
-                        sp.BorderStyle = BorderStyle.FixedSingle;
-                        spDaChon.Add(sp);
-
+                        sp.BackColor = Color.Green;
+                        spDaChon.Add(new SanPham {MaSanPham = sp.MaSanPham, triGia = Convert.ToInt32(row["TriGia"])});
                     }
                     else
                     {
                         sp._mode = "select";
-                        sp.BorderStyle = BorderStyle.None;
+                        sp.BackColor = Color.White;
                     }
 
 
@@ -138,10 +135,9 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
                     {
                         var item = (SanPham)s;
                         spDaChon.RemoveAll(x => x.MaSanPham == item.MaSanPham);
-
                         item._mode = "select";
-                        sp.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
-
+                        item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                        item.BackColor = Color.White;
                         tienVaTinh();
                     };
 
@@ -153,7 +149,8 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
                             spDaChon.Add(item);
                         }
                         item._mode = "unselect";
-                        sp.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                        item.BackColor = Color.Green;
+                        item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
                         tienVaTinh();
                     };
                     tienVaTinh();

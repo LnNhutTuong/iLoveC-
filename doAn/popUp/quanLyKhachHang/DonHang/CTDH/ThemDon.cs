@@ -87,17 +87,18 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                         item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
                         sp.triGia = Convert.ToInt32(row["TriGia"]);
                         spDaChon.Add(item);
+                        tienVaTinh();                        
+                    };
+
+                    sp.HuyChon += (sU, eU) =>
+                    {
+                        SanPham item1 = (SanPham)sU;
+                        item1._mode = "select";
+                        item1.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
+                        sp.triGia = Convert.ToInt32(row["TriGia"]);
+                        spDaChon.Remove(item1);
                         tienVaTinh();
-                        item.HuyChon += (sU, eU) =>
-                        {
-                            SanPham item1 = (SanPham)sU;
-                            item._mode = "select";
-                            item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
-                            sp.triGia = Convert.ToInt32(row["TriGia"]);
-                            spDaChon.Remove(item);
-                            tienVaTinh();
-                        };
-                    };                    
+                    };
                     flowSP.Controls.Add(sp);
                     tienVaTinh();
                 }

@@ -163,10 +163,37 @@ namespace doAn.quanLyKhachHang
             }
             if (data.Current != null)
             {
-                if (MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
+
+                DataRowView row = (DataRowView)data.Current;
+                string maKH = row["MaKhachHang"].ToString();
+
+                MyDataTable donhang = new MyDataTable();
+                donhang.OpenConnection();
+                string sql = @"SELECT Count(*) FROM DonHang WHERE MaKhachHang = @MaKhachHang";
+                SqlCommand cmd = new SqlCommand(sql);
+                cmd.Parameters.AddWithValue("@MaKhachHang", maKH);
+                donhang.Fill(cmd);
+
+                //ExecuteScalar: tra ve thang dau tien trong sql
+                int soDon = Convert.ToInt32(cmd.ExecuteScalar());
+
+                Console.WriteLine(soDon);
+
+               
+                    if (soDon > 0)
+                    {
+                        if (MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Khách hàng này đang có đơn hàng! \n Không thể xóa!!");
                     data.RemoveCurrent();
-                }
+
+                    }
+
+
             }
         }
 

@@ -152,8 +152,8 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnThem);
             this.splitContainer1.Panel2.Controls.Add(this.btnTaiLai);
+            this.splitContainer1.Panel2.Controls.Add(this.btnThem);
             this.splitContainer1.Size = new System.Drawing.Size(1181, 441);
             this.splitContainer1.SplitterDistance = 346;
             this.splitContainer1.TabIndex = 2;
@@ -167,11 +167,11 @@
             this.btnTaiLai.Location = new System.Drawing.Point(593, 28);
             this.btnTaiLai.Name = "btnTaiLai";
             this.btnTaiLai.Size = new System.Drawing.Size(100, 34);
-            this.btnTaiLai.TabIndex = 14;
+            this.btnTaiLai.TabIndex = 16;
             this.btnTaiLai.Text = "Tải lại";
             this.btnTaiLai.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTaiLai.UseVisualStyleBackColor = true;
-            this.btnTaiLai.Click += new System.EventHandler(this.btnTaiLai_Click);
+            this.btnTaiLai.Click += new System.EventHandler(this.btnTaiLai_Click_1);
             // 
             // btnThem
             // 
@@ -209,12 +209,12 @@
 
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button btnTaiLai;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaDonHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaKhachHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayLap;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
         private System.Windows.Forms.DataGridViewButtonColumn ChiTietDonHang;
         private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.Button btnTaiLai;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace doAn.quanLyNguoIDung
 {
-    partial class mainNV
+    partial class QlNhanVien
     {
         /// <summary>
         /// Required designer variable.
@@ -432,7 +432,6 @@
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(50, 21);
             this.btnThoat.Text = "Thoát";
-            this.btnThoat.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // toolStripStatusLabel2
             // 

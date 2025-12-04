@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace doAn.main.quanLyKhachHang
 {
-    public partial class DonHang : UserControl
+    public partial class DonHang : Form
     {
         string maDH { get; set; }
 
@@ -120,21 +120,32 @@ namespace doAn.main.quanLyKhachHang
                 {
                     string maDH = dataGridView.Rows[e.RowIndex].Cells["MaDonHang"].Value.ToString();
 
+
                     ChiTietDH ctdh = new ChiTietDH(maDH);
-                    ctdh.ShowDialog();
+                    if (ctdh.ShowDialog() == DialogResult.OK)
+                    {
+                        Console.WriteLine("reload da xoa");
+                        DonHang_Load(sender, e);
+                    }
+
                 }
             }
         }
-
-        private void btnTaiLai_Click(object sender, EventArgs e)
-        {
-            DonHang_Load(sender, e);
-        }
-
         private void btnThem_Click(object sender, EventArgs e)
         {
             ThemDon puThem = new ThemDon(data);
-            puThem.ShowDialog();
+
+            if(puThem.ShowDialog() == DialogResult.OK)
+            {
+                DonHang_Load(sender, e);
+            }
+
+        }
+
+        private void btnTaiLai_Click_1(object sender, EventArgs e)
+        {
+            DonHang_Load(sender, e);
+
         }
     }
 }

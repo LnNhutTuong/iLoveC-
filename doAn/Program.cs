@@ -1,4 +1,5 @@
 ﻿using doAn;
+using doAn.main;
 using doAn.quanLyKhachHang;
 using doAn.quanLyNguoIDung;
 using System;
@@ -19,7 +20,7 @@ namespace doAn
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mainKH());
+            Application.Run(new Main());
         }
     }
 }

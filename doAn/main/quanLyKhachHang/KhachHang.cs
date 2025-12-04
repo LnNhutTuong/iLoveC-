@@ -12,14 +12,13 @@ using System.Windows.Forms;
 
 namespace doAn.quanLyKhachHang
 {
-    public partial class KhachHang : UserControl
+    public partial class KhachHang : Form
     {
         private BindingSource data = new BindingSource();
         MyDataTable dataTable = new MyDataTable();
 
         public KhachHang()
         {
-            InitializeComponent();
             dataTable.OpenConnection();
         }
 
@@ -178,22 +177,19 @@ namespace doAn.quanLyKhachHang
                 int soDon = Convert.ToInt32(cmd.ExecuteScalar());
 
                 Console.WriteLine(soDon);
+                if (soDon > 0)
+                {
+                    MessageBox.Show("Khách hàng này đang có đơn hàng! \n Không thể xóa!!");
 
-               
-                    if (soDon > 0)
+
+                }
+                else
+                {
+                    if (MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        if (MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                        }
+                        data.RemoveCurrent();
                     }
-                    else
-                    {
-                        MessageBox.Show("Khách hàng này đang có đơn hàng! \n Không thể xóa!!");
-                    data.RemoveCurrent();
-
-                    }
-
-
+                }
             }
         }
 

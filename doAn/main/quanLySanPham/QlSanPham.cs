@@ -12,17 +12,28 @@ using System.Windows.Forms;
 
 namespace doAn
 {
-    public partial class mainSP : Form
+    public partial class QlSanPham : Form
     {
         public DanhSachSP danhSachSP;
 
         public string TenNhanVien { get; set; }
 
 
-        public mainSP()
+        public QlSanPham(bool fromAdmin)
         {
             InitializeComponent();
-            
+
+            if (fromAdmin)
+            {
+                btnThoat.Text = "Quay lại";
+
+                btnThoat.Click -= btnThoat_Click;
+
+                btnThoat.Click += (s, e) => this.Close();
+
+                btnDoiMatKhau.Visible = false;
+
+            }
         }
 
        private void LayDuLieu()

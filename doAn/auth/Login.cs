@@ -1,4 +1,5 @@
-﻿using doAn.quanLyKhachHang;
+﻿using doAn.main;
+using doAn.quanLyKhachHang;
 using doAn.quanLyNguoIDung;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,24 @@ namespace doAn
 {
     public partial class Login : Form
     {
+        string hoVaTen = "";
         public Login()
         {
+            Flash flash = new Flash();
+            flash.ShowDialog();
             InitializeComponent();
+        }            
+
+        private void txtMatKhau_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnDangNhap_Click(sender, e);
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDangNhap_Click(object sender, EventArgs e)
         {
-
             if (txtMaNhanVien.Text.Trim() == "")
             {
                 MessageBox.Show("Mã nhân viên không được bỏ trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -45,58 +56,24 @@ namespace doAn
 
                 if (dataTable.Rows.Count == 0)
                 {
-                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
                     txtMaNhanVien.Focus();
                     return;
                 }
 
-                if (txtMaNhanVien.Text.ToUpper().Substring(0, 2) == "SP")
-                {
-                    mainSP sp = new mainSP();
-                    sp.TenNhanVien = dataTable.Rows[0]["TenNhanVien"].ToString();
-                    //sp.showTenNhanVien();
-                    if (txtMatKhau.Text == "123456")
-                    {
-                        MessageBox.Show("Đang để mật khẩu mặc định \n Đổi liền đi fuck you","Thông báo!", MessageBoxButtons.OK);
-                    }
-                    this.Hide();
-                    sp.ShowDialog();                
-                }   
+                string MaNV = dataTable.Rows[0]["MaNhanVien"].ToString();
+                string TenNV = dataTable.Rows[0]["TenNhanVien"].ToString();
 
-                else if (txtMaNhanVien.Text.ToUpper().Substring(0, 2) == "NS")
-                {
-                    mainNV nv = new mainNV();
-                    nv.NameNhanVien = dataTable.Rows[0]["TenNhanVien"].ToString();
+                string role = MaNV.Substring(0, 2).ToUpper();
 
-                    if (txtMatKhau.Text == "123456")
-                    {
-                        MessageBox.Show("Đang để mật khẩu mặc định \n Đổi liền đi fuck you", "Thông báo!", MessageBoxButtons.OK);
-                    }
-                    this.Hide();
-                    nv.ShowDialog();          
-                }
+                // gửi sang Main
+                Main main = (Main)this.MdiParent;
+                main.setTrangThai(MaNV, TenNV);
+                main.PhanQuyen(role);
 
-                else if (txtMaNhanVien.Text.ToUpper().Substring(0, 2) == "KH")
-                {
-                    mainKH kh = new mainKH();
-                    kh.TenNhanVien = dataTable.Rows[0]["TenNhanVien"].ToString();
+                this.Close();
 
-                    if (txtMatKhau.Text == "123456")
-                    {
-                        MessageBox.Show("Đang để mật khẩu mặc định \n Đổi liền đi fuck you", "Thông báo!", MessageBoxButtons.OK);
-                    }
-                    this.Hide();
-                    kh.ShowDialog();
-                }
-            }
-
-        }
-
-        private void txtMatKhau_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                button1_Click(sender, e);
+                this.Close();
             }
         }
     }

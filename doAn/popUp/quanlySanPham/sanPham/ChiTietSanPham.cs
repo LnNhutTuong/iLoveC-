@@ -154,7 +154,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
 
                 MessageBox.Show("Đã xóa thành công!");
 
-                ((mainSP)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();
+                ((QlSanPham)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();
 
                 this.Close();
             }
@@ -231,7 +231,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
                 // 1 cho list
                 // YASH
 
-                ((mainSP)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();   
+                ((QlSanPham)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();   
             }
 
             catch (Exception ex)

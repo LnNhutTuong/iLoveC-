@@ -18,6 +18,10 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 {
     public partial class ChiTietDH : Form
     {
+        //pham vi event kieu ten
+        public event Action deletePr;
+
+
         MyDataTable myData = new MyDataTable();
         string maDH;
         //  ----- RẤT LẰN TÀ LÀ QUẰN -----
@@ -28,7 +32,6 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             InitializeComponent();
             maDH = _maDH;
             myData.OpenConnection();
-
         }
 
         void tienVaTinh()
@@ -189,31 +192,38 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+
+            deletePr?.Invoke();
+
             DialogResult kq;
             kq = MessageBox.Show("Bạn có muốn xóa đơn hàng " + lblMaDonHang.Text + " không?", "Xóa",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (kq == DialogResult.Yes)
             {
+
+                string sqlD = @"DELETE FROM ChiTietDonHang WHERE MaDonHang = @MaDonHang";
+
+                SqlCommand cmdD = new SqlCommand(sqlD);
+
+                cmdD.Parameters.Add("@MaDonHang", SqlDbType.NVarChar, 5).Value = lblMaDonHang.Text;
+
                 string sql = @"DELETE FROM DonHang WHERE MaDonHang = @MaDonHang";
 
                 SqlCommand cmd = new SqlCommand(sql);
 
                 cmd.Parameters.Add("@MaDonHang", SqlDbType.NVarChar, 5).Value = lblMaDonHang.Text;
 
-                string sqlD = @"DELETE FROM ChiTietDonHang WHERE MaDonHang = @MaDonHang";
-
-                SqlCommand cmdD = new SqlCommand(sql);
-
-                cmd.Parameters.Add("@MaDonHang", SqlDbType.NVarChar, 5).Value = lblMaDonHang.Text;
-
-
+               
                 myData.Update(cmd);
 
                 MessageBox.Show("Đã xóa thành công!");
 
                 this.Close();
+
+
             }
+            this.DialogResult = DialogResult.OK;
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -254,11 +264,13 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
             MessageBox.Show("Chỉnh sửa thành công!");
             ChiTietDonHang_Load(sender, e);
+            this.DialogResult = DialogResult.OK;
         }
 
         private void btnTaiLai_Click(object sender, EventArgs e)
         {
             ChiTietDonHang_Load(sender, e);
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

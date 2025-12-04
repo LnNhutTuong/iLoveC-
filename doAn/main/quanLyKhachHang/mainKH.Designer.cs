@@ -39,6 +39,7 @@
             this.none = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnDoiMatKhau = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnThoat = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabThongKe = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,11 +74,12 @@
             // 
             this.lblTieuDe.AutoSize = true;
             this.lblTieuDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTieuDe.Location = new System.Drawing.Point(295, 16);
+            this.lblTieuDe.Location = new System.Drawing.Point(339, 16);
             this.lblTieuDe.Name = "lblTieuDe";
             this.lblTieuDe.Size = new System.Drawing.Size(510, 48);
             this.lblTieuDe.TabIndex = 0;
             this.lblTieuDe.Text = "QUẢN LÝ KHÁCH HÀNG";
+            this.lblTieuDe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitContainer2
             // 
@@ -101,12 +103,14 @@
             // 
             this.tabControl.Controls.Add(this.tabKhachHang);
             this.tabControl.Controls.Add(this.tabDonHang);
+            this.tabControl.Controls.Add(this.tabThongKe);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1189, 470);
             this.tabControl.TabIndex = 1;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabKhachHang
             // 
@@ -167,6 +171,7 @@
             this.btnDoiMatKhau.Name = "btnDoiMatKhau";
             this.btnDoiMatKhau.Size = new System.Drawing.Size(103, 31);
             this.btnDoiMatKhau.Text = "Đổi mật khẩu";
+            this.btnDoiMatKhau.Click += new System.EventHandler(this.btnDoiMatKhau_Click);
             // 
             // btnThoat
             // 
@@ -176,6 +181,16 @@
             this.btnThoat.Size = new System.Drawing.Size(50, 31);
             this.btnThoat.Text = "Thoát";
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
+            // tabThongKe
+            // 
+            this.tabThongKe.Location = new System.Drawing.Point(4, 25);
+            this.tabThongKe.Name = "tabThongKe";
+            this.tabThongKe.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThongKe.Size = new System.Drawing.Size(1181, 441);
+            this.tabThongKe.TabIndex = 4;
+            this.tabThongKe.Text = "Thống kê";
+            this.tabThongKe.UseVisualStyleBackColor = true;
             // 
             // mainKH
             // 
@@ -188,7 +203,7 @@
             this.MinimizeBox = false;
             this.Name = "mainKH";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "mainKh";
+            this.Text = "Quản lý Khách Hàng";
             this.Load += new System.EventHandler(this.mainKH_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -219,5 +234,6 @@
         private System.Windows.Forms.ToolStripStatusLabel btnDoiMatKhau;
         private System.Windows.Forms.ToolStripStatusLabel btnThoat;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.TabPage tabThongKe;
     }
 }

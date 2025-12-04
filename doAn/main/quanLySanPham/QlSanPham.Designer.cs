@@ -1,6 +1,6 @@
 ﻿namespace doAn
 {
-    partial class mainSP
+    partial class QlSanPham
     {
         /// <summary>
         /// Required designer variable.

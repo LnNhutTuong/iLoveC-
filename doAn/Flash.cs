@@ -16,5 +16,19 @@ namespace doAn
         {
             InitializeComponent();
         }
+
+        private void Flash_Load(object sender, EventArgs e)
+        {
+
+            timer1.Interval = 3000;
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            timer1.Stop();
+            this.Close();
+        }
     }
 }

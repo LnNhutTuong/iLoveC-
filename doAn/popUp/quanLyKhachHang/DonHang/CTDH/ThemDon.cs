@@ -86,6 +86,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                         item._mode = "unselect";
                         item.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
                         sp.triGia = Convert.ToInt32(row["TriGia"]);
+                        sp.BackColor = Color.Green;
                         spDaChon.Add(item);
                         tienVaTinh();                        
                     };
@@ -96,6 +97,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                         item1._mode = "select";
                         item1.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());
                         sp.triGia = Convert.ToInt32(row["TriGia"]);
+                        sp.BackColor = Color.White;
                         spDaChon.Remove(item1);
                         tienVaTinh();
                     };
@@ -182,28 +184,33 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
 
                         cmdC.Parameters.Add("@MaDonHang", txtMaDonHang.Text.ToUpper());
                         cmdC.Parameters.Add("@MaSanPham", sp.MaSanPham);
+                        cmdC.Parameters.Add("@SoLuong", 1);
+                        cmdC.Parameters.Add("@ThanhTien", 1);
                         dataTable.Update(cmdC);
                     }
 
-                    MessageBox.Show("Thêm đơn hàng thành công!YASH");
+                    MessageBox.Show("Thêm đơn hàng thành công!YASH", "Thành công!", MessageBoxButtons.OK);
                     this.Close();
                 }
                 catch
                 {
-                    MessageBox.Show("Đơn hàng đã tồn tại");
+                    MessageBox.Show("Đơn hàng đã tồn tại", "Thành công!", MessageBoxButtons.OK);
                 }
             }
-               
+            this.DialogResult = DialogResult.OK;
         }
 
         private void btnHuy_Click_1(object sender, EventArgs e)
         {
             this.Close();
+            this.DialogResult = DialogResult.OK;
         }
 
         private void cboMaKhachHang_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadcBo();
         }
+
+      
     }
 }

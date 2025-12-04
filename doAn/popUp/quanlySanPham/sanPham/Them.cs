@@ -144,7 +144,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
             MessageBox.Show("Thêm thành công!");
             this.Close();
             //Kieu nao cung phai load form danh sach :D
-            ((mainSP)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();
+            ((QlSanPham)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();
 
         }
 

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace doAn.quanLyNguoIDung
 {
-    public partial class mainNV : Form
+    public partial class QlNhanVien : Form
     {
         public string NameNhanVien {  get; set; }
 
@@ -22,10 +22,21 @@ namespace doAn.quanLyNguoIDung
 
         string maNhanVien = "";
 
-        public mainNV()
+        public QlNhanVien(bool fromAdmin)
         {
             InitializeComponent();
             dataTable.OpenConnection();
+
+            if (fromAdmin)
+            {
+                btnThoat.Text = "Quay lại";
+
+                btnThoat.Click -= btnThoat_Click;
+
+                btnThoat.Click += (s, e) => this.Close();
+
+                btnDoiMatKhau.Visible = false;
+            }
         }
 
         public void LayDuLieu()
@@ -57,7 +68,7 @@ namespace doAn.quanLyNguoIDung
             //Value
             cboChucVu.ValueMember = "MaChucVu";
 
-            string nhanVienSql = "SELECT * FROM NhanVien";
+            string nhanVienSql = "SELECT * FROM NhanVien WHERE MaNhanVien <> 'ADMIN'";
             SqlCommand nhanVienCmd = new SqlCommand(nhanVienSql);
             dataTable.Fill(nhanVienCmd);         
 
@@ -102,8 +113,8 @@ namespace doAn.quanLyNguoIDung
             btnThem.Enabled = !value;
             btnSua.Enabled = !value;
             btnXoa.Enabled = !value;
-            btnLuu.Enabled = !value;
 
+            btnLuu.Enabled = value;
             btnTaiLai.Enabled = value;
 
         }
@@ -287,7 +298,7 @@ namespace doAn.quanLyNguoIDung
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         //An
@@ -302,11 +313,6 @@ namespace doAn.quanLyNguoIDung
                     e.Value = "••••••••••";
                 }
             }    
-        }
-
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        }     
     }
 }

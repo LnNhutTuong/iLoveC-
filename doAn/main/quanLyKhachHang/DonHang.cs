@@ -119,8 +119,6 @@ namespace doAn.main.quanLyKhachHang
                 if (dataGridView.Columns[e.ColumnIndex].Name == "ChiTietDonHang")
                 {
                     string maDH = dataGridView.Rows[e.RowIndex].Cells["MaDonHang"].Value.ToString();
-
-
                     ChiTietDH ctdh = new ChiTietDH(maDH);
                     if (ctdh.ShowDialog() == DialogResult.OK)
                     {

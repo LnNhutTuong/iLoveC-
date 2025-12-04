@@ -18,6 +18,7 @@ namespace doAn.main
     {
 
         public event EventHandler DangNhap;
+        public event EventHandler ThongTinNhanVien;
 
         private string mode;
         public string _mode
@@ -34,6 +35,9 @@ namespace doAn.main
                     case "login":
                         mnuThongTin.Text = "Đăng nhập";
                         break;
+                    case "logined":
+                        break;
+
                 }
             }
         }
@@ -48,69 +52,136 @@ namespace doAn.main
         KhachHang khachHang = null;
 
         public Main()
-        {        
+        {
+            Flash flash = new Flash();
+            flash.ShowDialog();
             InitializeComponent();
+
+            this.mode = "login";
+            mnuThongTin.Text = "Đăng nhập";
+            this.DangNhap += (s, e) =>
+            {
+                if (login == null || login.IsDisposed)
+                {
+                    login = new Login();
+                    login.MdiParent = this;
+                    login.Show();
+                }
+                else
+                {
+                    login.StartPosition = FormStartPosition.CenterParent;
+                    login.Activate();
+                }
+            };
         }
 
         void ChuaDangNhap()
         {
-            //mnuThongTin.Text = "Đăng nhập";
+            mnuThongTin.Enabled = true;
+
+            mnuQuanLy.Enabled = false;
+            mnuThongKe.Enabled = false;
 
             mnuDoiMatKhau.Visible = false;
             mnuDangXuat.Visible = false;
-
-            this.mode = "login";
-            this.DangNhap += (s, e) =>
-            {
-                mnuThongTin.Text = "Đăng nhập";
-                Login lg = new Login();
-                lg.ShowDialog();
-                
-            };
-        
-            mnuQuanLy.Enabled = false;
-            mnuThongKe.Enabled = false;
         }
 
-       
+
+        void admin()
+        {
+            mnuQuanLy.Enabled = true;
+            mnuThongKe.Enabled = true;
+
+            mnuNhanVien.Visible = true;
+            mnuSanPham.Visible = true;
+            mnuKhachHang.Visible = true;
+            mnuDonHang.Visible = true;
+            mnuKhoSanPham.Visible = true;
+
+            mnuBcKh.Visible = true;
+            mnuBcSP.Visible = true;
+            mnuBcK.Visible = true;
+
+            mnuDoiMatKhau.Visible = true;
+            mnuDangXuat.Visible = true;
+        }
 
         void qlSP()
         {
+            mnuQuanLy.Enabled = true;
+            mnuThongKe.Enabled = true;
 
-            mnuNhanVien.Visible = false;           
-
+            mnuNhanVien.Visible = false;
             mnuKhachHang.Visible = false;
             mnuDonHang.Visible = false;
 
             mnuBcKh.Visible = false;
+
+            mnuSanPham.Visible = true;
+            mnuKhoSanPham.Visible = true;
+            mnuBcSP.Visible = true;
+            mnuBcK.Visible = true;
+
+            mnuDoiMatKhau.Visible = true;
+            mnuDangXuat.Visible = true;
         }
 
         void qlNV()
-        {            
+        {
+            mnuQuanLy.Enabled = true;
+
+            mnuNhanVien.Visible = true;
+
             mnuSanPham.Visible = false;
+            mnuKhachHang.Visible = false;
+            mnuDonHang.Visible = false;
+            mnuKhoSanPham.Visible = false;
 
             mnuThongKe.Visible = false;
-            
+            mnuBcKh.Visible = false;
+            mnuBcSP.Visible = false;
+            mnuBcK.Visible = false;
+
+            mnuDoiMatKhau.Visible = true;
+            mnuDangXuat.Visible = true;
         }
 
         void qlKH()
-        {          
+        {
+            mnuQuanLy.Enabled = true;
+            mnuThongKe.Enabled = true;
+
+            mnuKhachHang.Visible = true;
+            mnuDonHang.Visible = true;
+            mnuBcKh.Visible = true;
+
             mnuNhanVien.Visible = false;
             mnuSanPham.Visible = false;
             mnuKhoSanPham.Visible = false;
-
             mnuBcSP.Visible = false;
             mnuBcK.Visible = false;
+
+            mnuDoiMatKhau.Visible = true;
+            mnuDangXuat.Visible = true;
         }
 
         public void setTrangThai(string MaNV,string TenNV)
         {
-            lblTrangThai.Text = "Nhân viên: " + TenNV;
+            this.mode = "logined";
+
+            this.ThongTinNhanVien += (s, e) =>
+            {
+                mnuThongTin.Text = MaNV + " - " + TenNV;
+                lblTrangThai.Text = "Nhân viên: " + TenNV;
+            };
+
+            this.ThongTinNhanVien?.Invoke(this, EventArgs.Empty);
         }
 
         public void PhanQuyen(string quyen)
         {
-            if (quyen.StartsWith("SP")) qlSP();
+            if (quyen.StartsWith("AD")) admin();
+            else if (quyen.StartsWith("SP")) qlSP();
             else if (quyen.StartsWith("NV")) qlNV();
             else if (quyen.StartsWith("KH")) qlKH();
         }
@@ -127,7 +198,13 @@ namespace doAn.main
             if(mode == "login")
             {
                 DangNhap?.Invoke(this, EventArgs.Empty);
-            }           
-        }      
+            }
+            else if(mode == "logined")
+            {
+                ThongTinNhanVien?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+       
     }
 }

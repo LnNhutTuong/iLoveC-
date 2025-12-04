@@ -16,11 +16,8 @@ namespace doAn
 {
     public partial class Login : Form
     {
-        string hoVaTen = "";
         public Login()
-        {
-            Flash flash = new Flash();
-            flash.ShowDialog();
+        {         
             InitializeComponent();
         }            
 
@@ -50,7 +47,7 @@ namespace doAn
                 dataTable.OpenConnection();
 
                 SqlCommand cmd = new SqlCommand("SELECT MaNhanVien, MatKhau, TenNhanVien FROM NhanVien WHERE MaNhanVien = @MaNhanVien AND MatKhau = @MatKhau");
-                cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text;
+                cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
                 cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = txtMatKhau.Text;
                 dataTable.Fill(cmd);
 
@@ -61,19 +58,21 @@ namespace doAn
                     return;
                 }
 
-                string MaNV = dataTable.Rows[0]["MaNhanVien"].ToString();
+                //get data
+                string MaNV = dataTable.Rows[0]["MaNhanVien"].ToString().ToUpper();
                 string TenNV = dataTable.Rows[0]["TenNhanVien"].ToString();
 
+                //get 2 char
                 string role = MaNV.Substring(0, 2).ToUpper();
 
-                // gửi sang Main
-                Main main = (Main)this.MdiParent;
+
+                //to main
+                Main main = (Main)Application.OpenForms["Main"];
                 main.setTrangThai(MaNV, TenNV);
                 main.PhanQuyen(role);
 
                 this.Close();
 
-                this.Close();
             }
         }
     }

@@ -51,6 +51,7 @@
             this.lblTrangThai = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +79,7 @@
             this.mnuThoat});
             this.hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
             this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
-            this.hệThốngToolStripMenuItem.Text = "&Hệ thống";
+            this.hệThốngToolStripMenuItem.Text = "Hệ thống";
             // 
             // mnuThongTin
             // 
@@ -114,7 +115,7 @@
             this.mnuDonHang,
             this.mnuKhoSanPham});
             this.mnuQuanLy.Name = "mnuQuanLy";
-            this.mnuQuanLy.Size = new System.Drawing.Size(73, 24);
+            this.mnuQuanLy.Size = new System.Drawing.Size(73, 26);
             this.mnuQuanLy.Text = "&Quản lý";
             // 
             // mnuNhanVien
@@ -154,7 +155,7 @@
             this.mnuBcKh,
             this.mnuBcK});
             this.mnuThongKe.Name = "mnuThongKe";
-            this.mnuThongKe.Size = new System.Drawing.Size(152, 24);
+            this.mnuThongKe.Size = new System.Drawing.Size(152, 26);
             this.mnuThongKe.Text = "&Báo cáo - Thống kê";
             // 
             // mnuBcSP
@@ -181,7 +182,7 @@
             this.mnuHuongDanSuDung,
             this.mnuThongTinPhanMem});
             this.trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
-            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
+            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(78, 26);
             this.trợGiúpToolStripMenuItem.Text = "Trợ &giúp";
             // 
             // mnuHuongDanSuDung
@@ -230,11 +231,21 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(62, 20);
             this.toolStripStatusLabel3.Text = "PROVIS";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1120, 25);
+            this.toolStrip1.TabIndex = 3;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 535);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -280,5 +291,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBcKh;
         private System.Windows.Forms.ToolStripMenuItem mnuBcSP;
         private System.Windows.Forms.ToolStripMenuItem mnuBcK;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }

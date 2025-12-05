@@ -26,16 +26,10 @@ namespace doAn.quanLySanPham
 
         public void setData (string TenSanPham, string AnhDaiDien)
         {
-            //Khong the di thang tu string sang, phai EP KIEU @@
-            //xai package de no hieu la cai string luu trong database => path
-            //co Package ho tro chuyen do luon
-            //CAI O TREN DAY LA KO CO TAC DUNG GI HET A'
-
             string path = AnhDaiDien;
 
-            //Console.WriteLine("nigga: "+path);
 
-            string defaultImg = Path.Combine(Application.StartupPath, "noImage/noImg.jfif");
+            string defaultImg = Path.Combine(Application.StartupPath, "images/noImg.jfif" );
 
             if (!File.Exists(path) || string.IsNullOrWhiteSpace(path))
             {
@@ -45,6 +39,7 @@ namespace doAn.quanLySanPham
             {
                 pictureBox.Image = Image.FromFile(path);
             }
+
             lblTenSanPham.Text = TenSanPham;
         }
 

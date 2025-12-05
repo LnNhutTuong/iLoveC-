@@ -334,7 +334,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="main\ThongKe\" />
-    <Folder Include="noImage\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Thêm tiêu đề.png" />
@@ -342,6 +341,9 @@
     <None Include="Resources\bag-16.png" />
     <None Include="Resources\bag-161.png" />
     <None Include="Resources\blocks-2-32.png" />
+    <Content Include="images\noImg.jfif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\login-100.png" />
     <None Include="Resources\user-32.png" />
     <None Include="Resources\login-1001.png" />

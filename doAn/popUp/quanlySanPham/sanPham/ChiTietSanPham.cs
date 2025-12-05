@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,6 +16,9 @@ namespace doAn.popUp.quanlySanPham.sanPham
 {
     public partial class ChiTietSanPham : Form
     {
+        //tạo cái đường dẫn tương đối để lưu vào db
+        private string tuongDoiPathAnh = "";
+
 
         MyDataTable myData = new MyDataTable();
         string maSP;
@@ -64,25 +68,36 @@ namespace doAn.popUp.quanlySanPham.sanPham
             cboThuongHieu.ValueMember = "MaThuongHieu";
 
 
-            string path = myData.Rows[0]["AnhDaiDien"].ToString();
 
             //Console.WriteLine(name);
 
             // QONG TRUANG
             // muon object => string  thi can .Value
             // bỏ 
-            string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
 
             txtMaSanPham.Text = myData.Rows[0]["MaSanPham"].ToString();
             txtTenSanPham.Text = myData.Rows[0]["TenSanPham"].ToString();
             //lay gian tiep
             cboDanhMuc.SelectedValue = maDanhMuc;
             cboThuongHieu.SelectedValue = maThuongHieu;
-            btnThayAnh.Text = name;
             txtMoTa.Text = myData.Rows[0]["MoTa"].ToString();
             txtTriGia.Text = myData.Rows[0]["TriGia"].ToString();
 
-            pictureBox.Image = Image.FromFile(path);
+            tuongDoiPathAnh = myData.Rows[0]["AnhDaiDien"].ToString();
+            string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
+            btnThayAnh.Text = name;
+
+            string imgPath = Path.Combine(Application.StartupPath, tuongDoiPathAnh);
+            string defaultImg = Path.Combine(Application.StartupPath, "images/noImg.jfif");
+
+            if (!File.Exists(path) || string.IsNullOrWhiteSpace(path))
+            {
+                pictureBox.Image = Image.FromFile(defaultImg);
+            }
+            else
+            {
+                pictureBox.Image = Image.FromFile(imgPath);
+            }
 
             OnOff(false);
         }
@@ -113,6 +128,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
         }
 
         string path = "";
+
         private void btnThayAnh_Click(object sender, EventArgs e)
         {
             var dialog = new OpenFileDialog();
@@ -121,15 +137,27 @@ namespace doAn.popUp.quanlySanPham.sanPham
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                 path = dialog.FileName;
+                path = dialog.FileName;
 
-                string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
+                string fileName = Path.GetFileName(path);
 
-                btnThayAnh.Text = name;
+                string uploadFolder = Path.Combine(Application.StartupPath, "Upload");
+                Directory.CreateDirectory(uploadFolder);
 
-                pictureBox.Image = Image.FromFile(dialog.FileName);
+                string destPath = Path.Combine(uploadFolder, fileName);
+
+                File.Copy(path, destPath, true);
+
+
+                tuongDoiPathAnh = Path.Combine("Upload", fileName);
+
+                // đổi text nút thành tên file
+                btnThayAnh.Text = fileName;
+
+                pictureBox.Image = Image.FromFile(destPath);
             }
         }
+
 
         private void btnSua_Click(object sender, EventArgs e)
         {

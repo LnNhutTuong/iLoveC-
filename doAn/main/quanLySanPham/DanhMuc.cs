@@ -121,6 +121,7 @@ namespace doAn.quanLySanPham
                     //"Kiem tra" su thay doi = them, xoa, sua.
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM DanhMuc", conn);
 
+                    
                     //CLASS DINH CAO PHONG DO HOYASH
                     //Sau khi adapter kiem tra xong thi Class nay se nhan ket qua
                     //Va bat dau thuc hien cac lenh INSERT, DELETE, UPDATE, tuong ung theo

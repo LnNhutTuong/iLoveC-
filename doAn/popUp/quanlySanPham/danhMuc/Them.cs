@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace doAn.popUp
 {
     public partial class Them : Form
     {
+        List<string> maDaCo = new List<string>();
         private readonly BindingSource newdata;
 
         public Them(BindingSource _newdata)
@@ -23,25 +25,44 @@ namespace doAn.popUp
         private void btnDongY_Click(object sender, EventArgs e)
         {
 
+            MyDataTable danhMuc = new MyDataTable();
+            danhMuc.OpenConnection();
+
+            SqlCommand danhMucCmd = new SqlCommand(@"SELECT MaDanhMuc FROM DanhMuc");
+            danhMuc.Fill(danhMucCmd);
+            string maDM = danhMuc.Rows[0]["MaDanhMuc"].ToString();
+
+            foreach (DataRow row in danhMuc.Rows) {
+                maDaCo.Add(maDM.ToUpper().Trim());
+            }
+
             DataTable dt = (DataTable)newdata.DataSource;
 
             if (txtMaDanhMuc.Text.Trim() == null)
             {
                 MessageBox.Show("Không được bỏ trống mã!");
+                return;
             }
-            else if (txtMaDanhMuc.TextLength > 5 || txtMaDanhMuc.MaxLength < 5)
+            else if (txtMaDanhMuc.TextLength != 5)
             {
                 MessageBox.Show("Mã phải đủ 5 \n" + "Đã nhập: " + txtMaDanhMuc.TextLength);
-
+                return;
+            }
+            else if (maDaCo.Contains(txtMaDanhMuc.Text.ToUpper().Trim()))
+            {
+                MessageBox.Show("Mã này đã tồn tại");
+                return;
             }
             else if (txtTenDanhMuc.Text.Trim() == null)
             {
                 MessageBox.Show("Không được bỏ trống tên!");
             }
 
-            dt.Rows.Add(txtMaDanhMuc.Text, txtTenDanhMuc.Text);
+            dt.Rows.Add(txtMaDanhMuc.Text.ToUpper().Trim(), txtTenDanhMuc.Text);
 
             this.DialogResult = DialogResult.OK;
+
+            MessageBox.Show("Thêm thành công!!");
             this.Close();
         }
 

@@ -71,6 +71,10 @@ namespace doAn.quanLyKhachHang
 
                 int soDon = cell is DBNull ? 0 : Convert.ToInt32(cell);
 
+                if(soDon == 0)
+                {
+                    e.Value = "Chưa có";
+                }
                 if (soDon <= 5)
                 {
                     e.Value = "Đồng";

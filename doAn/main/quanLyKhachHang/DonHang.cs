@@ -59,6 +59,7 @@ namespace doAn.main.quanLyKhachHang
         {
             dataGridView.AutoGenerateColumns = false;
             LayDuLieu();
+            Console.WriteLine("skibidi");
         }
 
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

@@ -78,6 +78,12 @@
     <Compile Include="main\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="main\quanLyKhachHang\BaoCaoKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="main\quanLyKhachHang\BaoCaoKhachHang.Designer.cs">
+      <DependentUpon>BaoCaoKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="main\quanLyKhachHang\DonHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     <EmbeddedResource Include="main\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="main\quanLyKhachHang\BaoCaoKhachHang.resx">
+      <DependentUpon>BaoCaoKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="main\quanLyKhachHang\DonHang.resx">
       <DependentUpon>DonHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -325,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="main\ThongKe\" />
+    <Folder Include="noImage\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Thêm tiêu đề.png" />

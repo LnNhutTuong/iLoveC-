@@ -57,7 +57,7 @@ namespace doAn.main
 
         DonHang donHang = null;
         KhachHang khachHang = null;
-
+        BaoCaoKhachHang bcKhachHang = null;
         public Main()
         {
             Flash flash = new Flash();
@@ -307,6 +307,19 @@ namespace doAn.main
             }
         }
 
-       
+        private void mnuBcKh_Click(object sender, EventArgs e)
+        {
+            if (bcKhachHang == null || bcKhachHang.IsDisposed)
+            {
+                bcKhachHang = new BaoCaoKhachHang();
+                bcKhachHang.MdiParent = this;
+                Dock = DockStyle.Fill;
+                bcKhachHang.Show();
+            }
+            else
+            {
+                bcKhachHang.Activate();
+            }
+        }
     }
 }

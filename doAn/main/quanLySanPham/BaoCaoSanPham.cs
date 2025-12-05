@@ -29,44 +29,29 @@ namespace doAn.main.quanLySanPham
             //Lay ra duoc so luong sp
             SqlCommand tongSanPhamCmd = new SqlCommand(@"SELECT COUNT(*) FROM SanPham");
             tongSanPham.Fill(tongSanPhamCmd);
-            
+            int tong = Convert.ToInt32(tongSanPham.Rows[0][0]);
 
             MyDataTable spCoDon = new MyDataTable();
             spCoDon.OpenConnection();
             //Lay ra duoc so luong sp
-            SqlCommand spCoDonCmd = new SqlCommand(@"SELECT COUNT(sp.MaSanPham) 
-                                                     FROM SanPham sp
-                                                     JOIN ChiTietDonHang ctdh ON ctdh.MaSanPham = sp.MaSanPham");
+            SqlCommand spCoDonCmd = new SqlCommand(@"SELECT COUNT(DISTINCT sp.MaSanPham) 
+                                                         FROM SanPham sp
+                                                         JOIN ChiTietDonHang ctdh ON ctdh.MaSanPham = sp.MaSanPham");
             spCoDon.Fill(spCoDonCmd);
+            int daban = Convert.ToInt32(spCoDon.Rows[0][0]);
 
-            List<string> spCoDonQua = new List<string>();
+            int tonkho = tong - daban;
+            lblTong.Text ="Tổng số sản phẩm: "+ tong.ToString();
 
-            foreach (DataRow codon in spCoDon.Rows)
-            {
-                spCoDonQua.Add(codon.ToString());
-            }
+            chart1.Series.Clear();
+            Series s = new Series("Tình trạng sản phẩm");
+            s.ChartType = SeriesChartType.Doughnut;
+            s.IsValueShownAsLabel = true;
+            s.LabelFormat = "#,##0 Sản phẩm";
+            s.Points.AddXY("Đã bán", daban);
+            s.Points.AddXY("Tồn kho", tonkho);
 
-            Console.WriteLine(spCoDonQua);
-
-            //chart1.Series.Clear();
-
-            //Series s = new Series("Số lượng sản phẩm được bán theo thương hiệu");
-            //s.ChartType = SeriesChartType.Pie;
-            //s.IsValueShownAsLabel = true;                      
-
-            //foreach (DataRow row in thuongHieu.Rows)
-            //{
-            //    int soLuong = Convert.ToInt32(row["SoLuongSanPham"]);
-
-            //    if (soLuong > 1)
-            //    {
-            //        string tenTH = row["TenThuongHieu"].ToString();
-            //        int pointIndex = s.Points.AddXY(tenTH, soLuong);
-            //        s.Points[pointIndex].LegendText = tenTH;
-            //    }
-            //}
-
-            //chart1.Series.Add(s);
+            chart1.Series.Add(s);
 
         }
     }

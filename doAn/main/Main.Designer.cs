@@ -119,6 +119,7 @@
             this.mnuBcKh.Name = "mnuBcKh";
             this.mnuBcKh.Size = new System.Drawing.Size(225, 26);
             this.mnuBcKh.Text = "Báo cáo khách &hàng";
+            this.mnuBcKh.Click += new System.EventHandler(this.mnuBcKh_Click);
             // 
             // trợGiúpToolStripMenuItem
             // 

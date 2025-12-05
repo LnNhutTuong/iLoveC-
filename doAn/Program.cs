@@ -1,5 +1,6 @@
 ﻿using doAn;
 using doAn.main;
+using doAn.main.quanLyKhachHang;
 using doAn.main.quanLySanPham;
 using doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang;
 using doAn.quanLyKhachHang;
@@ -22,7 +23,7 @@ namespace doAn
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new QlSanPham());
         }
     }
 }

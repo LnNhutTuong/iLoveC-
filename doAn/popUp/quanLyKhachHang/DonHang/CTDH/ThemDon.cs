@@ -21,6 +21,9 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
         //  ----- RẤT LẰN TÀ LÀ QUẰN -----
         List<SanPham> spDaChon = new List<SanPham>();
         //int tongSoLuong = spDaChon.Count;
+
+        List<string> donHangTonTai = new List<string>();
+
         public ThemDon(BindingSource _newdata)
         {
             InitializeComponent();
@@ -144,17 +147,27 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                 cboMaKhachHang.DisplayMember = "MaKhachHang";
                 cboMaKhachHang.ValueMember = "MaKhachHang";
 
-                //HoaDon
-                MyDataTable hoaDon = new MyDataTable();
-                hoaDon.OpenConnection();
-                string hoaDonSql = "SELECT * FROM HoaDon";
-                SqlCommand hoaDonCmd = new SqlCommand(khachHangSql);
-                hoaDon.Fill(hoaDonCmd);
+                //validate Don Hang
+                MyDataTable donHang = new MyDataTable();
+                donHang.OpenConnection();
+                SqlCommand donHangCmd = new SqlCommand("SELECT MaDonHang FROM DonHang");
+                donHang.Fill(donHangCmd);
+                Console.WriteLine("COUNT = " + donHang.Rows.Count);
+
+
+                foreach (DataRow row in donHang.Rows)
+                {
+                    donHangTonTai.Add(row["MaDonHang"].ToString().ToUpper().Trim());
+                }
+
+                Console.WriteLine(donHangTonTai);
             }
         }
 
         private void btnDongY_Click(object sender, EventArgs e)
         {
+            
+
             DataTable dt = (DataTable)newdata.DataSource;
 
             if (string.IsNullOrWhiteSpace(txtMaDonHang.Text))
@@ -165,6 +178,11 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
             else if (txtMaDonHang.Text.Length != 5)
             {
                 MessageBox.Show("Mã phải đủ 5 ");
+                return;
+            }
+            else if (donHangTonTai.Contains(txtMaDonHang.Text.Trim().ToUpper()))
+            {
+                MessageBox.Show("Mã này đã tồn tại");
                 return;
             }
             else if (spDaChon.Count == 0)
@@ -195,7 +213,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                     }
                     cmd.Parameters.Add("@GhiChu", txtGhiChu.Text);
 
-                    cmd.Parameters.Add("@TongSoLuong",tongSoLuong);
+                    cmd.Parameters.Add("@TongSoLuong", tongSoLuong);
 
                     dataTable.Update(cmd);
 

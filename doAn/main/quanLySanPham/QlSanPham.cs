@@ -19,21 +19,11 @@ namespace doAn
         public string TenNhanVien { get; set; }
 
 
-        public QlSanPham(bool fromAdmin)
+        public QlSanPham()
         {
             InitializeComponent();
 
-            if (fromAdmin)
-            {
-                btnThoat.Text = "Quay lại";
-
-                btnThoat.Click -= btnThoat_Click;
-
-                btnThoat.Click += (s, e) => this.Close();
-
-                btnDoiMatKhau.Visible = false;
-
-            }
+           
         }
 
        private void LayDuLieu()
@@ -52,7 +42,6 @@ namespace doAn
 
         private void mainSP_Load(object sender, EventArgs e)
         {
-            txtNhanVien.Text = "Nhân viên: " + TenNhanVien;
             LayDuLieu();
         }
 

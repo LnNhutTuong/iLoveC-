@@ -143,8 +143,9 @@ namespace doAn.popUp.quanlySanPham.sanPham
             dataTable.Update(cmd);
             MessageBox.Show("Thêm thành công!");
             this.Close();
+
             //Kieu nao cung phai load form danh sach :D
-            ((QlSanPham)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();
+            ((QlSanPham)Application.OpenForms["QlSanPham"]).danhSachSP.LayDuLieu();
 
         }
 

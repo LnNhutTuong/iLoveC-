@@ -33,9 +33,9 @@
             // 
             // flowLayoutPanel
             // 
+            this.flowLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flowLayoutPanel.AutoScroll = true;
             this.flowLayoutPanel.BackColor = System.Drawing.Color.Gray;
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(1151, 441);

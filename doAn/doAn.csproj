@@ -84,17 +84,17 @@
     <Compile Include="main\quanLyKhachHang\DonHang.Designer.cs">
       <DependentUpon>DonHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="main\quanLyKhachHang\ThongKe.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="main\quanLyKhachHang\ThongKe.Designer.cs">
-      <DependentUpon>ThongKe.cs</DependentUpon>
-    </Compile>
     <Compile Include="main\quanlyNhanVien\QlNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="main\quanlyNhanVien\QlNhanVien.Designer.cs">
       <DependentUpon>QlNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="main\quanLySanPham\BaoCaoSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="main\quanLySanPham\BaoCaoSanPham.Designer.cs">
+      <DependentUpon>BaoCaoSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="popUp\quanLyKhachHang\DonHang\CTDH\ChiTietDH.cs">
       <SubType>Form</SubType>
@@ -107,12 +107,6 @@
     </Compile>
     <Compile Include="popUp\quanLyKhachHang\DonHang\CTDH\ThemDon.Designer.cs">
       <DependentUpon>ThemDon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="popUp\quanLyKhachHang\DonHang\ThongKe.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="popUp\quanLyKhachHang\DonHang\ThongKe.Designer.cs">
-      <DependentUpon>ThongKe.cs</DependentUpon>
     </Compile>
     <Compile Include="popUp\quanLyKhachHang\khachHang\Sua.cs">
       <SubType>Form</SubType>
@@ -167,12 +161,6 @@
     </Compile>
     <Compile Include="main\quanLyKhachHang\KhachHang.Designer.cs">
       <DependentUpon>KhachHang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="main\quanLyKhachHang\mainKH.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="main\quanLyKhachHang\mainKH.Designer.cs">
-      <DependentUpon>mainKH.cs</DependentUpon>
     </Compile>
     <Compile Include="main\quanLySanPham\sanPham\buttonThem.cs">
       <SubType>UserControl</SubType>
@@ -236,20 +224,17 @@
     <EmbeddedResource Include="main\quanLyKhachHang\DonHang.resx">
       <DependentUpon>DonHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="main\quanLyKhachHang\ThongKe.resx">
-      <DependentUpon>ThongKe.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="main\quanlyNhanVien\QlNhanVien.resx">
       <DependentUpon>QlNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="main\quanLySanPham\BaoCaoSanPham.resx">
+      <DependentUpon>BaoCaoSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\CTDH\ChiTietDH.resx">
       <DependentUpon>ChiTietDH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\CTDH\ThemDon.resx">
       <DependentUpon>ThemDon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="popUp\quanLyKhachHang\DonHang\ThongKe.resx">
-      <DependentUpon>ThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="popUp\quanLyKhachHang\khachHang\Sua.resx">
       <DependentUpon>Sua.cs</DependentUpon>
@@ -277,9 +262,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="main\quanLyKhachHang\KhachHang.resx">
       <DependentUpon>KhachHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="main\quanLyKhachHang\mainKH.resx">
-      <DependentUpon>mainKH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main\quanLySanPham\DanhMuc.resx">
       <DependentUpon>DanhMuc.cs</DependentUpon>
@@ -341,9 +323,17 @@
   <ItemGroup>
     <None Include="Resources\exit.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Folder Include="main\ThongKe\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thêm tiêu đề.png" />
+    <None Include="Resources\manager-32.png" />
+    <None Include="Resources\bag-16.png" />
+    <None Include="Resources\bag-161.png" />
+    <None Include="Resources\blocks-2-32.png" />
     <Content Include="Resources\login-100.png" />
+    <None Include="Resources\user-32.png" />
     <None Include="Resources\login-1001.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

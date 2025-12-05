@@ -35,8 +35,16 @@ namespace doAn.quanLySanPham
 
             //Console.WriteLine("nigga: "+path);
 
-            pictureBox.Image = Image.FromFile(path);
+            string defaultImg = Path.Combine(Application.StartupPath, "noImage/noImg.jfif");
 
+            if (!File.Exists(path) || string.IsNullOrWhiteSpace(path))
+            {
+                pictureBox.Image = Image.FromFile(defaultImg);
+            }
+            else
+            {
+                pictureBox.Image = Image.FromFile(path);
+            }
             lblTenSanPham.Text = TenSanPham;
         }
 

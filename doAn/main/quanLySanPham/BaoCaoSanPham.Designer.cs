@@ -1,6 +1,6 @@
-﻿namespace doAn.popUp.quanLyKhachHang.DonHang
+﻿namespace doAn.main.quanLySanPham
 {
-    partial class ThongKe
+    partial class BaoCaoSanPham
     {
         /// <summary>
         /// Required designer variable.
@@ -38,28 +38,36 @@
             // chart1
             // 
             chartArea1.Name = "ChartArea1";
+            chartArea1.Position.Auto = false;
+            chartArea1.Position.Height = 80F;
+            chartArea1.Position.Width = 80F;
+            chartArea1.Position.X = 10F;
+            chartArea1.Position.Y = 10F;
             this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "TongSP";
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "TongSP";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(369, 390);
-            this.chart1.TabIndex = 0;
+            this.chart1.Size = new System.Drawing.Size(458, 420);
+            this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
             // 
-            // ThongKe
+            // BaoCaoSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 390);
+            this.ClientSize = new System.Drawing.Size(458, 420);
             this.Controls.Add(this.chart1);
-            this.Name = "ThongKe";
-            this.Text = "ThongKe";
+            this.Name = "BaoCaoSanPham";
+            this.Text = "Báo cáo sản phẩm";
+            this.Load += new System.EventHandler(this.BaoCaoSanPham_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 

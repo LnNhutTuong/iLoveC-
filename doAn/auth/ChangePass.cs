@@ -59,6 +59,9 @@ namespace doAn
                 cmd.Parameters.Add("@MaNhanVien", SqlDbType.VarChar, 50).Value = MaNhanVien;
 
                 dmk.Update(cmd);
+
+                MessageBox.Show("Đổi mật khẩu thành công", "", MessageBoxButtons.OK);
+
                 this.Close();
             }
         }

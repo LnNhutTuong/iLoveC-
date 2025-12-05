@@ -85,6 +85,7 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1181, 346);
             this.dataGridView.TabIndex = 1;
+            this.dataGridView.UseWaitCursor = true;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick_1);
             this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             // 
@@ -141,7 +142,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -149,14 +150,17 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView);
+            this.splitContainer1.Panel1.UseWaitCursor = true;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btnTaiLai);
             this.splitContainer1.Panel2.Controls.Add(this.btnThem);
+            this.splitContainer1.Panel2.UseWaitCursor = true;
             this.splitContainer1.Size = new System.Drawing.Size(1181, 441);
             this.splitContainer1.SplitterDistance = 346;
             this.splitContainer1.TabIndex = 2;
+            this.splitContainer1.UseWaitCursor = true;
             // 
             // btnTaiLai
             // 
@@ -171,6 +175,7 @@
             this.btnTaiLai.Text = "Tải lại";
             this.btnTaiLai.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTaiLai.UseVisualStyleBackColor = true;
+            this.btnTaiLai.UseWaitCursor = true;
             this.btnTaiLai.Click += new System.EventHandler(this.btnTaiLai_Click_1);
             // 
             // btnThem
@@ -186,15 +191,17 @@
             this.btnThem.Text = "Thêm";
             this.btnThem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.UseWaitCursor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // DonHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1163, 394);
             this.Controls.Add(this.splitContainer1);
             this.Name = "DonHang";
-            this.Size = new System.Drawing.Size(1181, 441);
+            this.Text = "Danh sách đơn hàng";
             this.Load += new System.EventHandler(this.DonHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);

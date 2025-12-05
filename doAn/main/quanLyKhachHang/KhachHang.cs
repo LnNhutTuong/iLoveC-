@@ -19,6 +19,7 @@ namespace doAn.quanLyKhachHang
 
         public KhachHang()
         {
+            InitializeComponent();
             dataTable.OpenConnection();
         }
 

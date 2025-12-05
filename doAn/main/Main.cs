@@ -1,4 +1,5 @@
 ﻿using doAn.main.quanLyKhachHang;
+using doAn.main.quanLySanPham;
 using doAn.quanLyKhachHang;
 using doAn.quanLyNguoIDung;
 using System;
@@ -14,11 +15,15 @@ using System.Windows.Forms;
 
 namespace doAn.main
 {
+
     public partial class Main : Form
     {
+        public string LGmaNV { get;  set; }
 
         public event EventHandler DangNhap;
         public event EventHandler ThongTinNhanVien;
+        //public event EventHandler DangXuat;
+
 
         private string mode;
         public string _mode
@@ -33,20 +38,22 @@ namespace doAn.main
                 switch (value)
                 {
                     case "login":
-                        mnuThongTin.Text = "Đăng nhập";
+                        mnuDangNhap.Text = "Đăng nhập";
                         break;
                     case "logined":
                         break;
-
                 }
             }
         }
 
+
         Login login = null;
-        ChangePass change = null;
+        ChangePass changepass = null;
 
         QlNhanVien qlNhanVien = null;
+
         QlSanPham qlSanPham = null;
+        BaoCaoSanPham bcSanPham = null;
 
         DonHang donHang = null;
         KhachHang khachHang = null;
@@ -58,7 +65,6 @@ namespace doAn.main
             InitializeComponent();
 
             this.mode = "login";
-            mnuThongTin.Text = "Đăng nhập";
             this.DangNhap += (s, e) =>
             {
                 if (login == null || login.IsDisposed)
@@ -69,7 +75,6 @@ namespace doAn.main
                 }
                 else
                 {
-                    login.StartPosition = FormStartPosition.CenterParent;
                     login.Activate();
                 }
             };
@@ -77,13 +82,18 @@ namespace doAn.main
 
         void ChuaDangNhap()
         {
-            mnuThongTin.Enabled = true;
+            mnuDangNhap.Enabled = true;
 
             mnuQuanLy.Enabled = false;
             mnuThongKe.Enabled = false;
 
             mnuDoiMatKhau.Visible = false;
             mnuDangXuat.Visible = false;
+
+            mnuNhanVien.Visible = false ;
+            mnuSanPham.Visible = false;
+            mnuKhachHang.Visible = false;
+            mnuDonHang.Visible = false;
         }
 
 
@@ -96,11 +106,9 @@ namespace doAn.main
             mnuSanPham.Visible = true;
             mnuKhachHang.Visible = true;
             mnuDonHang.Visible = true;
-            mnuKhoSanPham.Visible = true;
 
             mnuBcKh.Visible = true;
             mnuBcSP.Visible = true;
-            mnuBcK.Visible = true;
 
             mnuDoiMatKhau.Visible = true;
             mnuDangXuat.Visible = true;
@@ -118,9 +126,7 @@ namespace doAn.main
             mnuBcKh.Visible = false;
 
             mnuSanPham.Visible = true;
-            mnuKhoSanPham.Visible = true;
             mnuBcSP.Visible = true;
-            mnuBcK.Visible = true;
 
             mnuDoiMatKhau.Visible = true;
             mnuDangXuat.Visible = true;
@@ -135,12 +141,10 @@ namespace doAn.main
             mnuSanPham.Visible = false;
             mnuKhachHang.Visible = false;
             mnuDonHang.Visible = false;
-            mnuKhoSanPham.Visible = false;
 
             mnuThongKe.Visible = false;
             mnuBcKh.Visible = false;
             mnuBcSP.Visible = false;
-            mnuBcK.Visible = false;
 
             mnuDoiMatKhau.Visible = true;
             mnuDangXuat.Visible = true;
@@ -157,9 +161,7 @@ namespace doAn.main
 
             mnuNhanVien.Visible = false;
             mnuSanPham.Visible = false;
-            mnuKhoSanPham.Visible = false;
             mnuBcSP.Visible = false;
-            mnuBcK.Visible = false;
 
             mnuDoiMatKhau.Visible = true;
             mnuDangXuat.Visible = true;
@@ -168,11 +170,10 @@ namespace doAn.main
         public void setTrangThai(string MaNV,string TenNV)
         {
             this.mode = "logined";
-
+            mnuDangNhap.Visible = false;
             this.ThongTinNhanVien += (s, e) =>
             {
-                mnuThongTin.Text = MaNV + " - " + TenNV;
-                lblTrangThai.Text = "Nhân viên: " + TenNV;
+                lblTrangThai.Text = "Nhân viên: "+MaNV + " - " + TenNV;
             };
 
             this.ThongTinNhanVien?.Invoke(this, EventArgs.Empty);
@@ -182,26 +183,127 @@ namespace doAn.main
         {
             if (quyen.StartsWith("AD")) admin();
             else if (quyen.StartsWith("SP")) qlSP();
-            else if (quyen.StartsWith("NV")) qlNV();
+            else if (quyen.StartsWith("NS")) qlNV();
             else if (quyen.StartsWith("KH")) qlKH();
         }
-
-        
-
+       
         private void Main_Load(object sender, EventArgs e)
         {
             ChuaDangNhap();
         }
-
-        private void mnuThongTin_Click(object sender, EventArgs e)
+    
+        private void mnuThoat_Click(object sender, EventArgs e)
         {
-            if(mode == "login")
+            this.Close();
+        }
+
+        private void mnuDangNhap_Click(object sender, EventArgs e)
+        {
+            if (mode == "login")
             {
                 DangNhap?.Invoke(this, EventArgs.Empty);
             }
-            else if(mode == "logined")
+            else if (mode == "logined")
             {
                 ThongTinNhanVien?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        private void mnuDangXuat_Click(object sender, EventArgs e)
+        {
+            this.mode = "login";
+            mnuDangNhap.Visible = true;
+            lblTrangThai.Text = "Chưa đăng nhập";
+            ChuaDangNhap();
+        }
+
+        private void mnuDoiMatKhau_Click(object sender, EventArgs e)
+        {
+            //Console.WriteLine(LGmaNV);
+            if (changepass == null || changepass.IsDisposed)
+            {
+                changepass = new ChangePass(LGmaNV);
+                changepass.MdiParent = this;
+                changepass.Show();
+            }
+            else
+            {
+                changepass.Activate();
+            }
+        }
+
+        private void mnuNhanVien_Click(object sender, EventArgs e)
+        {
+            if (qlNhanVien == null || qlNhanVien.IsDisposed)
+            {
+                qlNhanVien = new QlNhanVien();
+                qlNhanVien.MdiParent = this;
+                Dock = DockStyle.Fill;
+                qlNhanVien.Show();
+            }
+            else
+            {
+                qlNhanVien.Activate();
+            }
+        }
+
+        private void mnuSanPham_Click(object sender, EventArgs e)
+        {
+            if (qlSanPham == null || qlSanPham.IsDisposed)
+            {
+                qlSanPham = new QlSanPham();
+                qlSanPham.MdiParent = this;
+                Dock = DockStyle.Fill;
+                qlSanPham.Show();
+            }
+            else
+            {
+                qlSanPham.Activate();
+            }
+        }
+
+        private void mnuBcSP_Click(object sender, EventArgs e)
+        {
+            if (bcSanPham == null || bcSanPham.IsDisposed)
+            {
+                bcSanPham = new BaoCaoSanPham();
+                bcSanPham.MdiParent = this;
+                Dock = DockStyle.Fill;
+                bcSanPham.Show();
+            }
+            else
+            {
+                bcSanPham.Activate();
+            }
+        }
+
+        private void mnuKhachHang_Click(object sender, EventArgs e)
+        {
+            if (khachHang == null || khachHang.IsDisposed)
+            {
+                khachHang = new KhachHang();
+                khachHang.MdiParent = this;
+                Dock = DockStyle.Fill;
+                khachHang.Show();
+            }
+            else
+            {
+                khachHang.Activate();
+            }
+        }
+
+        private void mnuDonHang_Click(object sender, EventArgs e)
+        {
+            if (donHang == null || donHang.IsDisposed)
+            {
+                donHang = new DonHang();
+                donHang.MdiParent = this;
+                Dock = DockStyle.Fill;
+                donHang.Show();
+            }
+            else
+            {
+                donHang.Activate();
             }
         }
 

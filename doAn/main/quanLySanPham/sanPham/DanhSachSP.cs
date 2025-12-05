@@ -2,6 +2,7 @@
 using doAn.quanLySanPham;
 using doAn.quanLySanPham.sanPham;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -16,6 +17,7 @@ namespace doAn.quanLySanPham
         public DanhSachSP()
         {
             InitializeComponent();
+
         }
 
         public void LayDuLieu()
@@ -24,7 +26,7 @@ namespace doAn.quanLySanPham
 
 
             ThemButton them = new ThemButton();
-            them.Margin = new Padding(5, 65, 0, 0);
+            //them.Margin = new Padding(5, 65, 0, 0);
             flowLayoutPanel.Controls.Add(them);
 
 
@@ -39,7 +41,25 @@ namespace doAn.quanLySanPham
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM SanPham");
                 dt.Fill(cmd);
-                
+
+                //MyDataTable donHang = new MyDataTable();
+                //donHang.OpenConnection();
+                //SqlCommand cmdD = new SqlCommand("SELECT MaDonHang FROM DonHang");
+                //donHang.Fill(cmdD);
+
+                MyDataTable ctdh = new MyDataTable();
+                ctdh.OpenConnection();
+                SqlCommand cmdCT = new SqlCommand("SELECT MaSanPham FROM ChiTietDonHang");
+                ctdh.Fill(cmdCT);
+
+                //Tao 1 list chi de chua san pham trong don
+                List<string> spDon = new List<string>();
+
+                foreach(DataRow don in ctdh.Rows)
+                {
+                    spDon.Add(don["MaSanPham"].ToString());
+                }
+
                 foreach (DataRow row in dt.Rows)
                 {
                     SanPham sp = new SanPham();
@@ -57,7 +77,15 @@ namespace doAn.quanLySanPham
                     {
                         ChiTietSanPham ct = new ChiTietSanPham(sp.MaSanPham);
                         ct.ShowDialog();
-                    };  
+                    };
+
+
+                    //neu trong spDon sp.masanpham
+                    if (spDon.Contains(sp.MaSanPham.ToString()))
+                    {
+                        sp.BackColor = Color.Yellow;
+                        
+                    }
 
                     flowLayoutPanel.Controls.Add(sp);
                 }
@@ -71,6 +99,7 @@ namespace doAn.quanLySanPham
 
         private void DanhSachSP_Load(object sender, System.EventArgs e)
         {
+            MessageBox.Show("Màu vàng: Đang có trong đơn hàng \nMàu trắng: tồn kho", "Lưu ý", MessageBoxButtons.OK);
             LayDuLieu();
         }
     }

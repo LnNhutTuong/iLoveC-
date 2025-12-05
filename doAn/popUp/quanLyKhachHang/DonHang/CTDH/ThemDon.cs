@@ -38,7 +38,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
             khachHang.OpenConnection();
 
             SqlCommand khachHangCmd = new SqlCommand(@"SELECT * FROM KhachHang WHERE MaKhachHang = @MaKhachHang");
-            khachHangCmd.Parameters.Add("@MaKhachHang", maKH);
+            khachHangCmd.Parameters.AddWithValue("@MaKhachHang", maKH);
             khachHang.Fill(khachHangCmd);
 
             Console.WriteLine(maKH);
@@ -72,10 +72,38 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
                 SqlCommand sanPhamCmd = new SqlCommand(sanPhamSql);
                 sanPham.Fill(sanPhamCmd);
 
+                MyDataTable spDon = new MyDataTable();
+                spDon.OpenConnection();
+                SqlCommand spDonCmd = new SqlCommand(@"SELECT ctdh.MaSanPham 
+                                                       FROM ChiTietDonHang ctdh
+                                                       JOIN DonHang dh ON ctdh.MaDonHang = dh.MaDonHang
+                                                       JOIN SanPham sp ON sp.MaSanPham = ctdh.MaSanPham");
+                spDon.Fill(spDonCmd);
+
+                List<string> spCoDon = new List<string>();
+
+                foreach (DataRow row in spDon.Rows)
+                {
+                    spCoDon.Add(row["MaSanPham"].ToString());
+                }
+
+                //Console.WriteLine("San pham:" +spCoDon);
+
                 foreach (DataRow row in sanPham.Rows)
-                {                
-                    SanPham sp = new SanPham();                  
+                {
+                    
+
+                    SanPham sp = new SanPham();
+
+                    
+
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
+
+                    if (spCoDon.Contains(sp.MaSanPham.ToString()))
+                    {
+                        sp.Visible = false;
+                    }
+
                     sp.AnhDaiDien = row["AnhDaiDien"].ToString();
                     sp._mode = "select";
                     sp.setData(row["TenSanPham"].ToString().ToUpper(), row["AnhDaiDien"].ToString());

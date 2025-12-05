@@ -154,7 +154,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
 
                 MessageBox.Show("Đã xóa thành công!");
 
-                ((QlSanPham)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();
+                ((QlSanPham)Application.OpenForms["QlSanPham"]).danhSachSP.LayDuLieu();
 
                 this.Close();
             }
@@ -164,6 +164,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
         {
             try
             {
+                // San Pham
                 string oldPath = myData.Rows[0]["AnhDaiDien"].ToString();
 
                 string newPath = string.IsNullOrEmpty(path) ? oldPath : path;
@@ -225,13 +226,20 @@ namespace doAn.popUp.quanlySanPham.sanPham
 
                 MessageBox.Show("Lưu dữ liệu thành công!");
 
+                //Neu co don hang thi phai update trong don hang luon 
+
+                string sqlD = @"UPDATE  ChiTietSanPham
+                                SET     MaSanPham = @MaSanPhamMoi
+                                WHERE   MaSanPham = @MaSanPhamCu";
+
                 //LOAD 2 lan
                 // 1 cho popup
                 ChiTietSanPham_Load(sender, e);
                 // 1 cho list
                 // YASH
 
-                ((QlSanPham)Application.OpenForms["mainSP"]).danhSachSP.LayDuLieu();   
+                ((QlSanPham)Application.OpenForms["QlSanPham"]).danhSachSP.LayDuLieu();
+
             }
 
             catch (Exception ex)

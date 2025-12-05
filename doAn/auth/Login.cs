@@ -58,6 +58,10 @@ namespace doAn
                     return;
                 }
 
+                if(txtMatKhau.Text.Trim() == "123456")
+                {
+                    MessageBox.Show("Bạn đang để mật khẩu mặc định!!!\n Hãy đổi mật khẩu để tăng tính bảo mật!", "", MessageBoxButtons.OK);
+                }
                 //get data
                 string MaNV = dataTable.Rows[0]["MaNhanVien"].ToString().ToUpper();
                 string TenNV = dataTable.Rows[0]["TenNhanVien"].ToString();
@@ -68,6 +72,7 @@ namespace doAn
 
                 //to main
                 Main main = (Main)Application.OpenForms["Main"];
+                main.LGmaNV = MaNV;
                 main.setTrangThai(MaNV, TenNV);
                 main.PhanQuyen(role);
 

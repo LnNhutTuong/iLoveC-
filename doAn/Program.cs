@@ -1,5 +1,7 @@
 ﻿using doAn;
 using doAn.main;
+using doAn.main.quanLySanPham;
+using doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang;
 using doAn.quanLyKhachHang;
 using doAn.quanLyNguoIDung;
 using System;

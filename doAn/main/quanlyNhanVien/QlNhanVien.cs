@@ -22,21 +22,12 @@ namespace doAn.quanLyNguoIDung
 
         string maNhanVien = "";
 
-        public QlNhanVien(bool fromAdmin)
+        public QlNhanVien()
         {
             InitializeComponent();
             dataTable.OpenConnection();
 
-            if (fromAdmin)
-            {
-                btnThoat.Text = "Quay lại";
-
-                btnThoat.Click -= btnThoat_Click;
-
-                btnThoat.Click += (s, e) => this.Close();
-
-                btnDoiMatKhau.Visible = false;
-            }
+            
         }
 
         public void LayDuLieu()
@@ -137,60 +128,24 @@ namespace doAn.quanLyNguoIDung
 
         private void Main_Load(object sender, EventArgs e)
         {
-            txtNhanVien.Text = "Nhân viên: " + NameNhanVien;
             LayDuLieu();
-            txtMatKhau.PasswordChar = '•';
+            txtMatKhau.PasswordChar = '*';
             showPass = false;
             OnOff(false);
         }
 
-        private void btnThem_Click(object sender, EventArgs e)
+        //An
+        bool showPass = false;
+
+        private void dataGridView_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            maNhanVien = "";
-            maNhanVien = "";
-
-            txtMaNhanVien.Clear();
-            txtTenNhanVien.Clear();
-            txtMatKhau.Clear();
-            txtSoDienThoai.Clear();
-            txtEmail.Clear();
-            cboChucVu.Text = "";
-
-            txtMaNhanVien.Focus();
-
-            OnOff(true);
-        }
-
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-            maNhanVien = txtMaNhanVien.Text;
-            txtMatKhau.PasswordChar = '\0';
-            OnOff(true);
-        }
-
-        private void btnTaiLai_Click(object sender, EventArgs e)
-        {
-            txtMatKhau.PasswordChar = '•';
-            Main_Load(sender, e);
-        }
-
-        private void btnXoa_Click_1(object sender, EventArgs e)
-        {
-            DialogResult kq;
-            kq = MessageBox.Show("Bạn có muốn xóa thương hiệu này " + txtTenNhanVien.Text + " không?", "Xóa",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (kq == DialogResult.Yes)
+            if (!showPass)
             {
-                string sql = @"DELETE FROM NhanVien WHERE MaNhanVien = @MaNhanVien";
-
-                SqlCommand cmd = new SqlCommand(sql);
-
-                cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text;
-
-                dataTable.Update(cmd);
-
-                Main_Load(sender, e);
+                if (dataGridView.Columns[e.ColumnIndex].Name == "MatKhau" && e.Value != null)
+                {
+                    e.Value = "••••••••••";
+                    e.FormattingApplied = true;
+                }
             }
         }
 
@@ -252,7 +207,7 @@ namespace doAn.quanLyNguoIDung
 
                         SqlCommand cmd = new SqlCommand(sql);
 
-                        cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text;
+                        cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
                         cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
                         cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
                         cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = "123456";
@@ -277,7 +232,7 @@ namespace doAn.quanLyNguoIDung
 
                         SqlCommand cmd = new SqlCommand(sql);
 
-                        cmd.Parameters.Add("@MaNhanVienMoi", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text;
+                        cmd.Parameters.Add("@MaNhanVienMoi", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
                         cmd.Parameters.Add("@MaNhanVienCu", SqlDbType.NVarChar, 5).Value = maNhanVien;
                         cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
                         cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
@@ -298,21 +253,57 @@ namespace doAn.quanLyNguoIDung
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
-        //An
-        bool showPass = false;
-
-        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (!showPass)
+            DialogResult kq;
+            kq = MessageBox.Show("Bạn có muốn xóa nhân viên này " + txtTenNhanVien.Text + " không?", "Xóa",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (kq == DialogResult.Yes)
             {
-                if (dataGridView.Columns[e.ColumnIndex].Name == "MatKhau")
-                {
-                    e.Value = "••••••••••";
-                }
-            }    
-        }     
+                string sql = @"DELETE FROM NhanVien WHERE MaNhanVien = @MaNhanVien";
+
+                SqlCommand cmd = new SqlCommand(sql);
+
+                cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text;
+
+                dataTable.Update(cmd);
+
+                Main_Load(sender, e);
+            }
+        }
+
+        private void btnTaiLai_Click(object sender, EventArgs e)
+        {
+            txtMatKhau.PasswordChar = '•';
+            Main_Load(sender, e);
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            maNhanVien = txtMaNhanVien.Text;
+            txtMatKhau.PasswordChar = '\0';
+            OnOff(true);
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            maNhanVien = "";
+
+            txtMaNhanVien.Clear();
+            txtTenNhanVien.Clear();
+            lblMatKhau.Visible = false;
+            txtMatKhau.Visible = false; //Mat khau moi luon luon la 123456
+            txtSoDienThoai.Clear();
+            txtEmail.Clear();
+            cboChucVu.Text = "";
+
+            txtMaNhanVien.Focus();
+
+            OnOff(true);
+        }
     }
 }

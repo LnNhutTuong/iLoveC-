@@ -84,18 +84,28 @@ namespace doAn.popUp.quanlySanPham.sanPham
             txtTriGia.Text = myData.Rows[0]["TriGia"].ToString();
 
             tuongDoiPathAnh = myData.Rows[0]["AnhDaiDien"].ToString();
-            string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
+            string name = Regex.Match(tuongDoiPathAnh, @"([^\\\/]+)(?=\.[^.]+$)").Value;
             btnThayAnh.Text = name;
 
+
+            Console.WriteLine("Skibidi: "+btnThayAnh.Text);
+            //cai nay la sao?
+            // cai nay tao thanh 1 cai path
+            // combine no ghep lai                 V
+            //thang ngay mui ten la lay duong dan tu bin
+            //khuc sau la tu db 
+            //booooom ghep lai thanh 1 path
             string imgPath = Path.Combine(Application.StartupPath, tuongDoiPathAnh);
+            Console.WriteLine(imgPath);
             string defaultImg = Path.Combine(Application.StartupPath, "images/noImg.jfif");
 
-            if (!File.Exists(path) || string.IsNullOrWhiteSpace(path))
+            if (!File.Exists(imgPath) || string.IsNullOrWhiteSpace(imgPath))
             {
                 pictureBox.Image = Image.FromFile(defaultImg);
             }
             else
             {
+                Console.WriteLine("success");
                 pictureBox.Image = Image.FromFile(imgPath);
             }
 
@@ -139,20 +149,25 @@ namespace doAn.popUp.quanlySanPham.sanPham
             {
                 path = dialog.FileName;
 
-                string fileName = Path.GetFileName(path);
+                string filename = Path.GetFileName(path);
 
                 string uploadFolder = Path.Combine(Application.StartupPath, "Upload");
                 Directory.CreateDirectory(uploadFolder);
 
-                string destPath = Path.Combine(uploadFolder, fileName);
+                string destPath = Path.Combine(uploadFolder, filename);
 
                 File.Copy(path, destPath, true);
 
 
-                tuongDoiPathAnh = Path.Combine("Upload", fileName);
+                //Luc nay la do cai thang nay la bien toan cuc
+                //Nen la gan no thanh cai nay
+                //combine: ghep 2 thang trong kia lai thanh 1 duong dan
+
+                tuongDoiPathAnh = Path.Combine("Upload", filename);
 
                 // đổi text nút thành tên file
-                btnThayAnh.Text = fileName;
+                //TẠI SAO KHÔNG DUDWOJ ÁDSAJDIAWJDPOAKDOPASKDPKAWOPD
+                btnThayAnh.Text = filename;
 
                 pictureBox.Image = Image.FromFile(destPath);
             }
@@ -203,7 +218,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
                                    TenSanPham = @TenSanPham,
                                    MaDanhMuc = @MaDanhMuc,
                                    MaThuongHieu = @MaThuongHieu,
-                                   AnhDaiDien = @path,
+                                   AnhDaiDien = @tuongDoiPathAnh,
                                    MoTa = @MoTa,
                                    TriGia = @TriGia                                             
                                WHERE MaSanPham = @MaSanPhamCu";
@@ -242,7 +257,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
 
 
                 //RAT KHO
-                cmd.Parameters.AddWithValue("@path", newPath);
+                cmd.Parameters.AddWithValue("@tuongDoiPathAnh", tuongDoiPathAnh);
 
 
 

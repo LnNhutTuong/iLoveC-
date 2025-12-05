@@ -16,6 +16,8 @@ namespace doAn.popUp.quanlySanPham.sanPham
 {
     public partial class Them : Form
     {
+
+        string tuongDoiPathAnh = "";
         //Lay du lieu tu ben thang cha
         //thang ben kia co khai bao binding
         // => co the noi duong dan du lieu tu cha xuong con
@@ -74,11 +76,23 @@ namespace doAn.popUp.quanlySanPham.sanPham
             {
                 path = dialog.FileName;
 
-                string name = Regex.Match(path, @"([^\\\/]+)(?=\.[^.]+$)").Value;
+                string filename = Path.GetFileName(path);
 
+                string uploadFolder = Path.Combine(Application.StartupPath, "Upload");
+                Directory.CreateDirectory(uploadFolder);
+
+                string destPath = Path.Combine(uploadFolder, filename);
+
+                File.Copy(path, destPath, true);
+
+
+                tuongDoiPathAnh = Path.Combine("Upload", filename);
+                string name = Regex.Match(tuongDoiPathAnh, @"([^\\\/]+)(?=\.[^.]+$)").Value;
+
+                // đổi text nút thành tên file
                 btnThemAnh.Text = name;
 
-                pictureBox.Image = Image.FromFile(dialog.FileName);
+                pictureBox.Image = Image.FromFile(destPath);
             }
         }
 
@@ -137,7 +151,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
             cmd.Parameters.Add("@MaDanhMuc", SqlDbType.NVarChar, 5).Value = cboDanhMuc.SelectedValue;
             cmd.Parameters.Add("@MaThuongHieu", SqlDbType.NVarChar, 50).Value = cboThuongHieu.SelectedValue;
             cmd.Parameters.Add("@TriGia", SqlDbType.Decimal).Value = triGia;
-            cmd.Parameters.Add("@AnhDaiDien", SqlDbType.NVarChar, 255).Value = path;
+            cmd.Parameters.Add("@AnhDaiDien", SqlDbType.NVarChar, 255).Value = tuongDoiPathAnh;
             cmd.Parameters.Add("@MoTa", SqlDbType.NVarChar, 255).Value = txtMoTa.Text;
 
             dataTable.Update(cmd);

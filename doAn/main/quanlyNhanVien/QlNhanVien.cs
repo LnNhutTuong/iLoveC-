@@ -149,19 +149,40 @@ namespace doAn.quanLyNguoIDung
             }
         }
 
+        List<string> maTonTai = new List<string>();
+
         private void btnLuu_Click(object sender, EventArgs e)
         {
+
+            MyDataTable nhanVien = new MyDataTable();
+            nhanVien.OpenConnection();
+            SqlCommand nhanVienCmd = new SqlCommand("Select MaNhanVien FROM NhanVien");
+            nhanVien.Fill(nhanVienCmd);
+
+            foreach(DataRow row in nhanVien.Rows)
+            {
+                string ma = row["MaNhanVien"].ToString();
+                maTonTai.Add(ma);
+            }
+
+            lblMatKhau.Visible = true;
+            txtMatKhau.Visible = true;
             txtMatKhau.PasswordChar = '•';
             if (txtMaNhanVien.Text.Trim() == "")
             {
                 MessageBox.Show("Mã nhân viên không được bỏ trống!", "LỖI",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (txtTenNhanVien.Text.Trim() == "")
+            else if (txtMaNhanVien.Text.Length != 5)
+            {
+                MessageBox.Show("Mã nhân viên phải đủ 5!", "LỖI",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (txtTenNhanVien.Text.Trim()=="")
             {
                 MessageBox.Show("Tên nhân viên không được bỏ trống!", "LỖI",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }          
             else if (txtMatKhau.Text.Trim() == "")
             {
                 MessageBox.Show("Mật khẩu không được bỏ trống!", "LỖI",
@@ -202,22 +223,30 @@ namespace doAn.quanLyNguoIDung
                     //Them moi
                     if (maNhanVien == "")
                     {
-                        string sql = @"INSERT INTO NhanVien
+                        if (maTonTai.Contains(txtMaNhanVien.Text.ToUpper().Trim()))
+                        {
+                            MessageBox.Show("Mã này đã tồn tại!!");
+                            return;
+                        }
+                        else
+                        {
+                            string sql = @"INSERT INTO NhanVien
                                        VALUES (@MaNhanVien,@MaChucVu, @TenNhanVien, @MatKhau, @Sdt, @Email)";
 
-                        SqlCommand cmd = new SqlCommand(sql);
+                            SqlCommand cmd = new SqlCommand(sql);
 
-                        cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
-                        cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
-                        cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
-                        cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = "123456";
-                        cmd.Parameters.Add("@Sdt", SqlDbType.NVarChar, 11).Value = txtSoDienThoai.Text;
-                        cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
+                            cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
+                            cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
+                            cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
+                            cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = "123456";
+                            cmd.Parameters.Add("@Sdt", SqlDbType.NVarChar, 11).Value = txtSoDienThoai.Text;
+                            cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
 
-                        MessageBox.Show("Thêm thành công!", "Thông báo",
-                        MessageBoxButtons.OK);
+                            MessageBox.Show("Thêm thành công!", "Thông báo",
+                            MessageBoxButtons.OK);
 
-                        dataTable.Update(cmd);
+                            dataTable.Update(cmd);
+                        }                         
                     }
                     else
                     {
@@ -241,6 +270,8 @@ namespace doAn.quanLyNguoIDung
                         cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
 
                         dataTable.Update(cmd);
+
+                        MessageBox.Show("Sửa thành công !!");
                     }
                     Main_Load(sender, e);
                 }
@@ -280,6 +311,8 @@ namespace doAn.quanLyNguoIDung
         {
             txtMatKhau.PasswordChar = '•';
             Main_Load(sender, e);
+            lblMatKhau.Visible = true;
+            txtMatKhau.Visible = true;
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -287,6 +320,8 @@ namespace doAn.quanLyNguoIDung
             maNhanVien = txtMaNhanVien.Text;
             txtMatKhau.PasswordChar = '\0';
             OnOff(true);
+            lblMatKhau.Visible = true;
+            txtMatKhau.Visible = true;
         }
 
         private void btnThem_Click(object sender, EventArgs e)

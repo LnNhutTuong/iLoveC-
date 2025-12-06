@@ -116,6 +116,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
                 {
                     SanPham sp = new SanPham();
 
+
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
 
                     if (dsSpChon.Contains(sp.MaSanPham))
@@ -174,6 +175,18 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             btnTaiLai.Enabled = value;
             btnLuu.Enabled = value;
 
+
+        }
+
+        private void tatNutSanPham(bool enabled)
+        {
+            foreach (Control ctrl in flowSP.Controls)
+            {
+                if (ctrl is SanPham sp)
+                {
+                    sp.enableButton(enabled);
+                }
+            }
         }
 
         private void ChiTietDonHang_Load(object sender, EventArgs e)
@@ -181,13 +194,14 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             this.Text = "Đơn hàng: " + lblMaDonHang.Text;
             LayDuLieu();
             OnOff(false);
-
+            tatNutSanPham(false);
             Console.WriteLine(lblMaDonHang.Text);
         }      
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             OnOff(true);
+            tatNutSanPham(true);
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -251,6 +265,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
             foreach (SanPham sp in spDaChon)
             {
+                
                 string sqlI = @"INSERT INTO ChiTietDonHang (MaDonHang, MaSanPham)
                     VALUES (@MaDonHang, @MaSanPham)";
 
@@ -270,7 +285,6 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
         private void btnTaiLai_Click(object sender, EventArgs e)
         {
             ChiTietDonHang_Load(sender, e);
-            this.DialogResult = DialogResult.OK;
         }
     }
 }

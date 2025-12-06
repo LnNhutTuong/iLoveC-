@@ -62,6 +62,39 @@ namespace doAn.main.quanLyKhachHang
             Console.WriteLine("skibidi");
         }
 
+        private void btnThem_Click_1(object sender, EventArgs e)
+        {
+            ThemDon puThem = new ThemDon(data);
+
+            if (puThem.ShowDialog() == DialogResult.OK)
+            {
+                LayDuLieu();
+            }
+        }
+
+        private void btnTaiLai_Click(object sender, EventArgs e)
+        {
+            LayDuLieu();
+        }
+
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (dataGridView.Columns[e.ColumnIndex].Name == "ChiTietDonHang")
+                {
+                    string maDH = dataGridView.Rows[e.RowIndex].Cells["MaDonHang"].Value.ToString();
+                    ChiTietDH ctdh = new ChiTietDH(maDH);
+                    if (ctdh.ShowDialog() == DialogResult.OK)
+                    {
+                        Console.WriteLine("địt mẹ mày da xoa");
+                        DonHang_Load(sender, e);
+                    }
+
+                }
+            }
+        }
+
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView.Columns[e.ColumnIndex].Name == "TrangThai" && e.Value != null)
@@ -93,58 +126,6 @@ namespace doAn.main.quanLyKhachHang
 
                 e.FormattingApplied = true;
             }
-
-            //if (dataGridView.Columns[e.ColumnIndex].Name == "GhiChu")
-            //{
-            //    object ghiChu = dataGridView.Rows[e.RowIndex].Cells["GhiChu"].Value;
-
-            //    if (string.IsNullOrWhiteSpace(ghiChu.ToString()))
-            //    {
-            //        e.Value = "Không có ghi chú :)!";
-            //        e.FormattingApplied = true;
-            //    }
-            //    else
-            //    {
-            //        e.Value = ghiChu.ToString();
-            //        e.FormattingApplied = true;
-            //    }
-            //}
-        }
-
-      
-
-        private void dataGridView_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                if (dataGridView.Columns[e.ColumnIndex].Name == "ChiTietDonHang")
-                {
-                    string maDH = dataGridView.Rows[e.RowIndex].Cells["MaDonHang"].Value.ToString();
-                    ChiTietDH ctdh = new ChiTietDH(maDH);
-                    if (ctdh.ShowDialog() == DialogResult.OK)
-                    {
-                        Console.WriteLine("reload da xoa");
-                        DonHang_Load(sender, e);
-                    }
-
-                }
-            }
-        }
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-            ThemDon puThem = new ThemDon(data);
-
-            if(puThem.ShowDialog() == DialogResult.OK)
-            {
-                DonHang_Load(sender, e);
-            }
-
-        }
-
-        private void btnTaiLai_Click_1(object sender, EventArgs e)
-        {
-            DonHang_Load(sender, e);
-
         }
     }
 }

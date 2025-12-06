@@ -19,6 +19,8 @@ namespace doAn.popUp.quanlySanPham.sanPham
         //tạo cái đường dẫn tương đối để lưu vào db
         private string tuongDoiPathAnh = "";
 
+        List<string> maTonTai = new List<string>();
+
 
         MyDataTable myData = new MyDataTable();
         string maSP;
@@ -32,8 +34,10 @@ namespace doAn.popUp.quanlySanPham.sanPham
            
         }
 
+
+
         public void LayDuLieu()
-        {       
+        {
 
             SqlCommand sanPhamCmd = new SqlCommand("SELECT * FROM SanPham WHERE MaSanPham = @MaSanPham");
             sanPhamCmd.Parameters.AddWithValue("@MaSanPham", maSP);
@@ -88,7 +92,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
             btnThayAnh.Text = name;
 
 
-            Console.WriteLine("Skibidi: "+btnThayAnh.Text);
+            //Console.WriteLine("Skibidi: "+btnThayAnh.Text);
             //cai nay la sao?
             // cai nay tao thanh 1 cai path
             // combine no ghep lai                 V
@@ -105,9 +109,14 @@ namespace doAn.popUp.quanlySanPham.sanPham
             }
             else
             {
-                Console.WriteLine("success");
+                //Console.WriteLine("success");
                 pictureBox.Image = Image.FromFile(imgPath);
             }
+
+            
+
+
+
 
             OnOff(false);
         }
@@ -203,14 +212,58 @@ namespace doAn.popUp.quanlySanPham.sanPham
             }
         }
 
+        int gia = 0;
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // San Pham
-                string oldPath = myData.Rows[0]["AnhDaiDien"].ToString();
+            MyDataTable sanPham = new MyDataTable();
+            sanPham.OpenConnection();
+            SqlCommand sanPhamCmdC = new SqlCommand("SELECT MaSanPham FROM SanPham");
+            sanPham.Fill(sanPhamCmdC);
+            //string maDaCo = sanPham.Rows.ToString();
 
-                string newPath = string.IsNullOrEmpty(path) ? oldPath : path;
+            foreach (DataRow row in sanPham.Rows)
+            {
+                string ma = row["MaSanPham"].ToString();
+                maTonTai.Add(ma);
+            }
+
+            try
+            {             
+                if (txtMaSanPham.Text.Trim() == null)
+                {
+                    MessageBox.Show("Không được bỏ trống mã!");
+                    return;
+                }
+                else if (txtMaSanPham.TextLength != 5)
+                {
+                    MessageBox.Show("Mã phải đủ 5 \n" + "Đã nhập: " + txtMaSanPham.TextLength);
+                    return;
+                }
+                else if (maTonTai.Contains(txtMaSanPham.Text.ToUpper().Trim()))
+                {
+                    MessageBox.Show("Mã này đã tồn tại!!");
+                    return;
+                }
+                else if (txtTenSanPham.Text.Trim() == null)
+                {
+                    MessageBox.Show("Không được bỏ trống tên!");
+                    return;
+                }
+                else if (txtMoTa.Text.Trim() == null)
+                {
+                    MessageBox.Show("Không được bỏ trống Mô tả!");
+                    return;
+                }
+                else if (!int.TryParse(txtTriGia.Text, out gia))
+                {
+                    MessageBox.Show("Giá trị bắt buộc phải là số!");
+                    return;
+                }
+                // San Pham
+                Console.WriteLine("Row 0:niek");
+                //string oldPath = myData.Rows[0]["AnhDaiDien"].ToString();
+
+                //string newPath = string.IsNullOrEmpty(path) ? oldPath : path;
 
 
                 string sql = @"UPDATE SanPham                           

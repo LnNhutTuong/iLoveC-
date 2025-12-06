@@ -41,11 +41,10 @@ namespace doAn.popUp.sanPham
 
             SqlCommand danhMucCmd = new SqlCommand(@"SELECT MaDanhMuc FROM DanhMuc");
             danhMuc.Fill(danhMucCmd);
-            string maDM = danhMuc.Rows[0]["MaDanhMuc"].ToString();
-
             foreach (DataRow row in danhMuc.Rows)
             {
-                maDaCo.Add(maDM.ToUpper().Trim());
+                string ma = row["MaDanhMuc"].ToString();
+                maDaCo.Add(ma);
             }
 
             DataRowView rowSelect = (DataRowView)olddata.Current;

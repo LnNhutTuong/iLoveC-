@@ -96,8 +96,20 @@ namespace doAn.popUp.quanlySanPham.sanPham
             }
         }
 
+        List<string> maTonTai = new List<string>();
         private void btnDongY_Click(object sender, EventArgs e)
         {
+            MyDataTable sanPham = new MyDataTable();
+            sanPham.OpenConnection();
+            SqlCommand sanPhamCmd = new SqlCommand("SELECT MaSanPham FROM SanPham");
+            sanPham.Fill(sanPhamCmd);
+
+            foreach (DataRow row in sanPham.Rows)
+            {
+                string ma = row["MaSanPham"].ToString();
+                maTonTai.Add(ma);
+            }
+
             DataTable dt = (DataTable)newdata.DataSource;
 
             if (string.IsNullOrWhiteSpace(txtMaSanPham.Text))
@@ -105,11 +117,16 @@ namespace doAn.popUp.quanlySanPham.sanPham
                 MessageBox.Show("Không được bỏ trống Mã!");
                 return;
             }
-            else if (txtMaSanPham.TextLength > 5 || txtMaSanPham.MaxLength < 5)
+            else if (txtMaSanPham.TextLength != 5)
             {
                 MessageBox.Show("Mã phải đủ 5 \n");
                 return;
 
+            }
+            else if (maTonTai.Contains(txtMaSanPham.Text.ToUpper().Trim()))
+            {
+                MessageBox.Show("Mã này đã tồn tại!!");
+                return;
             }
             else if (string.IsNullOrWhiteSpace(txtTenSanPham.Text))
             {

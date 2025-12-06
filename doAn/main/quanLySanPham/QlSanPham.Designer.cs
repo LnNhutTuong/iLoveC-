@@ -63,11 +63,12 @@
             // 
             this.lblTieuDe.AutoSize = true;
             this.lblTieuDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTieuDe.Location = new System.Drawing.Point(326, 16);
+            this.lblTieuDe.Location = new System.Drawing.Point(355, 16);
             this.lblTieuDe.Name = "lblTieuDe";
-            this.lblTieuDe.Size = new System.Drawing.Size(448, 48);
+            this.lblTieuDe.Size = new System.Drawing.Size(454, 48);
             this.lblTieuDe.TabIndex = 0;
-            this.lblTieuDe.Text = "QUẢN LÝ SẢN PHẨM";
+            this.lblTieuDe.Text = "QUẢN LÝ DANH MỤC";
+            this.lblTieuDe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabControl
             // 
@@ -80,6 +81,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1159, 511);
             this.tabControl.TabIndex = 2;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged_1);
             // 
             // tabDanhMuc
             // 

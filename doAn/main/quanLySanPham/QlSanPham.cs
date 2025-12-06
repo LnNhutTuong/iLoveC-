@@ -44,8 +44,7 @@ namespace doAn
         {
             LayDuLieu();
         }
-
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void tabControl_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (tabControl.SelectedTab == tabDanhMuc)
             {
@@ -59,21 +58,6 @@ namespace doAn
             {
                 lblTieuDe.Text = "Quản lý Sản phẩm";
             }
-
         }
-
-      
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnDoiMatKhau_Click(object sender, EventArgs e)
-        {
-
-        }
-
-      
     }
 }

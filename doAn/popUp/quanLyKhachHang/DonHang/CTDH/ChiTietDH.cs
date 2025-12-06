@@ -18,7 +18,7 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 {
     public partial class ChiTietDH : Form
     {
-        //pham vi event kieu ten
+        //pham vi| event| kieu| ten|
         public event Action deletePr;
 
 
@@ -103,6 +103,8 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
                 SqlCommand sanPhamCmd = new SqlCommand(sanPhamSql);
                 sanPham.Fill(sanPhamCmd);
 
+                //này là lấy mấy thằng sp đã được chọn từ trước
+                // CỦA ĐƠN NÀY!!!!!!!!!
                 MyDataTable spChon = new MyDataTable();
                 spChon.OpenConnection();
                 string spChonSql = @"SELECT MaSanPham FROM ChiTietDonHang WHERE MaDonHang = @MaDonHang";
@@ -110,7 +112,30 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
                 spChonCmd.Parameters.Add("@MaDonHang", maDH);
                 spChon.Fill(spChonCmd);
 
+                //kiểu này tham khảo thôi chứ khó hiểu quá r
                 var dsSpChon = spChon.Rows.Cast<DataRow>().Select(r => r["MaSanPham"].ToString().ToUpper()).ToList();
+
+                //cái này là cho việc những sp thuộc cái ĐƠN KHÁC rồi
+                //thì trong cái đơn này phải bị ẩn đi
+                List<string> spCoDon = new List<string>();
+                MyDataTable spDonKhac = new MyDataTable();
+                spDonKhac.OpenConnection();
+                //DIEN VL I LOVE LIL UZI ERST
+                SqlCommand spDonKhacCmd = new SqlCommand(@"SELECT ctdh.MaSanPham
+                                                            FROM ChiTietDonHang ctdh
+                                                            JOIN DonHang dh ON ctdh.MaDonHang = dh.MaDonHang
+                                                            WHERE dh.MaDonHang <> @MaDonHang;");
+                spDonKhacCmd.Parameters.Add("@MaDonHang", maDH);
+                spDonKhac.Fill(spDonKhacCmd);
+
+                foreach(DataRow dr in spDonKhac.Rows)
+                {
+                    spCoDon.Add(dr["MaSanPham"].ToString());
+                }
+                //foreach (string ma in spCoDon)
+                //{
+                //    Console.WriteLine(ma);
+                //}
 
                 foreach (DataRow row in sanPham.Rows)
                 {
@@ -118,6 +143,12 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
 
                     sp.MaSanPham = row["MaSanPham"].ToString().ToUpper();
+
+                    if (spCoDon.Contains(sp.MaSanPham))
+                    {
+                        sp.Visible = false;
+                    }
+
 
                     if (dsSpChon.Contains(sp.MaSanPham))
                     {
@@ -266,6 +297,9 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
             foreach (SanPham sp in spDaChon)
             {
                 
+
+
+
                 string sqlI = @"INSERT INTO ChiTietDonHang (MaDonHang, MaSanPham)
                     VALUES (@MaDonHang, @MaSanPham)";
 

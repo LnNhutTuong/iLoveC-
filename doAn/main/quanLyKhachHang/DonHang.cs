@@ -59,7 +59,6 @@ namespace doAn.main.quanLyKhachHang
         {
             dataGridView.AutoGenerateColumns = false;
             LayDuLieu();
-            Console.WriteLine("skibidi");
         }
 
         private void btnThem_Click_1(object sender, EventArgs e)
@@ -87,8 +86,7 @@ namespace doAn.main.quanLyKhachHang
                     ChiTietDH ctdh = new ChiTietDH(maDH);
                     if (ctdh.ShowDialog() == DialogResult.OK)
                     {
-                        Console.WriteLine("địt mẹ mày da xoa");
-                        DonHang_Load(sender, e);
+\                        DonHang_Load(sender, e);
                     }
 
                 }

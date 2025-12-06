@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net.Mail;
 
 
 namespace doAn.popUp.quanLyKhachHang.khachHang
@@ -39,8 +40,21 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
         }
 
         decimal sdt;
+        List<string> maDaCo = new List<string>();
+
         private void btnDongY_Click(object sender, EventArgs e)
         {
+
+            MyDataTable khachHang = new MyDataTable();
+            khachHang.OpenConnection();
+            SqlCommand danhMucCmd = new SqlCommand(@"SELECT MaKhachHang FROM KhachHang");
+            khachHang.Fill(danhMucCmd);
+            foreach (DataRow row in khachHang.Rows)
+            {
+                string ma = row["MaKhachHang"].ToString();
+                maDaCo.Add(ma);
+            }
+
             DataTable dt = (DataTable)newdata.DataSource;
 
             if (txtMaKhachHang.Text.Trim() == null)
@@ -48,9 +62,14 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
                 MessageBox.Show("Không được bỏ trống mã!");
                 return;
             }
-            else if (txtMaKhachHang.TextLength > 5 || txtMaKhachHang.MaxLength < 5)
+            else if (txtMaKhachHang.TextLength !=5)
             {
                 MessageBox.Show("Mã phải đủ 5 \n" + txtMaKhachHang.TextLength);
+                return;
+            }
+            else if (maDaCo.Contains(txtMaKhachHang.Text.Trim().ToUpper()))
+            {
+                MessageBox.Show("Mã này đã tồn tại");
                 return;
             }
             else if (txtTenKhachHang.Text.Trim() == null)

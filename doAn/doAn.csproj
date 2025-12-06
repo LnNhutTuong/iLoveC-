@@ -332,9 +332,7 @@
   <ItemGroup>
     <None Include="Resources\exit.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="main\ThongKe\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Thêm tiêu đề.png" />
     <None Include="Resources\manager-32.png" />

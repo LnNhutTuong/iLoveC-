@@ -27,10 +27,8 @@ namespace doAn.popUp
 
             MyDataTable danhMuc = new MyDataTable();
             danhMuc.OpenConnection();
-
             SqlCommand danhMucCmd = new SqlCommand(@"SELECT MaDanhMuc FROM DanhMuc");
             danhMuc.Fill(danhMucCmd);
-
             foreach (DataRow row in danhMuc.Rows) {
                 string ma = row["MaDanhMuc"].ToString();
                 maDaCo.Add(ma);

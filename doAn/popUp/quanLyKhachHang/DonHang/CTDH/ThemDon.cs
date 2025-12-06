@@ -164,10 +164,10 @@ namespace doAn.popUp.quanLyKhachHang.DonHang.ChiTietDonHang
             }
         }
 
+        List<string> maTonTai = new List<string>();
+
         private void btnDongY_Click(object sender, EventArgs e)
         {
-            
-
             DataTable dt = (DataTable)newdata.DataSource;
 
             if (string.IsNullOrWhiteSpace(txtMaDonHang.Text))

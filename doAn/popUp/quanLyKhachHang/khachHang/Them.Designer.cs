@@ -61,7 +61,7 @@
             this.txtEmail.Location = new System.Drawing.Point(207, 383);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(259, 32);
-            this.txtEmail.TabIndex = 74;
+            this.txtEmail.TabIndex = 4;
             // 
             // txtMaKhachHang
             // 
@@ -71,7 +71,7 @@
             this.txtMaKhachHang.Name = "txtMaKhachHang";
             this.txtMaKhachHang.PlaceholderText = "Mã khách hàng";
             this.txtMaKhachHang.Size = new System.Drawing.Size(180, 25);
-            this.txtMaKhachHang.TabIndex = 64;
+            this.txtMaKhachHang.TabIndex = 0;
             this.txtMaKhachHang.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtTenKhachHang
@@ -82,7 +82,7 @@
             this.txtTenKhachHang.Name = "txtTenKhachHang";
             this.txtTenKhachHang.PlaceholderText = "Tên khách hàng";
             this.txtTenKhachHang.Size = new System.Drawing.Size(197, 25);
-            this.txtTenKhachHang.TabIndex = 65;
+            this.txtTenKhachHang.TabIndex = 1;
             this.txtTenKhachHang.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnDongY
@@ -92,7 +92,7 @@
             this.btnDongY.Location = new System.Drawing.Point(90, 461);
             this.btnDongY.Name = "btnDongY";
             this.btnDongY.Size = new System.Drawing.Size(101, 39);
-            this.btnDongY.TabIndex = 69;
+            this.btnDongY.TabIndex = 5;
             this.btnDongY.Text = "Đồng ý ";
             this.btnDongY.UseVisualStyleBackColor = true;
             this.btnDongY.Click += new System.EventHandler(this.btnDongY_Click);
@@ -106,7 +106,7 @@
             this.txtSoDienThoai.Location = new System.Drawing.Point(207, 331);
             this.txtSoDienThoai.Name = "txtSoDienThoai";
             this.txtSoDienThoai.Size = new System.Drawing.Size(259, 32);
-            this.txtSoDienThoai.TabIndex = 68;
+            this.txtSoDienThoai.TabIndex = 3;
             // 
             // label7
             // 
@@ -157,7 +157,7 @@
             this.btnHuy.Location = new System.Drawing.Point(309, 461);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(103, 39);
-            this.btnHuy.TabIndex = 70;
+            this.btnHuy.TabIndex = 6;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = true;
             this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
@@ -182,7 +182,7 @@
             this.txtDiaChi.Multiline = true;
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(259, 42);
-            this.txtDiaChi.TabIndex = 90;
+            this.txtDiaChi.TabIndex = 2;
             // 
             // Them
             // 

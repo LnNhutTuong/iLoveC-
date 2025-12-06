@@ -94,9 +94,9 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
                 MessageBox.Show("Không được bỏ trống Số điện thoại!");
                 return;
             }
-            else if (txtSoDienThoai.Text.Length > 10 || txtSoDienThoai.Text.Length < 10)
+            else if (txtSoDienThoai.Text.Length != 10)
             {
-                MessageBox.Show("Số điện thoại phải là 11 số \n" + "Bạn đã nhập: " + txtSoDienThoai.Text.Length + " số!", "LỖI",
+                MessageBox.Show("Số điện thoại phải là 10 số \n" + "Bạn đã nhập: " + txtSoDienThoai.Text.Length + " số!", "LỖI",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSoDienThoai.Clear();
                 return;

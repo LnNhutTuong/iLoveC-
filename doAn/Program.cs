@@ -23,7 +23,7 @@ namespace doAn
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DonHang());
+            Application.Run(new Main());
         }
     }
 }

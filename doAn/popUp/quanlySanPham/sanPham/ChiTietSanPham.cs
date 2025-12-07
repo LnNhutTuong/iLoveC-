@@ -221,6 +221,10 @@ namespace doAn.popUp.quanlySanPham.sanPham
             sanPham.Fill(sanPhamCmdC);
             //string maDaCo = sanPham.Rows.ToString();
 
+
+            string maMoi = txtMaSanPham.Text.ToUpper().Trim();
+
+
             foreach (DataRow row in sanPham.Rows)
             {
                 string ma = row["MaSanPham"].ToString();
@@ -239,7 +243,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
                     MessageBox.Show("Mã phải đủ 5 \n" + "Đã nhập: " + txtMaSanPham.TextLength);
                     return;
                 }
-                else if (maTonTai.Contains(txtMaSanPham.Text.ToUpper().Trim()))
+                else if (maMoi != maSP && maTonTai.Contains(maMoi))
                 {
                     MessageBox.Show("Mã này đã tồn tại!!");
                     return;

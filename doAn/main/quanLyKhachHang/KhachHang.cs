@@ -83,7 +83,7 @@ namespace doAn.quanLyKhachHang
                 {
                     e.Value = "Bạc";
                 }
-                else if (soDon <= 40)
+                else if (soDon <= 15)
                 {
                     e.Value = "Vàng";
                 }

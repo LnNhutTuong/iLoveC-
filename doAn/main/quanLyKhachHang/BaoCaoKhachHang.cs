@@ -54,12 +54,12 @@ namespace doAn.main.quanLyKhachHang
 
 
             chart1.Series.Clear();
-            Series s = new Series("Tổng đơn hàng/ khách hàng");
+            Series s = new Series("Tổng số lượng khách hàng/rank");
             //s.ChartType = SeriesChartType.Doughnut;
             s.IsValueShownAsLabel = true;
-            s.LabelFormat = "#,##0 Đơn hàng";
+            s.LabelFormat = "#,##0 Khách hàng";
             int n0ne = s.Points.AddXY("Chưa có loại", none);
-            s.Points[n0ne].Color = Color.Brown;
+            s.Points[n0ne].Color = Color.Yellow;
             int bronze = s.Points.AddXY("Đồng", dong);
             s.Points[bronze].Color = Color.Brown;
             int silver = s.Points.AddXY("Bạc", bac);

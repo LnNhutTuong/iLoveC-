@@ -86,7 +86,7 @@ namespace doAn.main.quanLyKhachHang
                     ChiTietDH ctdh = new ChiTietDH(maDH);
                     if (ctdh.ShowDialog() == DialogResult.OK)
                     {
-\                        DonHang_Load(sender, e);
+                        DonHang_Load(sender, e);
                     }
 
                 }

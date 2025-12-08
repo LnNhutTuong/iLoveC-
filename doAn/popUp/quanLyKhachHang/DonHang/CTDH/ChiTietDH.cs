@@ -222,11 +222,10 @@ namespace doAn.popUp.quanLyKhachHang.DonHang
 
         private void ChiTietDonHang_Load(object sender, EventArgs e)
         {
-            this.Text = "Đơn hàng: " + lblMaDonHang.Text;
+            this.Text = "Đơn hàng: " + maDH;
             LayDuLieu();
             OnOff(false);
             tatNutSanPham(false);
-            Console.WriteLine(lblMaDonHang.Text);
         }      
 
         private void btnSua_Click(object sender, EventArgs e)

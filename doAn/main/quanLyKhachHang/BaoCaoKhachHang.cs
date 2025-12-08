@@ -23,13 +23,11 @@ namespace doAn.main.quanLyKhachHang
         {
             MyDataTable khachHang = new MyDataTable();
             khachHang.OpenConnection();
-            SqlCommand khachHangCmd = new SqlCommand("SELECT Count(MaKhachHang) as SoLuong,PhanCap " +
-                "                                     FROM KhachHang GROUP BY PhanCap");
+            SqlCommand khachHangCmd = new SqlCommand(@"
+                                        SELECT COUNT(MaKhachHang) AS SoLuong, PhanCap
+                                        FROM KhachHang 
+                                        GROUP BY PhanCap");
             khachHang.Fill(khachHangCmd);
-
-
-            //Console.WriteLine(soLuongDonHang);
-            //string rank = khachHang.Rows[0]["PhanCap"].ToString();
 
             int none = 0;
             int dong = 0;
@@ -37,20 +35,26 @@ namespace doAn.main.quanLyKhachHang
             int vang = 0;
             int kimCuong = 0;
 
+            int tongKH = 0;
+
             foreach (DataRow r in khachHang.Rows)
             {
                 string rank = r["PhanCap"].ToString();
                 int count = Convert.ToInt32(r["SoLuong"]);
 
-                if (rank == "0") none = count;
-                else if (rank == "1") dong = count;
-                else if (rank == "1") bac = count;
-                else if (rank == "2") vang = count;
-                else if (rank == "3") kimCuong = count;
+                tongKH += count;   
 
-                lblTong.Text = "Tổng số khách hàng: " + count;
+                switch (rank)
+                {
+                    case "0": none = count; break;
+                    case "1": dong = count; break;
+                    case "2": bac = count; break;
+                    case "3": vang = count; break;
+                    case "4": kimCuong = count; break;
+                }
             }
 
+            lblTong.Text = "Tổng số khách hàng: " + tongKH;
 
 
             chart1.Series.Clear();
@@ -59,15 +63,15 @@ namespace doAn.main.quanLyKhachHang
             s.IsValueShownAsLabel = true;
             s.LabelFormat = "#,##0 Khách hàng";
             int n0ne = s.Points.AddXY("Chưa có loại", none);
-            s.Points[n0ne].Color = Color.Yellow;
+            //s.Points[n0ne].Color = Color.Yellow;
             int bronze = s.Points.AddXY("Đồng", dong);
-            s.Points[bronze].Color = Color.Brown;
+            //s.Points[bronze].Color = Color.Brown;
             int silver = s.Points.AddXY("Bạc", bac);
-            s.Points[silver].Color = Color.Silver;
+            //s.Points[silver].Color = Color.Silver;
             int gold = s.Points.AddXY("Vàng", vang);
-            s.Points[gold].Color = Color.Gold;
+            //s.Points[gold].Color = Color.Gold;
             int diamond = s.Points.AddXY("Kim cương", kimCuong);
-            s.Points[diamond].Color = Color.Blue;
+            //s.Points[diamond].Color = Color.Blue;
 
 
             chart1.Series.Add(s);

@@ -311,7 +311,7 @@
             this.MinimizeBox = false;
             this.Name = "ThemDon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Them";
+            this.Text = "Thêm đơn hàng";
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);

@@ -62,35 +62,50 @@ namespace doAn.quanLyKhachHang
 
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
-            //if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
             if (dataGridView.Columns[e.ColumnIndex].Name == "PhanCap" && e.Value != null)
             {
                 object cell = dataGridView.Rows[e.RowIndex].Cells["SoLuong"].Value;
 
                 int soDon = cell is DBNull ? 0 : Convert.ToInt32(cell);
 
-                if(soDon == 0)
+                int rankValue = 0;
+
+                if (soDon == 0)
                 {
+                    rankValue = 0;
                     e.Value = "Chưa có";
                 }
-                if (soDon <= 5)
+                else if (soDon <= 5)
                 {
+                    rankValue = 1;
                     e.Value = "Đồng";
                 }
                 else if (soDon <= 10)
                 {
+                    rankValue = 2;
                     e.Value = "Bạc";
                 }
                 else if (soDon <= 15)
                 {
+                    rankValue = 3;
                     e.Value = "Vàng";
                 }
                 else
                 {
+                    rankValue = 4;
                     e.Value = "Kim cương";
                 }
+
+                string maKH = dataGridView.Rows[e.RowIndex].Cells["MaKhachHang"].Value.ToString();
+
+                MyDataTable dt = new MyDataTable();
+                dt.OpenConnection();
+                SqlCommand cdm = new SqlCommand(@"UPDATE KhachHang SET PhanCap = @pc WHERE MaKhachHang = @makh"
+                );
+                cdm.Parameters.AddWithValue("@pc", rankValue);
+                cdm.Parameters.AddWithValue("@makh", maKH);
+                dt.Fill(cdm);
+                // ------------------------
 
                 e.FormattingApplied = true;
             }

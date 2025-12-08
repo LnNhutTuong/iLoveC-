@@ -18,7 +18,7 @@ namespace doAn.main
 
     public partial class Main : Form
     {
-        public string LGmaNV { get;  set; }
+        public string LGmaNV { get; set; }
 
         public event EventHandler DangNhap;
         public event EventHandler ThongTinNhanVien;
@@ -38,7 +38,7 @@ namespace doAn.main
                 switch (value)
                 {
                     case "login":
-                        mnuDangNhap.Text = "Đăng nhập";
+                        btnDangNhap.Text = "Đăng nhập";
                         break;
                     case "logined":
                         break;
@@ -82,7 +82,7 @@ namespace doAn.main
 
         void ChuaDangNhap()
         {
-            mnuDangNhap.Enabled = true;
+            btnDangNhap.Enabled = true;
 
             mnuQuanLy.Enabled = false;
             mnuThongKe.Enabled = false;
@@ -90,10 +90,10 @@ namespace doAn.main
             mnuDoiMatKhau.Visible = false;
             mnuDangXuat.Visible = false;
 
-            mnuNhanVien.Visible = false ;
-            mnuSanPham.Visible = false;
-            mnuKhachHang.Visible = false;
-            mnuDonHang.Visible = false;
+            btnNhanVien.Visible = false;
+            btnSanPham.Visible = false;
+            btnKhachHang.Visible = false;
+            btnDonHang.Visible = false;
         }
 
 
@@ -102,10 +102,10 @@ namespace doAn.main
             mnuQuanLy.Enabled = true;
             mnuThongKe.Enabled = true;
 
-            mnuNhanVien.Visible = true;
-            mnuSanPham.Visible = true;
-            mnuKhachHang.Visible = true;
-            mnuDonHang.Visible = true;
+            btnNhanVien.Visible = true;
+            btnSanPham.Visible = true;
+            btnKhachHang.Visible = true;
+            btnDonHang.Visible = true;
 
             mnuBcKh.Visible = true;
             mnuBcSP.Visible = true;
@@ -119,13 +119,13 @@ namespace doAn.main
             mnuQuanLy.Enabled = true;
             mnuThongKe.Enabled = true;
 
-            mnuNhanVien.Visible = false;
-            mnuKhachHang.Visible = false;
-            mnuDonHang.Visible = false;
+            btnNhanVien.Visible = false;
+            btnKhachHang.Visible = false;
+            btnDonHang.Visible = false;
 
             mnuBcKh.Visible = false;
 
-            mnuSanPham.Visible = true;
+            btnSanPham.Visible = true;
             mnuBcSP.Visible = true;
 
             mnuDoiMatKhau.Visible = true;
@@ -136,11 +136,11 @@ namespace doAn.main
         {
             mnuQuanLy.Enabled = true;
 
-            mnuNhanVien.Visible = true;
+            btnNhanVien.Visible = true;
 
-            mnuSanPham.Visible = false;
-            mnuKhachHang.Visible = false;
-            mnuDonHang.Visible = false;
+            btnSanPham.Visible = false;
+            btnKhachHang.Visible = false;
+            btnDonHang.Visible = false;
 
             mnuThongKe.Visible = false;
             mnuBcKh.Visible = false;
@@ -155,25 +155,25 @@ namespace doAn.main
             mnuQuanLy.Enabled = true;
             mnuThongKe.Enabled = true;
 
-            mnuKhachHang.Visible = true;
-            mnuDonHang.Visible = true;
+            btnKhachHang.Visible = true;
+            btnDonHang.Visible = true;
             mnuBcKh.Visible = true;
 
-            mnuNhanVien.Visible = false;
-            mnuSanPham.Visible = false;
+            btnNhanVien.Visible = false;
+            btnSanPham.Visible = false;
             mnuBcSP.Visible = false;
 
             mnuDoiMatKhau.Visible = true;
             mnuDangXuat.Visible = true;
         }
 
-        public void setTrangThai(string MaNV,string TenNV)
+        public void setTrangThai(string MaNV, string TenNV)
         {
             this.mode = "logined";
-            mnuDangNhap.Visible = false;
+            btnDangNhap.Visible = false;
             this.ThongTinNhanVien += (s, e) =>
             {
-                lblTrangThai.Text = "Nhân viên: "+MaNV + " - " + TenNV;
+                lblTrangThai.Text = "Nhân viên: " + MaNV + " - " + TenNV;
             };
 
             this.ThongTinNhanVien?.Invoke(this, EventArgs.Empty);
@@ -186,18 +186,13 @@ namespace doAn.main
             else if (quyen.StartsWith("NS")) qlNV();
             else if (quyen.StartsWith("KH")) qlKH();
         }
-       
+
         private void Main_Load(object sender, EventArgs e)
         {
             ChuaDangNhap();
         }
-    
-        private void mnuThoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
-        private void mnuDangNhap_Click(object sender, EventArgs e)
+        private void btnDangNhap_Click_1(object sender, EventArgs e)
         {
             if (mode == "login")
             {
@@ -212,7 +207,7 @@ namespace doAn.main
         private void mnuDangXuat_Click(object sender, EventArgs e)
         {
             this.mode = "login";
-            mnuDangNhap.Visible = true;
+            btnDangNhap.Visible = true;
             lblTrangThai.Text = "Chưa đăng nhập";
             ChuaDangNhap();
         }
@@ -229,6 +224,51 @@ namespace doAn.main
             else
             {
                 changepass.Activate();
+            }
+        }       
+
+        private void mnuBcSP_Click(object sender, EventArgs e)
+        {
+            if (bcSanPham == null || bcSanPham.IsDisposed)
+            {
+                bcSanPham = new BaoCaoSanPham();
+                bcSanPham.MdiParent = this;
+                Dock = DockStyle.Fill;
+                bcSanPham.Show();
+            }
+            else
+            {
+                bcSanPham.Activate();
+            }
+        }     
+
+        private void mnuBcKh_Click(object sender, EventArgs e)
+        {
+            if (bcKhachHang == null || bcKhachHang.IsDisposed)
+            {
+                bcKhachHang = new BaoCaoKhachHang();
+                bcKhachHang.MdiParent = this;
+                Dock = DockStyle.Fill;
+                bcKhachHang.Show();
+            }
+            else
+            {
+                bcKhachHang.Activate();
+            }
+        }
+
+        private void btnNhanVien_Click(object sender, EventArgs e)
+        {
+            if (qlNhanVien == null || qlNhanVien.IsDisposed)
+            {
+                qlNhanVien = new QlNhanVien();
+                qlNhanVien.MdiParent = this;
+                Dock = DockStyle.Fill;
+                qlNhanVien.Show();
+            }
+            else
+            {
+                qlNhanVien.Activate();
             }
         }
 
@@ -247,6 +287,21 @@ namespace doAn.main
             }
         }
 
+        private void btnSanPham_Click(object sender, EventArgs e)
+        {
+            if (qlSanPham == null || qlSanPham.IsDisposed)
+            {
+                qlSanPham = new QlSanPham();
+                qlSanPham.MdiParent = this;
+                Dock = DockStyle.Fill;
+                qlSanPham.Show();
+            }
+            else
+            {
+                qlSanPham.Activate();
+            }
+        }
+
         private void mnuSanPham_Click(object sender, EventArgs e)
         {
             if (qlSanPham == null || qlSanPham.IsDisposed)
@@ -262,18 +317,18 @@ namespace doAn.main
             }
         }
 
-        private void mnuBcSP_Click(object sender, EventArgs e)
+        private void btnKhachHang_Click(object sender, EventArgs e)
         {
-            if (bcSanPham == null || bcSanPham.IsDisposed)
+            if (khachHang == null || khachHang.IsDisposed)
             {
-                bcSanPham = new BaoCaoSanPham();
-                bcSanPham.MdiParent = this;
+                khachHang = new KhachHang();
+                khachHang.MdiParent = this;
                 Dock = DockStyle.Fill;
-                bcSanPham.Show();
+                khachHang.Show();
             }
             else
             {
-                bcSanPham.Activate();
+                khachHang.Activate();
             }
         }
 
@@ -292,6 +347,21 @@ namespace doAn.main
             }
         }
 
+        private void btnDonHang_Click(object sender, EventArgs e)
+        {
+            if (donHang == null || donHang.IsDisposed)
+            {
+                donHang = new DonHang();
+                donHang.MdiParent = this;
+                Dock = DockStyle.Fill;
+                donHang.Show();
+            }
+            else
+            {
+                donHang.Activate();
+            }
+        }
+
         private void mnuDonHang_Click(object sender, EventArgs e)
         {
             if (donHang == null || donHang.IsDisposed)
@@ -307,19 +377,9 @@ namespace doAn.main
             }
         }
 
-        private void mnuBcKh_Click(object sender, EventArgs e)
+        private void btnThoat_Click(object sender, EventArgs e)
         {
-            if (bcKhachHang == null || bcKhachHang.IsDisposed)
-            {
-                bcKhachHang = new BaoCaoKhachHang();
-                bcKhachHang.MdiParent = this;
-                Dock = DockStyle.Fill;
-                bcKhachHang.Show();
-            }
-            else
-            {
-                bcKhachHang.Activate();
-            }
+            this.Close();
         }
     }
 }

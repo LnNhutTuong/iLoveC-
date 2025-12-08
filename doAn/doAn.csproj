@@ -334,6 +334,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\login-16.png" />
+    <None Include="Resources\product2.ico" />
+    <None Include="Resources\pie-chart.ico" />
     <None Include="Resources\Thêm tiêu đề.png" />
     <None Include="Resources\manager-32.png" />
     <None Include="Resources\bag-16.png" />
@@ -342,6 +345,10 @@
     <Content Include="images\noImg.jfif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\chart.ico" />
+    <None Include="Resources\hand_paper.ico" />
+    <None Include="Resources\key-16.png" />
+    <None Include="Resources\exit-32.png" />
     <Content Include="Resources\login-100.png" />
     <None Include="Resources\user-32.png" />
     <None Include="Resources\login-1001.png" />

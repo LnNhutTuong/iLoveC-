@@ -33,6 +33,10 @@
             this.mnuDoiMatKhau = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDangXuat = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuQuanLy = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuNhanVien = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSanPham = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuKhachHang = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDonHang = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBcSP = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBcKh = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,12 +48,12 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.mnuDangNhap = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuNhanVien = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSanPham = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuKhachHang = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDonHang = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuThoat = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDangNhap = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnNhanVien = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSanPham = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnKhachHang = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDonHang = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -80,6 +84,7 @@
             // 
             // mnuDoiMatKhau
             // 
+            this.mnuDoiMatKhau.Image = global::doAn.Properties.Resources.key_16;
             this.mnuDoiMatKhau.Name = "mnuDoiMatKhau";
             this.mnuDoiMatKhau.Size = new System.Drawing.Size(181, 26);
             this.mnuDoiMatKhau.Text = "Đổi &mật khẩu";
@@ -87,6 +92,7 @@
             // 
             // mnuDangXuat
             // 
+            this.mnuDangXuat.Image = global::doAn.Properties.Resources.exit_32;
             this.mnuDangXuat.Name = "mnuDangXuat";
             this.mnuDangXuat.Size = new System.Drawing.Size(181, 26);
             this.mnuDangXuat.Text = "Đăng &xuất";
@@ -94,9 +100,46 @@
             // 
             // mnuQuanLy
             // 
+            this.mnuQuanLy.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuNhanVien,
+            this.mnuSanPham,
+            this.mnuKhachHang,
+            this.mnuDonHang});
             this.mnuQuanLy.Name = "mnuQuanLy";
             this.mnuQuanLy.Size = new System.Drawing.Size(73, 24);
             this.mnuQuanLy.Text = "&Quản lý";
+            // 
+            // mnuNhanVien
+            // 
+            this.mnuNhanVien.Image = global::doAn.Properties.Resources.user_32;
+            this.mnuNhanVien.Name = "mnuNhanVien";
+            this.mnuNhanVien.Size = new System.Drawing.Size(169, 26);
+            this.mnuNhanVien.Text = "&Nhân viên";
+            this.mnuNhanVien.Click += new System.EventHandler(this.mnuNhanVien_Click);
+            // 
+            // mnuSanPham
+            // 
+            this.mnuSanPham.Image = global::doAn.Properties.Resources.blocks_2_32;
+            this.mnuSanPham.Name = "mnuSanPham";
+            this.mnuSanPham.Size = new System.Drawing.Size(169, 26);
+            this.mnuSanPham.Text = "&Sản phẩm";
+            this.mnuSanPham.Click += new System.EventHandler(this.mnuSanPham_Click);
+            // 
+            // mnuKhachHang
+            // 
+            this.mnuKhachHang.Image = global::doAn.Properties.Resources.manager_32;
+            this.mnuKhachHang.Name = "mnuKhachHang";
+            this.mnuKhachHang.Size = new System.Drawing.Size(169, 26);
+            this.mnuKhachHang.Text = "Khách &hàng";
+            this.mnuKhachHang.Click += new System.EventHandler(this.mnuKhachHang_Click);
+            // 
+            // mnuDonHang
+            // 
+            this.mnuDonHang.Image = global::doAn.Properties.Resources.bag_161;
+            this.mnuDonHang.Name = "mnuDonHang";
+            this.mnuDonHang.Size = new System.Drawing.Size(169, 26);
+            this.mnuDonHang.Text = "&Đơn hàng";
+            this.mnuDonHang.Click += new System.EventHandler(this.mnuDonHang_Click);
             // 
             // mnuThongKe
             // 
@@ -109,6 +152,7 @@
             // 
             // mnuBcSP
             // 
+            this.mnuBcSP.Image = global::doAn.Properties.Resources.pie_chart;
             this.mnuBcSP.Name = "mnuBcSP";
             this.mnuBcSP.Size = new System.Drawing.Size(225, 26);
             this.mnuBcSP.Text = "Báo cáo &sản phẩm";
@@ -116,6 +160,7 @@
             // 
             // mnuBcKh
             // 
+            this.mnuBcKh.Image = global::doAn.Properties.Resources.chart;
             this.mnuBcKh.Name = "mnuBcKh";
             this.mnuBcKh.Size = new System.Drawing.Size(225, 26);
             this.mnuBcKh.Text = "Báo cáo khách &hàng";
@@ -132,12 +177,14 @@
             // 
             // mnuHuongDanSuDung
             // 
+            this.mnuHuongDanSuDung.Image = global::doAn.Properties.Resources.hand_paper;
             this.mnuHuongDanSuDung.Name = "mnuHuongDanSuDung";
             this.mnuHuongDanSuDung.Size = new System.Drawing.Size(230, 26);
             this.mnuHuongDanSuDung.Text = "&Hướng dẫn sử dụng";
             // 
             // mnuThongTinPhanMem
             // 
+            this.mnuThongTinPhanMem.Image = global::doAn.Properties.Resources.product2;
             this.mnuThongTinPhanMem.Name = "mnuThongTinPhanMem";
             this.mnuThongTinPhanMem.Size = new System.Drawing.Size(230, 26);
             this.mnuThongTinPhanMem.Text = "Thông tin &phần mềm";
@@ -180,64 +227,65 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuDangNhap,
-            this.mnuNhanVien,
-            this.mnuSanPham,
-            this.mnuKhachHang,
-            this.mnuDonHang,
-            this.mnuThoat});
+            this.btnDangNhap,
+            this.btnNhanVien,
+            this.btnSanPham,
+            this.btnKhachHang,
+            this.btnDonHang,
+            this.btnThoat});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1902, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // mnuDangNhap
+            // btnDangNhap
             // 
-            this.mnuDangNhap.Name = "mnuDangNhap";
-            this.mnuDangNhap.Size = new System.Drawing.Size(96, 25);
-            this.mnuDangNhap.Text = "Đăng nhập";
-            this.mnuDangNhap.Click += new System.EventHandler(this.mnuDangNhap_Click);
+            this.btnDangNhap.Image = global::doAn.Properties.Resources.login_16;
+            this.btnDangNhap.Name = "btnDangNhap";
+            this.btnDangNhap.Size = new System.Drawing.Size(116, 25);
+            this.btnDangNhap.Text = "Đăng nhập";
+            this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click_1);
             // 
-            // mnuNhanVien
+            // btnNhanVien
             // 
-            this.mnuNhanVien.Image = global::doAn.Properties.Resources.user_32;
-            this.mnuNhanVien.Name = "mnuNhanVien";
-            this.mnuNhanVien.Size = new System.Drawing.Size(109, 25);
-            this.mnuNhanVien.Text = "&Nhân viên";
-            this.mnuNhanVien.Click += new System.EventHandler(this.mnuNhanVien_Click);
+            this.btnNhanVien.Image = global::doAn.Properties.Resources.user_32;
+            this.btnNhanVien.Name = "btnNhanVien";
+            this.btnNhanVien.Size = new System.Drawing.Size(109, 25);
+            this.btnNhanVien.Text = "&Nhân viên";
+            this.btnNhanVien.Click += new System.EventHandler(this.btnNhanVien_Click);
             // 
-            // mnuSanPham
+            // btnSanPham
             // 
-            this.mnuSanPham.Image = global::doAn.Properties.Resources.blocks_2_32;
-            this.mnuSanPham.Name = "mnuSanPham";
-            this.mnuSanPham.Size = new System.Drawing.Size(109, 25);
-            this.mnuSanPham.Text = "&Sản phẩm";
-            this.mnuSanPham.Click += new System.EventHandler(this.mnuSanPham_Click);
+            this.btnSanPham.Image = global::doAn.Properties.Resources.blocks_2_32;
+            this.btnSanPham.Name = "btnSanPham";
+            this.btnSanPham.Size = new System.Drawing.Size(109, 25);
+            this.btnSanPham.Text = "&Sản phẩm";
+            this.btnSanPham.Click += new System.EventHandler(this.btnSanPham_Click);
             // 
-            // mnuKhachHang
+            // btnKhachHang
             // 
-            this.mnuKhachHang.Image = global::doAn.Properties.Resources.manager_32;
-            this.mnuKhachHang.Name = "mnuKhachHang";
-            this.mnuKhachHang.Size = new System.Drawing.Size(120, 25);
-            this.mnuKhachHang.Text = "Khách &hàng";
-            this.mnuKhachHang.Click += new System.EventHandler(this.mnuKhachHang_Click);
+            this.btnKhachHang.Image = global::doAn.Properties.Resources.manager_32;
+            this.btnKhachHang.Name = "btnKhachHang";
+            this.btnKhachHang.Size = new System.Drawing.Size(120, 25);
+            this.btnKhachHang.Text = "Khách &hàng";
+            this.btnKhachHang.Click += new System.EventHandler(this.btnKhachHang_Click);
             // 
-            // mnuDonHang
+            // btnDonHang
             // 
-            this.mnuDonHang.Image = global::doAn.Properties.Resources.bag_161;
-            this.mnuDonHang.Name = "mnuDonHang";
-            this.mnuDonHang.Size = new System.Drawing.Size(108, 25);
-            this.mnuDonHang.Text = "&Đơn hàng";
-            this.mnuDonHang.Click += new System.EventHandler(this.mnuDonHang_Click);
+            this.btnDonHang.Image = global::doAn.Properties.Resources.bag_161;
+            this.btnDonHang.Name = "btnDonHang";
+            this.btnDonHang.Size = new System.Drawing.Size(108, 25);
+            this.btnDonHang.Text = "&Đơn hàng";
+            this.btnDonHang.Click += new System.EventHandler(this.btnDonHang_Click);
             // 
-            // mnuThoat
+            // btnThoat
             // 
-            this.mnuThoat.Image = global::doAn.Properties.Resources.exit;
-            this.mnuThoat.Name = "mnuThoat";
-            this.mnuThoat.Size = new System.Drawing.Size(81, 25);
-            this.mnuThoat.Text = "&Thoát";
-            this.mnuThoat.Click += new System.EventHandler(this.mnuThoat_Click);
+            this.btnThoat.Image = global::doAn.Properties.Resources.exit;
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(81, 25);
+            this.btnThoat.Text = "&Thoát";
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // Main
             // 
@@ -284,12 +332,16 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBcKh;
         private System.Windows.Forms.ToolStripMenuItem mnuBcSP;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripMenuItem mnuDangNhap;
+        private System.Windows.Forms.ToolStripMenuItem btnDangNhap;
+        private System.Windows.Forms.ToolStripMenuItem btnNhanVien;
+        private System.Windows.Forms.ToolStripMenuItem btnSanPham;
+        private System.Windows.Forms.ToolStripMenuItem btnKhachHang;
+        private System.Windows.Forms.ToolStripMenuItem btnDonHang;
+        private System.Windows.Forms.ToolStripMenuItem btnThoat;
+        private System.Windows.Forms.ToolStripMenuItem mnuQuanLy;
         private System.Windows.Forms.ToolStripMenuItem mnuNhanVien;
         private System.Windows.Forms.ToolStripMenuItem mnuSanPham;
         private System.Windows.Forms.ToolStripMenuItem mnuKhachHang;
         private System.Windows.Forms.ToolStripMenuItem mnuDonHang;
-        private System.Windows.Forms.ToolStripMenuItem mnuThoat;
-        private System.Windows.Forms.ToolStripMenuItem mnuQuanLy;
     }
 }

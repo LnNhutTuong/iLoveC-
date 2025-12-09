@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAnHienMatKhau = new System.Windows.Forms.Button();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.lblMatKhau = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -76,6 +77,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnAnHienMatKhau);
             this.splitContainer1.Panel2.Controls.Add(this.txtMatKhau);
             this.splitContainer1.Panel2.Controls.Add(this.lblMatKhau);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
@@ -109,12 +111,26 @@
             this.label1.Text = "QUẢN LÝ NHÂN VIÊN";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnAnHienMatKhau
+            // 
+            this.btnAnHienMatKhau.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAnHienMatKhau.BackgroundImage = global::doAn.Properties.Resources.visible;
+            this.btnAnHienMatKhau.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAnHienMatKhau.Image = global::doAn.Properties.Resources.visible;
+            this.btnAnHienMatKhau.Location = new System.Drawing.Point(539, 408);
+            this.btnAnHienMatKhau.Name = "btnAnHienMatKhau";
+            this.btnAnHienMatKhau.Size = new System.Drawing.Size(45, 32);
+            this.btnAnHienMatKhau.TabIndex = 54;
+            this.btnAnHienMatKhau.Text = "hide";
+            this.btnAnHienMatKhau.UseVisualStyleBackColor = false;
+            this.btnAnHienMatKhau.Click += new System.EventHandler(this.btnAnHienMatKhau_Click);
+            // 
             // txtMatKhau
             // 
             this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMatKhau.Location = new System.Drawing.Point(291, 408);
             this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(293, 32);
+            this.txtMatKhau.Size = new System.Drawing.Size(242, 32);
             this.txtMatKhau.TabIndex = 2;
             // 
             // lblMatKhau
@@ -318,7 +334,7 @@
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.Size = new System.Drawing.Size(1179, 282);
             this.dataGridView.TabIndex = 14;
-            this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting_1);
+            this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             // 
             // MaNhanVie
             // 
@@ -426,5 +442,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoDienThoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.Button btnAnHienMatKhau;
     }
 }

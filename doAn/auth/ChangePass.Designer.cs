@@ -30,6 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnAnHienMatKhau = new System.Windows.Forms.Button();
             this.btnHuyBo = new System.Windows.Forms.Button();
             this.txtMatKhauMoi = new System.Windows.Forms.TextBox();
             this.txtMatKhauCu = new System.Windows.Forms.TextBox();
@@ -56,6 +57,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnAnHienMatKhau);
             this.splitContainer1.Panel2.Controls.Add(this.btnHuyBo);
             this.splitContainer1.Panel2.Controls.Add(this.txtMatKhauMoi);
             this.splitContainer1.Panel2.Controls.Add(this.txtMatKhauCu);
@@ -63,8 +65,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(431, 267);
-            this.splitContainer1.SplitterDistance = 143;
+            this.splitContainer1.Size = new System.Drawing.Size(459, 267);
+            this.splitContainer1.SplitterDistance = 152;
             this.splitContainer1.TabIndex = 1;
             // 
             // pictureBox1
@@ -73,10 +75,24 @@
             this.pictureBox1.Image = global::doAn.Properties.Resources.login_100;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(143, 267);
+            this.pictureBox1.Size = new System.Drawing.Size(152, 267);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnAnHienMatKhau
+            // 
+            this.btnAnHienMatKhau.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAnHienMatKhau.BackgroundImage = global::doAn.Properties.Resources.visible;
+            this.btnAnHienMatKhau.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAnHienMatKhau.Image = global::doAn.Properties.Resources.visible;
+            this.btnAnHienMatKhau.Location = new System.Drawing.Point(246, 124);
+            this.btnAnHienMatKhau.Name = "btnAnHienMatKhau";
+            this.btnAnHienMatKhau.Size = new System.Drawing.Size(45, 32);
+            this.btnAnHienMatKhau.TabIndex = 13;
+            this.btnAnHienMatKhau.Text = "hide";
+            this.btnAnHienMatKhau.UseVisualStyleBackColor = false;
+            this.btnAnHienMatKhau.Click += new System.EventHandler(this.btnAnHienMatKhau_Click);
             // 
             // btnHuyBo
             // 
@@ -95,7 +111,6 @@
             this.txtMatKhauMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMatKhauMoi.Location = new System.Drawing.Point(36, 162);
             this.txtMatKhauMoi.Name = "txtMatKhauMoi";
-            this.txtMatKhauMoi.PasswordChar = '*';
             this.txtMatKhauMoi.Size = new System.Drawing.Size(212, 32);
             this.txtMatKhauMoi.TabIndex = 1;
             // 
@@ -153,7 +168,7 @@
             // ChangePass
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(431, 267);
+            this.ClientSize = new System.Drawing.Size(459, 267);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -182,5 +197,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAnHienMatKhau;
     }
 }

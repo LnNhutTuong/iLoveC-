@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BC = BCrypt.Net.BCrypt;
 
 namespace doAn.main
 {
@@ -63,6 +64,10 @@ namespace doAn.main
             Flash flash = new Flash();
             flash.ShowDialog();
             InitializeComponent();
+
+            //string test = "123456";
+            //string hash = BC.HashPassword(test);
+            //Console.WriteLine(hash);
 
             this.mode = "login";
             this.DangNhap += (s, e) =>
@@ -181,7 +186,7 @@ namespace doAn.main
 
         public void PhanQuyen(string quyen)
         {
-            if (quyen.StartsWith("AD")) admin();
+            if (quyen.StartsWith("AD") || quyen.StartsWith("GD")) admin();
             else if (quyen.StartsWith("SP")) qlSP();
             else if (quyen.StartsWith("NS")) qlNV();
             else if (quyen.StartsWith("KH")) qlKH();
@@ -210,6 +215,15 @@ namespace doAn.main
             btnDangNhap.Visible = true;
             lblTrangThai.Text = "Chưa đăng nhập";
             ChuaDangNhap();
+
+            //đóng hết con
+            foreach (Form f in this.MdiChildren)
+            {
+                f.Close();
+            }
+
+            Login login = new Login();
+            login.Show();
         }
 
         private void mnuDoiMatKhau_Click(object sender, EventArgs e)

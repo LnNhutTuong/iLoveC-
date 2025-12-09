@@ -22,13 +22,12 @@ namespace doAn.quanLyNguoIDung
 
 
         string maNhanVien = "";
-
+        string hashCu = ""; 
         public QlNhanVien()
         {
             InitializeComponent();
             dataTable.OpenConnection();
-
-            
+            txtMatKhau.UseSystemPasswordChar = true;
         }
 
         public void LayDuLieu()
@@ -62,7 +61,7 @@ namespace doAn.quanLyNguoIDung
 
             string nhanVienSql = "SELECT * FROM NhanVien WHERE MaNhanVien <> 'ADMIN'";
             SqlCommand nhanVienCmd = new SqlCommand(nhanVienSql);
-            dataTable.Fill(nhanVienCmd);         
+            dataTable.Fill(nhanVienCmd);
 
             //gan du lieu vao nguon
             data.DataSource = dataTable;
@@ -80,7 +79,7 @@ namespace doAn.quanLyNguoIDung
 
             txtMaNhanVien.DataBindings.Add("Text", data, "MaNhanVien");
             txtTenNhanVien.DataBindings.Add("Text", data, "TenNhanVien");
-            txtMatKhau.DataBindings.Add("Text", data, "MatKhau");
+            //txtMatKhau.DataBindings.Add("Text", data, "MatKhau");
             txtSoDienThoai.DataBindings.Add("Text", data, "Sdt");
             txtEmail.DataBindings.Add("Text", data, "Email");
             cboChucVu.DataBindings.Add("SelectedValue", data, "MaChucVu");
@@ -96,11 +95,15 @@ namespace doAn.quanLyNguoIDung
         {
             txtMaNhanVien.Enabled = value;
             txtTenNhanVien.Enabled = value;
-            txtMatKhau.Enabled = value;
+
+            lblMatKhau.Visible = false;
+            txtMatKhau.Visible = false;
+
             txtSoDienThoai.Enabled = value;
             txtEmail.Enabled = value;
             cboChucVu.Enabled = value;
 
+            btnAnHienMatKhau.Visible = false;
 
             btnThem.Enabled = !value;
             btnSua.Enabled = !value;
@@ -130,25 +133,12 @@ namespace doAn.quanLyNguoIDung
         private void Main_Load(object sender, EventArgs e)
         {
             LayDuLieu();
-            txtMatKhau.PasswordChar = '*';
+            //txtMatKhau.PasswordChar = '*';
             showPass = false;
             OnOff(false);
         }
 
-        //An
         bool showPass = false;
-
-        private void dataGridView_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (!showPass)
-            {
-                if (dataGridView.Columns[e.ColumnIndex].Name == "MatKhau" && e.Value != null)
-                {
-                    e.Value = "••••••••••";
-                    e.FormattingApplied = true;
-                }
-            }
-        }
 
         List<string> maTonTai = new List<string>();
 
@@ -157,7 +147,7 @@ namespace doAn.quanLyNguoIDung
 
             MyDataTable nhanVien = new MyDataTable();
             nhanVien.OpenConnection();
-            SqlCommand nhanVienCmd = new SqlCommand("Select MaNhanVien FROM NhanVien");
+            SqlCommand nhanVienCmd = new SqlCommand("Select MaNhanVien,MatKhau FROM NhanVien");
             nhanVien.Fill(nhanVienCmd);
 
             foreach(DataRow row in nhanVien.Rows)
@@ -183,12 +173,7 @@ namespace doAn.quanLyNguoIDung
             {
                 MessageBox.Show("Tên nhân viên không được bỏ trống!", "LỖI",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }          
-            else if (txtMatKhau.Text.Trim() == "")
-            {
-                MessageBox.Show("Mật khẩu không được bỏ trống!", "LỖI",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }                   
             //------------So Dien Thoai
             else if (txtSoDienThoai.Text.Trim() == "")
             {
@@ -197,7 +182,7 @@ namespace doAn.quanLyNguoIDung
             }
             else if (txtSoDienThoai.Text.Length != 10)
             {
-                MessageBox.Show("Số điện thoại phải là 11 số \n" + "Bạn đã nhập: " + txtSoDienThoai.Text.Length + " số!", "LỖI",
+                MessageBox.Show("Số điện thoại phải là 10 số \n" + "Bạn đã nhập: " + txtSoDienThoai.Text.Length + " số!", "LỖI",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (!txtSoDienThoai.Text.StartsWith("0"))
@@ -239,7 +224,7 @@ namespace doAn.quanLyNguoIDung
                             cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
                             cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
                             cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
-                            cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = BC.HashPassword("123456");
+                            cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = BC.HashPassword("123456");
                             cmd.Parameters.Add("@Sdt", SqlDbType.NVarChar, 11).Value = txtSoDienThoai.Text;
                             cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
 
@@ -251,6 +236,21 @@ namespace doAn.quanLyNguoIDung
                     }
                     else
                     {
+             
+                        string matKhauMoi;
+                        hashCu = dataTable.Rows[data.Position]["MatKhau"].ToString();
+
+                        if (txtMatKhau.Text.Trim() == "")
+                        {
+                            // ko doi -> hash cu
+                            matKhauMoi = hashCu;
+                        }
+                        else
+                        {
+                            // doi -> hash moi
+                            matKhauMoi = BC.HashPassword(txtMatKhau.Text);
+                        }
+
                         string sql = @"UPDATE NhanVien
                                        SET MaNhanVien = @MaNhanVienMoi,
                                             TenNhanVien = @TenNhanVien,
@@ -260,19 +260,20 @@ namespace doAn.quanLyNguoIDung
                                             Email = @Email 
                                        WHERE MaNhanVien = @MaNhanVienCu";
 
-                        SqlCommand cmd = new SqlCommand(sql);
+                            SqlCommand cmd = new SqlCommand(sql);
 
-                        cmd.Parameters.Add("@MaNhanVienMoi", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
-                        cmd.Parameters.Add("@MaNhanVienCu", SqlDbType.NVarChar, 5).Value = maNhanVien;
-                        cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
-                        cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
-                        cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = BC.HashPassword(txtMatKhau.Text);
-                        cmd.Parameters.Add("@Sdt", SqlDbType.NVarChar, 11).Value = txtSoDienThoai.Text;
-                        cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
+                            cmd.Parameters.Add("@MaNhanVienMoi", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
+                            cmd.Parameters.Add("@MaNhanVienCu", SqlDbType.NVarChar, 5).Value = dataGridView.CurrentRow.Cells["MaNhanVie"].Value.ToString(); ;
+                            cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
+                            cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
+                            cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 100).Value = matKhauMoi;
+                            cmd.Parameters.Add("@Sdt", SqlDbType.NVarChar, 11).Value = txtSoDienThoai.Text;
+                            cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
 
-                        dataTable.Update(cmd);
+                            dataTable.Update(cmd);
 
-                        MessageBox.Show("Sửa thành công !!");
+                            MessageBox.Show("Sửa thành công !!");
+                                             
                     }
                     Main_Load(sender, e);
                 }
@@ -307,17 +308,20 @@ namespace doAn.quanLyNguoIDung
         {
             txtMatKhau.PasswordChar = '•';
             Main_Load(sender, e);
-            lblMatKhau.Visible = true;
-            txtMatKhau.Visible = true;
+
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             maNhanVien = txtMaNhanVien.Text;
-            txtMatKhau.PasswordChar = '\0';
+            //txtMatKhau.PasswordChar = '\0';
             OnOff(true);
             lblMatKhau.Visible = true;
             txtMatKhau.Visible = true;
+            btnAnHienMatKhau.Visible = true;
+
+            txtMatKhau.Text = "";
+
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -326,8 +330,6 @@ namespace doAn.quanLyNguoIDung
 
             txtMaNhanVien.Clear();
             txtTenNhanVien.Clear();
-            lblMatKhau.Visible = false;
-            txtMatKhau.Visible = false; //Mat khau moi luon luon la 123456
             txtSoDienThoai.Clear();
             txtEmail.Clear();
             cboChucVu.Text = "";
@@ -335,6 +337,32 @@ namespace doAn.quanLyNguoIDung
             txtMaNhanVien.Focus();
 
             OnOff(true);
+        }
+
+        private void btnAnHienMatKhau_Click(object sender, EventArgs e)
+        {
+            if (txtMatKhau.UseSystemPasswordChar)
+            {
+                txtMatKhau.UseSystemPasswordChar = false;
+                btnAnHienMatKhau.BackgroundImage = Properties.Resources.visible;
+            }
+            else
+            {
+                txtMatKhau.UseSystemPasswordChar = true;
+                btnAnHienMatKhau.BackgroundImage = Properties.Resources.hide;
+            }
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (!showPass)
+            {
+                if (dataGridView.Columns[e.ColumnIndex].Name == "MatKhau" && e.Value != null)
+                {
+                    e.Value = "••••••••••";
+                    e.FormattingApplied = true;
+                }
+            }
         }
     }
 }

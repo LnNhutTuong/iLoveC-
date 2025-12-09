@@ -22,7 +22,7 @@ namespace doAn
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
             builder["Server"] = ".\\SQLEXPRESS";
-            builder["Database"] = "QLCuaHangQuanAo";
+            builder["Database"] = "QLBanHang";
             builder["Integrated Security"] = "True";
 
             return builder.ConnectionString;

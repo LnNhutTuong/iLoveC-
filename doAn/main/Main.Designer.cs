@@ -41,7 +41,6 @@
             this.mnuBcSP = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBcKh = new System.Windows.Forms.ToolStripMenuItem();
             this.trợGiúpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuHuongDanSuDung = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThongTinPhanMem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblTrangThai = new System.Windows.Forms.ToolStripStatusLabel();
@@ -169,18 +168,10 @@
             // trợGiúpToolStripMenuItem
             // 
             this.trợGiúpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuHuongDanSuDung,
             this.mnuThongTinPhanMem});
             this.trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
             this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
             this.trợGiúpToolStripMenuItem.Text = "Trợ &giúp";
-            // 
-            // mnuHuongDanSuDung
-            // 
-            this.mnuHuongDanSuDung.Image = global::doAn.Properties.Resources.hand_paper;
-            this.mnuHuongDanSuDung.Name = "mnuHuongDanSuDung";
-            this.mnuHuongDanSuDung.Size = new System.Drawing.Size(230, 26);
-            this.mnuHuongDanSuDung.Text = "&Hướng dẫn sử dụng";
             // 
             // mnuThongTinPhanMem
             // 
@@ -323,7 +314,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuThongKe;
         private System.Windows.Forms.ToolStripMenuItem trợGiúpToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripMenuItem mnuHuongDanSuDung;
         private System.Windows.Forms.ToolStripMenuItem mnuThongTinPhanMem;
         private System.Windows.Forms.ToolStripStatusLabel lblTrangThai;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;

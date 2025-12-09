@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.txtMaNhanVien = new System.Windows.Forms.TextBox();
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnAnHienMatKhau = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,33 +56,22 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnAnHienMatKhau);
             this.splitContainer1.Panel2.Controls.Add(this.txtMatKhau);
             this.splitContainer1.Panel2.Controls.Add(this.txtMaNhanVien);
             this.splitContainer1.Panel2.Controls.Add(this.btnDangNhap);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(431, 267);
-            this.splitContainer1.SplitterDistance = 143;
+            this.splitContainer1.Size = new System.Drawing.Size(465, 267);
+            this.splitContainer1.SplitterDistance = 154;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::doAn.Properties.Resources.login_100;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(143, 267);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // txtMatKhau
             // 
             this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMatKhau.Location = new System.Drawing.Point(36, 163);
             this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.PasswordChar = '*';
             this.txtMatKhau.Size = new System.Drawing.Size(212, 32);
             this.txtMatKhau.TabIndex = 1;
             this.txtMatKhau.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtMatKhau_PreviewKeyDown);
@@ -136,10 +126,35 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Đăng nhập";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::doAn.Properties.Resources.login_100;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(154, 267);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnAnHienMatKhau
+            // 
+            this.btnAnHienMatKhau.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAnHienMatKhau.BackgroundImage = global::doAn.Properties.Resources.visible;
+            this.btnAnHienMatKhau.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAnHienMatKhau.Image = global::doAn.Properties.Resources.visible;
+            this.btnAnHienMatKhau.Location = new System.Drawing.Point(254, 163);
+            this.btnAnHienMatKhau.Name = "btnAnHienMatKhau";
+            this.btnAnHienMatKhau.Size = new System.Drawing.Size(45, 32);
+            this.btnAnHienMatKhau.TabIndex = 12;
+            this.btnAnHienMatKhau.Text = "hide";
+            this.btnAnHienMatKhau.UseVisualStyleBackColor = false;
+            this.btnAnHienMatKhau.Click += new System.EventHandler(this.btnAnHienMatKhau_Click);
+            // 
             // Login
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(431, 267);
+            this.ClientSize = new System.Drawing.Size(465, 267);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -167,5 +182,6 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtMatKhau;
         public System.Windows.Forms.TextBox txtMaNhanVien;
+        private System.Windows.Forms.Button btnAnHienMatKhau;
     }
 }

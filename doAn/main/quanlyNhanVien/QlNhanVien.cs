@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BC = BCrypt.Net.BCrypt;
 
 namespace doAn.quanLyNguoIDung
 {
@@ -238,7 +239,7 @@ namespace doAn.quanLyNguoIDung
                             cmd.Parameters.Add("@MaNhanVien", SqlDbType.NVarChar, 5).Value = txtMaNhanVien.Text.ToUpper();
                             cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
                             cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
-                            cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = "123456";
+                            cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = BC.HashPassword("123456");
                             cmd.Parameters.Add("@Sdt", SqlDbType.NVarChar, 11).Value = txtSoDienThoai.Text;
                             cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
 
@@ -265,7 +266,7 @@ namespace doAn.quanLyNguoIDung
                         cmd.Parameters.Add("@MaNhanVienCu", SqlDbType.NVarChar, 5).Value = maNhanVien;
                         cmd.Parameters.Add("@MaChucVu", SqlDbType.NVarChar, 5).Value = cboChucVu.SelectedValue.ToString();
                         cmd.Parameters.Add("@TenNhanVien", SqlDbType.NVarChar, 50).Value = txtTenNhanVien.Text;
-                        cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = txtMatKhau.Text;
+                        cmd.Parameters.Add("@MatKhau", SqlDbType.NVarChar, 50).Value = BC.HashPassword(txtMatKhau.Text);
                         cmd.Parameters.Add("@Sdt", SqlDbType.NVarChar, 11).Value = txtSoDienThoai.Text;
                         cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 50).Value = txtEmail.Text;
 
@@ -280,11 +281,6 @@ namespace doAn.quanLyNguoIDung
                     MessageBox.Show(ex.Message);
                 }
             }
-        }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)

@@ -19,7 +19,8 @@ namespace doAn
         public Login()
         {         
             InitializeComponent();
-        }            
+            txtMatKhau.UseSystemPasswordChar = true;
+        }
 
         private void txtMatKhau_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -78,6 +79,20 @@ namespace doAn
 
                 this.Close();
 
+            }
+        }
+
+        private void btnAnHienMatKhau_Click(object sender, EventArgs e)
+        {
+            if (txtMatKhau.UseSystemPasswordChar)
+            {
+                txtMatKhau.UseSystemPasswordChar = false;
+                btnAnHienMatKhau.BackgroundImage = Properties.Resources.visible;
+            }
+            else
+            {
+                txtMatKhau.UseSystemPasswordChar = true;
+                btnAnHienMatKhau.BackgroundImage = Properties.Resources.hide;
             }
         }
     }

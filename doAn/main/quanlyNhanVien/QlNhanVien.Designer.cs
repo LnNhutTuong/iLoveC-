@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnThoat = new System.Windows.Forms.Button();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.lblMatKhau = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -77,7 +76,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnThoat);
             this.splitContainer1.Panel2.Controls.Add(this.txtMatKhau);
             this.splitContainer1.Panel2.Controls.Add(this.lblMatKhau);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
@@ -110,20 +108,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "QUẢN LÝ NHÂN VIÊN";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.ForeColor = System.Drawing.Color.Red;
-            this.btnThoat.Image = global::doAn.Properties.Resources.exit;
-            this.btnThoat.Location = new System.Drawing.Point(859, 464);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(100, 34);
-            this.btnThoat.TabIndex = 11;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnThoat.UseVisualStyleBackColor = true;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // txtMatKhau
             // 
@@ -239,7 +223,7 @@
             this.btnTaiLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTaiLai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnTaiLai.Image = ((System.Drawing.Image)(resources.GetObject("btnTaiLai.Image")));
-            this.btnTaiLai.Location = new System.Drawing.Point(731, 464);
+            this.btnTaiLai.Location = new System.Drawing.Point(795, 464);
             this.btnTaiLai.Name = "btnTaiLai";
             this.btnTaiLai.Size = new System.Drawing.Size(100, 34);
             this.btnTaiLai.TabIndex = 10;
@@ -253,7 +237,7 @@
             this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.ForeColor = System.Drawing.Color.Blue;
             this.btnLuu.Image = global::doAn.Properties.Resources.save;
-            this.btnLuu.Location = new System.Drawing.Point(605, 464);
+            this.btnLuu.Location = new System.Drawing.Point(669, 464);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(100, 34);
             this.btnLuu.TabIndex = 9;
@@ -268,7 +252,7 @@
             this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.ForeColor = System.Drawing.Color.Black;
             this.btnSua.Image = global::doAn.Properties.Resources.edit;
-            this.btnSua.Location = new System.Drawing.Point(475, 464);
+            this.btnSua.Location = new System.Drawing.Point(539, 464);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 34);
             this.btnSua.TabIndex = 8;
@@ -282,7 +266,7 @@
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.ForeColor = System.Drawing.Color.Red;
             this.btnXoa.Image = global::doAn.Properties.Resources.delete;
-            this.btnXoa.Location = new System.Drawing.Point(349, 464);
+            this.btnXoa.Location = new System.Drawing.Point(413, 464);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 34);
             this.btnXoa.TabIndex = 7;
@@ -296,7 +280,7 @@
             this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThem.ForeColor = System.Drawing.Color.OliveDrab;
             this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
-            this.btnThem.Location = new System.Drawing.Point(219, 464);
+            this.btnThem.Location = new System.Drawing.Point(283, 464);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 34);
             this.btnThem.TabIndex = 6;
@@ -442,6 +426,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoDienThoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.Button btnThoat;
     }
 }

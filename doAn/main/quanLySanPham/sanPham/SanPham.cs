@@ -106,10 +106,7 @@ namespace doAn.quanLySanPham
         public void enableButton (bool value)
         {
             btnHanhDong.Enabled = value;
-        }
-      
-
-
+        }  
 
     }
 }

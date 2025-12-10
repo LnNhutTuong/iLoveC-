@@ -111,7 +111,7 @@ namespace doAn.main
             btnSanPham.Visible = true;
             btnKhachHang.Visible = true;
             btnDonHang.Visible = true;
-
+                
             mnuBcKh.Visible = true;
             mnuBcSP.Visible = true;
 

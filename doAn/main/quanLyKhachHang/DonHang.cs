@@ -33,7 +33,6 @@ namespace doAn.main.quanLyKhachHang
             //dataGridView
             dataTable.OpenConnection();
 
-            //Dat lon ten r
             string donHangSql = @"SELECT d.* , k.TenKhachHang
                                   FROM DonHang d, KhachHang k WHERE d.MaKhachHang = k.MaKhachHang ";
             SqlCommand donHangCmd = new SqlCommand(donHangSql);
@@ -41,8 +40,8 @@ namespace doAn.main.quanLyKhachHang
 
             
 
-                //gan du lieu vao nguon
-                data.DataSource = dataTable;
+            //gan du lieu vao nguon
+            data.DataSource = dataTable;
 
             //gan nguon du lieu vao bang
             dataGridView.DataSource = data;

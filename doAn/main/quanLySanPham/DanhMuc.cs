@@ -117,13 +117,11 @@ namespace doAn.quanLySanPham
                     //Sau khi ket noi duoc thi class nay se thuc hien
                     //chay lenh SELECT.
                     //QUAN TRONG!!!!!!: La cai lenh select nay ko phai
-                    //la lay du lieu don gian, ma tro thanh lenh de "kiem tra"
+                    //la lay du lieu khong thoi , ma tro thanh lenh de "kiem tra"
                     //"Kiem tra" su thay doi = them, xoa, sua.
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM DanhMuc", conn);
 
-                    
-                    //CLASS DINH CAO PHONG DO HOYASH
-                    //Sau khi adapter kiem tra xong thi Class nay se nhan ket qua
+                    //Sau khi adapter kiem tra xong thi ham nay se nhan ket qua
                     //Va bat dau thuc hien cac lenh INSERT, DELETE, UPDATE, tuong ung theo
                     //nhung du lieu da duoc them, xoa, sua
                     SqlCommandBuilder builder = new SqlCommandBuilder(adapter);

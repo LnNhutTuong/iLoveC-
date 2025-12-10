@@ -179,6 +179,7 @@
             this.mnuThongTinPhanMem.Name = "mnuThongTinPhanMem";
             this.mnuThongTinPhanMem.Size = new System.Drawing.Size(230, 26);
             this.mnuThongTinPhanMem.Text = "Thông tin &phần mềm";
+            this.mnuThongTinPhanMem.Click += new System.EventHandler(this.mnuThongTinPhanMem_Click);
             // 
             // statusStrip1
             // 

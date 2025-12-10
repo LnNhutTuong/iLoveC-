@@ -17,6 +17,8 @@ namespace doAn.popUp.thuongHieu
 
         private readonly BindingSource olddata;
 
+        string maCu;
+
         public Sua(BindingSource _olddata)
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace doAn.popUp.thuongHieu
         {
             DataRowView rowSelect = (DataRowView)olddata.Current;
 
+            maCu = rowSelect["MaThuongHieu"].ToString(); ;
             txtMaThuongHieu.Text = rowSelect["MaThuongHieu"].ToString();
             txtTenThuongHieu.Text = rowSelect["TenThuongHieu"].ToString();
         }
@@ -46,21 +49,24 @@ namespace doAn.popUp.thuongHieu
 
             DataRowView rowSelect = (DataRowView)olddata.Current;
 
-            if (txtMaThuongHieu.Text.Trim() == null)
+            if (string.IsNullOrEmpty(txtMaThuongHieu.Text))
             {
                 MessageBox.Show("Không được bỏ trống mã!");
+                return;
             }
             else if (txtMaThuongHieu.TextLength != 5)
             {
                 MessageBox.Show("Mã phải đủ 5 \n" + "Đã nhập: " + txtMaThuongHieu.TextLength);
+                return;
 
             }
-            else if (thuongHieuDaCo.Contains(txtMaThuongHieu.Text.ToUpper().Trim()))
+            else if (thuongHieuDaCo.Contains(txtMaThuongHieu.Text.ToUpper().Trim()) &&
+                        txtMaThuongHieu.Text.ToUpper().Trim() != maCu)
             {
                 MessageBox.Show("Mã này đã tồn tại!!");
                 return;
             }
-            else if (txtTenThuongHieu.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtTenThuongHieu.Text))
             {
                 MessageBox.Show("Không được bỏ trống tên!");
             }

@@ -53,7 +53,8 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
         private void btnDongY_Click(object sender, EventArgs e)
         {
             DataRowView rowSelect = (DataRowView)olddata.Current;
-            if (txtMaKhachHang.Text.Trim() == null)
+
+            if (string.IsNullOrEmpty(txtMaKhachHang.Text))
             {
                 MessageBox.Show("Không được bỏ trống mã!");
                 return;
@@ -63,14 +64,14 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
                 MessageBox.Show("Mã phải đủ 5 \n" + txtMaKhachHang.TextLength);
                 return;
             }
-            else if (txtTenKhachHang.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtTenKhachHang.Text))
             {
                 MessageBox.Show("Không được bỏ trống tên!");
                 return;
             }
-            else if (txtDiaChi.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtSoDienThoai.Text))
             {
-                MessageBox.Show("Không được bỏ trống tên!");
+                MessageBox.Show("Không được bỏ trống số điện thoại!");
                 return;
 
             }
@@ -78,11 +79,6 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
             {
                 MessageBox.Show("Số điện thoại phải là số!", "LỖI",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else if (txtSoDienThoai.Text.Trim() == null)
-            {
-                MessageBox.Show("Không được bỏ trống tên!");
                 return;
             }
             else if (txtSoDienThoai.Text.Length > 10 || txtSoDienThoai.Text.Length < 10)
@@ -103,7 +99,7 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
             }
 
             //------------EMAIL
-            else if (txtEmail.Text.Trim() == "")
+            else if (string.IsNullOrEmpty(txtEmail.Text))
             {
                 MessageBox.Show("Email không được bỏ trống ", "LỖI",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);

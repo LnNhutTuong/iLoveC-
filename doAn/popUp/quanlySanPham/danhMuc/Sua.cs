@@ -18,6 +18,8 @@ namespace doAn.popUp.sanPham
 
         private readonly BindingSource olddata;
 
+        string macu;
+
         public Sua(BindingSource _olddata)
         {
             InitializeComponent();
@@ -27,9 +29,12 @@ namespace doAn.popUp.sanPham
         private void Sua_Load(object sender, EventArgs e)
         {
             DataRowView rowSelect = (DataRowView)olddata.Current;
-            
+
+            macu = rowSelect["MaDanhMuc"].ToString().ToUpper().Trim();
+
             txtMaDanhMuc.Text = rowSelect["MaDanhMuc"].ToString();
             txtTenDanhMuc.Text = rowSelect["TenDanhMuc"].ToString();
+
 
         }
 
@@ -45,11 +50,13 @@ namespace doAn.popUp.sanPham
             {
                 string ma = row["MaDanhMuc"].ToString();
                 maDaCo.Add(ma);
+
+
             }
 
             DataRowView rowSelect = (DataRowView)olddata.Current;
 
-            if (txtMaDanhMuc.Text.Trim() == null)
+            if (string.IsNullOrEmpty(txtMaDanhMuc.Text))
             {
                 MessageBox.Show("Không được bỏ trống mã!");
                 return;
@@ -60,12 +67,13 @@ namespace doAn.popUp.sanPham
                 return;
 
             }
-            else if (maDaCo.Contains(txtMaDanhMuc.Text.ToUpper().Trim()))
+            if (maDaCo.Contains(txtMaDanhMuc.Text.ToUpper().Trim())
+                && txtMaDanhMuc.Text.ToUpper().Trim() != macu)
             {
                 MessageBox.Show("Mã này đã tồn tại");
                 return;
             }
-            else if (txtTenDanhMuc.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtTenDanhMuc.Text))
             {
                 MessageBox.Show("Không được bỏ trống tên!");
                 return;

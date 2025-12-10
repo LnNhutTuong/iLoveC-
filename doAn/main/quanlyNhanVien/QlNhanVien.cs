@@ -38,7 +38,7 @@ namespace doAn.quanLyNguoIDung
             chucVu.OpenConnection();
 
             //Chucvu
-            string chucVuSql = "SELECT *FROM ChucVu";
+            string chucVuSql = "SELECT *FROM ChucVu WHERE MaChucVu <> 'AD'";
             SqlCommand cmd = new SqlCommand(chucVuSql);
             chucVu.Fill(cmd);
 

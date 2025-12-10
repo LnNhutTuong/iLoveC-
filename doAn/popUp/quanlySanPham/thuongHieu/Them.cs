@@ -39,7 +39,7 @@ namespace doAn.popUp.thuongHieu
 
             DataTable dt = (DataTable)newdata.DataSource;
             
-            if(txtMaThuongHieu.Text.Trim() == null)
+            if(string.IsNullOrEmpty(txtMaThuongHieu.Text))
             {
                 MessageBox.Show("Không được bỏ trống mã!");
                 return;
@@ -54,7 +54,7 @@ namespace doAn.popUp.thuongHieu
                 MessageBox.Show("Mã này đã tồn tại!!");
                 return;
             }
-            else if (txtTenThuongHieu.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtTenThuongHieu.Text))
             {
                 MessageBox.Show("Không được bỏ trống tên!");
                 return;

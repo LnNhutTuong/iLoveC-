@@ -59,6 +59,7 @@ namespace doAn.main
         DonHang donHang = null;
         KhachHang khachHang = null;
         BaoCaoKhachHang bcKhachHang = null;
+        AboutBox about = null;
         public Main()
         {
             Flash flash = new Flash();
@@ -394,6 +395,21 @@ namespace doAn.main
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void mnuThongTinPhanMem_Click(object sender, EventArgs e)
+        {
+            if (about == null || about.IsDisposed)
+            {
+                about = new AboutBox();
+                about.MdiParent = this;
+                Dock = DockStyle.Fill;
+                about.Show();
+            }
+            else
+            {
+                about.Activate();
+            }
         }
     }
 }

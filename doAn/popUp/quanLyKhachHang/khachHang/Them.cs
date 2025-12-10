@@ -57,7 +57,7 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
 
             DataTable dt = (DataTable)newdata.DataSource;
 
-            if (txtMaKhachHang.Text.Trim() == null)
+            if (string.IsNullOrEmpty(txtMaKhachHang.Text))
             {
                 MessageBox.Show("Không được bỏ trống mã!");
                 return;
@@ -72,14 +72,14 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
                 MessageBox.Show("Mã này đã tồn tại");
                 return;
             }
-            else if (txtTenKhachHang.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtTenKhachHang.Text))
             {
                 MessageBox.Show("Không được bỏ trống tên!");
                 return;
             }
-            else if (txtDiaChi.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtDiaChi.Text))
             {
-                MessageBox.Show("Không được bỏ trống tên!");
+                MessageBox.Show("Không được bỏ trống địa chỉ!");
                 return;
 
             }
@@ -89,7 +89,7 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (txtSoDienThoai.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtSoDienThoai.Text))
             {
                 MessageBox.Show("Không được bỏ trống Số điện thoại!");
                 return;
@@ -112,7 +112,7 @@ namespace doAn.popUp.quanLyKhachHang.khachHang
             }
 
             //------------EMAIL
-            else if (txtEmail.Text.Trim() == "")
+            else if (string.IsNullOrEmpty(txtEmail.Text))
             {
                 MessageBox.Show("Email không được bỏ trống ", "LỖI",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);

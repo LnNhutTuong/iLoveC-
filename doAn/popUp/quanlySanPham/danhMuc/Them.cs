@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,7 +36,7 @@ namespace doAn.popUp
 
             DataTable dt = (DataTable)newdata.DataSource;
 
-            if (txtMaDanhMuc.Text.Trim() == null)
+            if (string.IsNullOrEmpty(txtMaDanhMuc.Text))
             {
                 MessageBox.Show("Không được bỏ trống mã!");
                 return;
@@ -51,9 +51,10 @@ namespace doAn.popUp
                 MessageBox.Show("Mã này đã tồn tại");
                 return;
             }
-            else if (txtTenDanhMuc.Text.Trim() == null)
+            else if (string.IsNullOrEmpty(txtTenDanhMuc.Text))
             {
                 MessageBox.Show("Không được bỏ trống tên!");
+                return;
             }
 
             dt.Rows.Add(txtMaDanhMuc.Text.ToUpper().Trim(), txtTenDanhMuc.Text);

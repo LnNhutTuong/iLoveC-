@@ -233,7 +233,7 @@ namespace doAn.popUp.quanlySanPham.sanPham
 
             try
             {             
-                if (txtMaSanPham.Text.Trim() == null)
+                if (string.IsNullOrEmpty(txtMaSanPham.Text))
                 {
                     MessageBox.Show("Không được bỏ trống mã!");
                     return;
@@ -248,12 +248,17 @@ namespace doAn.popUp.quanlySanPham.sanPham
                     MessageBox.Show("Mã này đã tồn tại!!");
                     return;
                 }
-                else if (txtTenSanPham.Text.Trim() == null)
+                else if (string.IsNullOrEmpty(txtTenSanPham.Text))
                 {
                     MessageBox.Show("Không được bỏ trống tên!");
                     return;
                 }
-                else if (txtMoTa.Text.Trim() == null)
+                else if (string.IsNullOrEmpty(txtMoTa.Text))
+                {
+                    MessageBox.Show("Không được bỏ trống Mô tả!");
+                    return;
+                }
+                else if(string.IsNullOrEmpty(txtTriGia.Text))
                 {
                     MessageBox.Show("Không được bỏ trống Mô tả!");
                     return;

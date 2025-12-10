@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("doAn")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Quản lý bán hàng")]
+[assembly: AssemblyDescription("Phần mềm quản lý bán hàng đơn giản, offline, nội bộ.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("doAn")]
-[assembly: AssemblyCopyright("Copyright ©  2025")]
+[assembly: AssemblyCompany("XimenT")]
+[assembly: AssemblyProduct("QuanLyBanHang")]
+[assembly: AssemblyCopyright("Copyright ©  2025 bởi Lâm Nguyễn Nhựt Tường")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -40,6 +40,15 @@ namespace doAn.main.quanLySanPham
             spCoDon.Fill(spCoDonCmd);
             int daban = Convert.ToInt32(spCoDon.Rows[0][0]);
 
+            MyDataTable doanhThu = new MyDataTable();
+            doanhThu.OpenConnection();
+            //Lay ra duoc so luong sp
+            SqlCommand doanhThuCmd = new SqlCommand(@"SELECT SUM(ThanhTien) as DaonhThu
+                                                      FROM ChiTietDonHang");
+            doanhThu.Fill(doanhThuCmd);
+            int doanhthu = Convert.ToInt32(doanhThu.Rows[0][0]);
+            lblDoanhThu.Text = "Tổng doanh thu: " + doanhthu.ToString("N0") +" vnđ";
+
             int tonkho = tong - daban;
             lblTong.Text ="Tổng số sản phẩm: "+ tong.ToString();
 
